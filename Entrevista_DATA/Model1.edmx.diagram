@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="09fc9d05e53a463daec106f617d49b29" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="SDEModel.Chat_conversacion" Width="1.5" PointX="30.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Dificultad" Width="1.5" PointX="31.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Entrevista" Width="1.5" PointX="33.5" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Intentos_login" Width="1.5" PointX="30.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Mensajes_conversacion" Width="1.5" PointX="32.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Perfil" Width="1.5" PointX="30.5" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Planes_entrenamiento" Width="1.5" PointX="30.5" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Preguntas" Width="1.5" PointX="35.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Recuperacion_password" Width="1.5" PointX="30.5" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Respuestas" Width="1.5" PointX="38" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Resultado" Width="1.5" PointX="35.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Sesiones" Width="1.5" PointX="30.5" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Temas" Width="1.5" PointX="31.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Tokens_login" Width="1.5" PointX="30.5" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SDEModel.Usuarios" Width="1.5" PointX="28.25" PointY="16.5" IsExpanded="true" />
+        <AssociationConnector Association="SDEModel.FK_chat_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_mensaje_chat" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_entrevista_dificultad" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_entrevista_tema" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_entrevista_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_pregunta_entrevista" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_respuesta_entrevista" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_resultado_entrevista" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_intento_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_perfil_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_plan_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_respuesta_pregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_recuperacion_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_sesion_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="SDEModel.FK_tokens_usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,22 @@
+﻿@model Entrevista.ViewModels.ResultadoViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Resultado</h2>
+
+<div class="card p-4">
+
+    <h3>Puntaje: @Model.Puntaje</h3>
+
+    <hr />
+
+    <p>@Model.Observaciones</p>
+
+</div>
+
+<br />
+
+<a href="/Plan/Generar?entrevistaId=@Model.EntrevistaId" class="btn btn-primary">
+    Generar Plan
+</a>

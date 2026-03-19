@@ -1,0 +1,48 @@
+﻿@model Entrevista.ViewModels.EntrevistaViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Entrevista Técnica</h2>
+
+<div class="card p-3 chat-box">
+
+    @if (Model.Historial != null)
+    {
+        foreach (var msg in Model.Historial)
+        {
+            if (msg.Tipo == "Usuario")
+            {
+                <div class="msg-user">
+                    <div class="bubble user">@msg.Texto</div>
+                </div>
+            }
+            else
+            {
+                <div class="msg-ai">
+                    <div class="bubble ai">@msg.Texto</div>
+                </div>
+            }
+        }
+    }
+
+    <div class="msg-ai">
+        <div class="bubble ai">@Model.PreguntaActual</div>
+    </div>
+
+</div>
+
+<br />
+
+@using (Html.BeginForm("Responder", "Entrevista", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.EntrevistaId)
+
+    <div class="form-group">
+        @Html.TextAreaFor(x => x.RespuestaUsuario, new { @class = "form-control", rows = 3 })
+    </div>
+
+    <br />
+
+    <button class="btn btn-success">Enviar</button>
+}

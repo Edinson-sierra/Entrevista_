@@ -1,0 +1,36 @@
+﻿@model Entrevista.ViewModels.RegisterViewModel
+
+<h2>Registro</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label>Nombre</label>
+        @Html.TextBoxFor(m => m.Nombre)
+    </div>
+
+    <div>
+        <label>Email</label>
+        @Html.TextBoxFor(m => m.Email)
+    </div>
+
+    <div>
+        <label>Password</label>
+        @Html.PasswordFor(m => m.Password)
+    </div>
+
+   /* <div>
+        <label> Confirmar Password </label>
+        @Html.PasswordFor(mc =>)
+    </div>
+   */
+    <br />
+
+    <button type="submit">Registrarse</button>
+
+    <div style="color:red;">
+        @Html.ValidationSummary()
+    </div>
+}

@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SDEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Chat_conversacion">
+    <Key>
+      <PropertyRef Name="id_chat_conversacion" />
+    </Key>
+    <Property Name="id_chat_conversacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuarios_id_usuarios" Type="Int32" Nullable="false" />
+    <Property Name="fecha_inicio_conversacion" Type="DateTime" Precision="3" />
+    <Property Name="fecha_fin_conversacion" Type="DateTime" Precision="3" />
+    <Property Name="titulo_conversacion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_chat_usuario" FromRole="Chat_conversacion" ToRole="Usuarios" />
+    <NavigationProperty Name="Mensajes_conversacion" Relationship="Self.FK_mensaje_chat" FromRole="Chat_conversacion" ToRole="Mensajes_conversacion" />
+  </EntityType>
+  <EntityType Name="Dificultad">
+    <Key>
+      <PropertyRef Name="id_dificultad" />
+    </Key>
+    <Property Name="id_dificultad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_dificultad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Entrevista" Relationship="Self.FK_entrevista_dificultad" FromRole="Dificultad" ToRole="Entrevista" />
+  </EntityType>
+  <EntityType Name="Entrevista">
+    <Key>
+      <PropertyRef Name="id_entrevista" />
+    </Key>
+    <Property Name="id_entrevista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="temas_id_temas" Type="Int32" Nullable="false" />
+    <Property Name="dificultad_id_dificultad" Type="Int32" Nullable="false" />
+    <Property Name="usuarios_id_usuarios" Type="Int32" Nullable="false" />
+    <Property Name="fecha_entrevista" Type="DateTime" Precision="3" />
+    <Property Name="estado_entrevista" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Dificultad" Relationship="Self.FK_entrevista_dificultad" FromRole="Entrevista" ToRole="Dificultad" />
+    <NavigationProperty Name="Temas" Relationship="Self.FK_entrevista_tema" FromRole="Entrevista" ToRole="Temas" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_entrevista_usuario" FromRole="Entrevista" ToRole="Usuarios" />
+    <NavigationProperty Name="Preguntas" Relationship="Self.FK_pregunta_entrevista" FromRole="Entrevista" ToRole="Preguntas" />
+    <NavigationProperty Name="Respuestas" Relationship="Self.FK_respuesta_entrevista" FromRole="Entrevista" ToRole="Respuestas" />
+    <NavigationProperty Name="Resultado" Relationship="Self.FK_resultado_entrevista" FromRole="Entrevista" ToRole="Resultado" />
+  </EntityType>
+  <EntityType Name="Intentos_login">
+    <Key>
+      <PropertyRef Name="id_intentos_login" />
+    </Key>
+    <Property Name="id_intentos_login" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuarios_id_usuarios" Type="Int32" />
+    <Property Name="exito_intento" Type="Boolean" />
+    <Property Name="fecha_intento" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_intento_usuario" FromRole="Intentos_login" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Mensajes_conversacion">
+    <Key>
+      <PropertyRef Name="id_mensaje" />
+    </Key>
+    <Property Name="id_mensaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chat_conversacion_id" Type="Int32" Nullable="false" />
+    <Property Name="remitente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_envio" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Chat_conversacion" Relationship="Self.FK_mensaje_chat" FromRole="Mensajes_conversacion" ToRole="Chat_conversacion" />
+  </EntityType>
+  <EntityType Name="Perfil">
+    <Key>
+      <PropertyRef Name="id_perfil" />
+    </Key>
+    <Property Name="id_perfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuarios_id_usuarios" Type="Int32" Nullable="false" />
+    <Property Name="avatar_seed" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="avatar_estilo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="avatar_url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="bio" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_perfil_usuario" FromRole="Perfil" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Planes_entrenamiento">
+    <Key>
+      <PropertyRef Name="id_plan_entrenamiento" />
+    </Key>
+    <Property Name="id_plan_entrenamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuarios_id_usuarios" Type="Int32" Nullable="false" />
+    <Property Name="fecha_plan" Type="DateTime" Precision="3" />
+    <Property Name="recomendacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_plan_usuario" FromRole="Planes_entrenamiento" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Preguntas">
+    <Key>
+      <PropertyRef Name="id_pregunta" />
+    </Key>
+    <Property Name="id_pregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="entrevista_id_entrevista" Type="Int32" Nullable="false" />
+    <Property Name="texto_pregunta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Entrevista" Relationship="Self.FK_pregunta_entrevista" FromRole="Preguntas" ToRole="Entrevista" />
+    <NavigationProperty Name="Respuestas" Relationship="Self.FK_respuesta_pregunta" FromRole="Preguntas" ToRole="Respuestas" />
+  </EntityType>
+  <EntityType Name="Recuperacion_password">
+    <Key>
+      <PropertyRef Name="id_recuperacion" />
+    </Key>
+    <Property Name="id_recuperacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuarios_id_usuarios" Type="Int32" Nullable="false" />
+    <Property Name="token_recuperacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="expiracion_token_recuperacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usado_token_recuperacion" Type="Boolean" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_recuperacion_usuario" FromRole="Recuperacion_password" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Respuestas">
+    <Key>
+      <PropertyRef Name="id_respuesta" />
+    </Key>
+    <Property Name="id_respuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="preguntas_id_pregunta" Type="Int32" Nullable="false" />
+    <Property Name="entrevista_id_entrevista" Type="Int32" Nullable="false" />
+    <Property Name="respuesta_usuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_respuesta" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Entrevista" Relationship="Self.FK_respuesta_entrevista" FromRole="Respuestas" ToRole="Entrevista" />
+    <NavigationProperty Name="Preguntas" Relationship="Self.FK_respuesta_pregunta" FromRole="Respuestas" ToRole="Preguntas" />
+  </EntityType>
+  <EntityType Name="Resultado">
+    <Key>
+      <PropertyRef Name="id_resultado" />
+    </Key>
+    <Property Name="id_resultado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="entrevista_id_entrevista" Type="Int32" Nullable="false" />
+    <Property Name="puntaje_total" Type="Int32" />
+    <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_resultado" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Entrevista" Relationship="Self.FK_resultado_entrevista" FromRole="Resultado" ToRole="Entrevista" />
+  </EntityType>
+  <EntityType Name="Sesiones">
+    <Key>
+      <PropertyRef Name="id_sesion" />
+    </Key>
+    <Property Name="id_sesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuarios_id_usuarios" Type="Int32" Nullable="false" />
+    <Property Name="ip_sesion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dispositivo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_inicio_sesion" Type="DateTime" Precision="3" />
+    <Property Name="fecha_cierre_sesion" Type="DateTime" Precision="3" />
+    <Property Name="token_sesion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="activa" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_sesion_usuario" FromRole="Sesiones" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Temas">
+    <Key>
+      <PropertyRef Name="id_tema" />
+    </Key>
+    <Property Name="id_tema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_tema" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcion_tema" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Entrevista" Relationship="Self.FK_entrevista_tema" FromRole="Temas" ToRole="Entrevista" />
+  </EntityType>
+  <EntityType Name="Tokens_login">
+    <Key>
+      <PropertyRef Name="id_tokens_login" />
+    </Key>
+    <Property Name="id_tokens_login" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="usuarios_id_usuarios" Type="Int32" Nullable="false" />
+    <Property Name="token" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_expiracion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="token_activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_tokens_usuario" FromRole="Tokens_login" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="id_usuarios" />
+    </Key>
+    <Property Name="id_usuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre_usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email_usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password_hash" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activo" Type="Boolean" />
+    <NavigationProperty Name="Chat_conversacion" Relationship="Self.FK_chat_usuario" FromRole="Usuarios" ToRole="Chat_conversacion" />
+    <NavigationProperty Name="Entrevista" Relationship="Self.FK_entrevista_usuario" FromRole="Usuarios" ToRole="Entrevista" />
+    <NavigationProperty Name="Intentos_login" Relationship="Self.FK_intento_usuario" FromRole="Usuarios" ToRole="Intentos_login" />
+    <NavigationProperty Name="Perfil" Relationship="Self.FK_perfil_usuario" FromRole="Usuarios" ToRole="Perfil" />
+    <NavigationProperty Name="Planes_entrenamiento" Relationship="Self.FK_plan_usuario" FromRole="Usuarios" ToRole="Planes_entrenamiento" />
+    <NavigationProperty Name="Recuperacion_password" Relationship="Self.FK_recuperacion_usuario" FromRole="Usuarios" ToRole="Recuperacion_password" />
+    <NavigationProperty Name="Sesiones" Relationship="Self.FK_sesion_usuario" FromRole="Usuarios" ToRole="Sesiones" />
+    <NavigationProperty Name="Tokens_login" Relationship="Self.FK_tokens_usuario" FromRole="Usuarios" ToRole="Tokens_login" />
+  </EntityType>
+  <Association Name="FK_chat_usuario">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Chat_conversacion" Type="Self.Chat_conversacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id_usuarios" />
+      </Principal>
+      <Dependent Role="Chat_conversacion">
+        <PropertyRef Name="usuarios_id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_mensaje_chat">
+    <End Role="Chat_conversacion" Type="Self.Chat_conversacion" Multiplicity="1" />
+    <End Role="Mensajes_conversacion" Type="Self.Mensajes_conversacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chat_conversacion">
+        <PropertyRef Name="id_chat_conversacion" />
+      </Principal>
+      <Dependent Role="Mensajes_conversacion">
+        <PropertyRef Name="chat_conversacion_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_entrevista_dificultad">
+    <End Role="Dificultad" Type="Self.Dificultad" Multiplicity="1" />
+    <End Role="Entrevista" Type="Self.Entrevista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dificultad">
+        <PropertyRef Name="id_dificultad" />
+      </Principal>
+      <Dependent Role="Entrevista">
+        <PropertyRef Name="dificultad_id_dificultad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_entrevista_tema">
+    <End Role="Temas" Type="Self.Temas" Multiplicity="1" />
+    <End Role="Entrevista" Type="Self.Entrevista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Temas">
+        <PropertyRef Name="id_tema" />
+      </Principal>
+      <Dependent Role="Entrevista">
+        <PropertyRef Name="temas_id_temas" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_entrevista_usuario">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Entrevista" Type="Self.Entrevista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id_usuarios" />
+      </Principal>
+      <Dependent Role="Entrevista">
+        <PropertyRef Name="usuarios_id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pregunta_entrevista">
+    <End Role="Entrevista" Type="Self.Entrevista" Multiplicity="1" />
+    <End Role="Preguntas" Type="Self.Preguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entrevista">
+        <PropertyRef Name="id_entrevista" />
+      </Principal>
+      <Dependent Role="Preguntas">
+        <PropertyRef Name="entrevista_id_entrevista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_respuesta_entrevista">
+    <End Role="Entrevista" Type="Self.Entrevista" Multiplicity="1" />
+    <End Role="Respuestas" Type="Self.Respuestas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entrevista">
+        <PropertyRef Name="id_entrevista" />
+      </Principal>
+      <Dependent Role="Respuestas">
+        <PropertyRef Name="entrevista_id_entrevista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_resultado_entrevista">
+    <End Role="Entrevista" Type="Self.Entrevista" Multiplicity="1" />
+    <End Role="Resultado" Type="Self.Resultado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entrevista">
+        <PropertyRef Name="id_entrevista" />
+      </Principal>
+      <Dependent Role="Resultado">
+        <PropertyRef Name="entrevista_id_entrevista" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_intento_usuario">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Intentos_login" Type="Self.Intentos_login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id_usuarios" />
+      </Principal>
+      <Dependent Role="Intentos_login">
+        <PropertyRef Name="usuarios_id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_perfil_usuario">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Perfil" Type="Self.Perfil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id_usuarios" />
+      </Principal>
+      <Dependent Role="Perfil">
+        <PropertyRef Name="usuarios_id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_plan_usuario">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Planes_entrenamiento" Type="Self.Planes_entrenamiento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id_usuarios" />
+      </Principal>
+      <Dependent Role="Planes_entrenamiento">
+        <PropertyRef Name="usuarios_id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_respuesta_pregunta">
+    <End Role="Preguntas" Type="Self.Preguntas" Multiplicity="1" />
+    <End Role="Respuestas" Type="Self.Respuestas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Preguntas">
+        <PropertyRef Name="id_pregunta" />
+      </Principal>
+      <Dependent Role="Respuestas">
+        <PropertyRef Name="preguntas_id_pregunta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_recuperacion_usuario">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Recuperacion_password" Type="Self.Recuperacion_password" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id_usuarios" />
+      </Principal>
+      <Dependent Role="Recuperacion_password">
+        <PropertyRef Name="usuarios_id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_sesion_usuario">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Sesiones" Type="Self.Sesiones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id_usuarios" />
+      </Principal>
+      <Dependent Role="Sesiones">
+        <PropertyRef Name="usuarios_id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tokens_usuario">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Tokens_login" Type="Self.Tokens_login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="id_usuarios" />
+      </Principal>
+      <Dependent Role="Tokens_login">
+        <PropertyRef Name="usuarios_id_usuarios" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SDEEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Chat_conversacion" EntityType="Self.Chat_conversacion" />
+    <EntitySet Name="Dificultad" EntityType="Self.Dificultad" />
+    <EntitySet Name="Entrevista" EntityType="Self.Entrevista" />
+    <EntitySet Name="Intentos_login" EntityType="Self.Intentos_login" />
+    <EntitySet Name="Mensajes_conversacion" EntityType="Self.Mensajes_conversacion" />
+    <EntitySet Name="Perfil" EntityType="Self.Perfil" />
+    <EntitySet Name="Planes_entrenamiento" EntityType="Self.Planes_entrenamiento" />
+    <EntitySet Name="Preguntas" EntityType="Self.Preguntas" />
+    <EntitySet Name="Recuperacion_password" EntityType="Self.Recuperacion_password" />
+    <EntitySet Name="Respuestas" EntityType="Self.Respuestas" />
+    <EntitySet Name="Resultado" EntityType="Self.Resultado" />
+    <EntitySet Name="Sesiones" EntityType="Self.Sesiones" />
+    <EntitySet Name="Temas" EntityType="Self.Temas" />
+    <EntitySet Name="Tokens_login" EntityType="Self.Tokens_login" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK_chat_usuario" Association="Self.FK_chat_usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Chat_conversacion" EntitySet="Chat_conversacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_mensaje_chat" Association="Self.FK_mensaje_chat">
+      <End Role="Chat_conversacion" EntitySet="Chat_conversacion" />
+      <End Role="Mensajes_conversacion" EntitySet="Mensajes_conversacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_entrevista_dificultad" Association="Self.FK_entrevista_dificultad">
+      <End Role="Dificultad" EntitySet="Dificultad" />
+      <End Role="Entrevista" EntitySet="Entrevista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_entrevista_tema" Association="Self.FK_entrevista_tema">
+      <End Role="Temas" EntitySet="Temas" />
+      <End Role="Entrevista" EntitySet="Entrevista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_entrevista_usuario" Association="Self.FK_entrevista_usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Entrevista" EntitySet="Entrevista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pregunta_entrevista" Association="Self.FK_pregunta_entrevista">
+      <End Role="Entrevista" EntitySet="Entrevista" />
+      <End Role="Preguntas" EntitySet="Preguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_respuesta_entrevista" Association="Self.FK_respuesta_entrevista">
+      <End Role="Entrevista" EntitySet="Entrevista" />
+      <End Role="Respuestas" EntitySet="Respuestas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_resultado_entrevista" Association="Self.FK_resultado_entrevista">
+      <End Role="Entrevista" EntitySet="Entrevista" />
+      <End Role="Resultado" EntitySet="Resultado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_intento_usuario" Association="Self.FK_intento_usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Intentos_login" EntitySet="Intentos_login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_perfil_usuario" Association="Self.FK_perfil_usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Perfil" EntitySet="Perfil" />
+    </AssociationSet>
+    <AssociationSet Name="FK_plan_usuario" Association="Self.FK_plan_usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Planes_entrenamiento" EntitySet="Planes_entrenamiento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_respuesta_pregunta" Association="Self.FK_respuesta_pregunta">
+      <End Role="Preguntas" EntitySet="Preguntas" />
+      <End Role="Respuestas" EntitySet="Respuestas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_recuperacion_usuario" Association="Self.FK_recuperacion_usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Recuperacion_password" EntitySet="Recuperacion_password" />
+    </AssociationSet>
+    <AssociationSet Name="FK_sesion_usuario" Association="Self.FK_sesion_usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Sesiones" EntitySet="Sesiones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tokens_usuario" Association="Self.FK_tokens_usuario">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Tokens_login" EntitySet="Tokens_login" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

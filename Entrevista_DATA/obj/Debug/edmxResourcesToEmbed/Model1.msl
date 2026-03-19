@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SDEModelStoreContainer" CdmEntityContainer="SDEEntities">
+    <EntitySetMapping Name="Chat_conversacion">
+      <EntityTypeMapping TypeName="SDEModel.Chat_conversacion">
+        <MappingFragment StoreEntitySet="Chat_conversacion">
+          <ScalarProperty Name="id_chat_conversacion" ColumnName="id_chat_conversacion" />
+          <ScalarProperty Name="usuarios_id_usuarios" ColumnName="usuarios_id_usuarios" />
+          <ScalarProperty Name="fecha_inicio_conversacion" ColumnName="fecha_inicio_conversacion" />
+          <ScalarProperty Name="fecha_fin_conversacion" ColumnName="fecha_fin_conversacion" />
+          <ScalarProperty Name="titulo_conversacion" ColumnName="titulo_conversacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dificultad">
+      <EntityTypeMapping TypeName="SDEModel.Dificultad">
+        <MappingFragment StoreEntitySet="Dificultad">
+          <ScalarProperty Name="id_dificultad" ColumnName="id_dificultad" />
+          <ScalarProperty Name="nombre_dificultad" ColumnName="nombre_dificultad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entrevista">
+      <EntityTypeMapping TypeName="SDEModel.Entrevista">
+        <MappingFragment StoreEntitySet="Entrevista">
+          <ScalarProperty Name="id_entrevista" ColumnName="id_entrevista" />
+          <ScalarProperty Name="temas_id_temas" ColumnName="temas_id_temas" />
+          <ScalarProperty Name="dificultad_id_dificultad" ColumnName="dificultad_id_dificultad" />
+          <ScalarProperty Name="usuarios_id_usuarios" ColumnName="usuarios_id_usuarios" />
+          <ScalarProperty Name="fecha_entrevista" ColumnName="fecha_entrevista" />
+          <ScalarProperty Name="estado_entrevista" ColumnName="estado_entrevista" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Intentos_login">
+      <EntityTypeMapping TypeName="SDEModel.Intentos_login">
+        <MappingFragment StoreEntitySet="Intentos_login">
+          <ScalarProperty Name="id_intentos_login" ColumnName="id_intentos_login" />
+          <ScalarProperty Name="usuarios_id_usuarios" ColumnName="usuarios_id_usuarios" />
+          <ScalarProperty Name="exito_intento" ColumnName="exito_intento" />
+          <ScalarProperty Name="fecha_intento" ColumnName="fecha_intento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mensajes_conversacion">
+      <EntityTypeMapping TypeName="SDEModel.Mensajes_conversacion">
+        <MappingFragment StoreEntitySet="Mensajes_conversacion">
+          <ScalarProperty Name="id_mensaje" ColumnName="id_mensaje" />
+          <ScalarProperty Name="chat_conversacion_id" ColumnName="chat_conversacion_id" />
+          <ScalarProperty Name="remitente" ColumnName="remitente" />
+          <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+          <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Perfil">
+      <EntityTypeMapping TypeName="SDEModel.Perfil">
+        <MappingFragment StoreEntitySet="Perfil">
+          <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+          <ScalarProperty Name="usuarios_id_usuarios" ColumnName="usuarios_id_usuarios" />
+          <ScalarProperty Name="avatar_seed" ColumnName="avatar_seed" />
+          <ScalarProperty Name="avatar_estilo" ColumnName="avatar_estilo" />
+          <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+          <ScalarProperty Name="bio" ColumnName="bio" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Planes_entrenamiento">
+      <EntityTypeMapping TypeName="SDEModel.Planes_entrenamiento">
+        <MappingFragment StoreEntitySet="Planes_entrenamiento">
+          <ScalarProperty Name="id_plan_entrenamiento" ColumnName="id_plan_entrenamiento" />
+          <ScalarProperty Name="usuarios_id_usuarios" ColumnName="usuarios_id_usuarios" />
+          <ScalarProperty Name="fecha_plan" ColumnName="fecha_plan" />
+          <ScalarProperty Name="recomendacion" ColumnName="recomendacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Preguntas">
+      <EntityTypeMapping TypeName="SDEModel.Preguntas">
+        <MappingFragment StoreEntitySet="Preguntas">
+          <ScalarProperty Name="id_pregunta" ColumnName="id_pregunta" />
+          <ScalarProperty Name="entrevista_id_entrevista" ColumnName="entrevista_id_entrevista" />
+          <ScalarProperty Name="texto_pregunta" ColumnName="texto_pregunta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recuperacion_password">
+      <EntityTypeMapping TypeName="SDEModel.Recuperacion_password">
+        <MappingFragment StoreEntitySet="Recuperacion_password">
+          <ScalarProperty Name="id_recuperacion" ColumnName="id_recuperacion" />
+          <ScalarProperty Name="usuarios_id_usuarios" ColumnName="usuarios_id_usuarios" />
+          <ScalarProperty Name="token_recuperacion" ColumnName="token_recuperacion" />
+          <ScalarProperty Name="expiracion_token_recuperacion" ColumnName="expiracion_token_recuperacion" />
+          <ScalarProperty Name="usado_token_recuperacion" ColumnName="usado_token_recuperacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Respuestas">
+      <EntityTypeMapping TypeName="SDEModel.Respuestas">
+        <MappingFragment StoreEntitySet="Respuestas">
+          <ScalarProperty Name="id_respuesta" ColumnName="id_respuesta" />
+          <ScalarProperty Name="preguntas_id_pregunta" ColumnName="preguntas_id_pregunta" />
+          <ScalarProperty Name="entrevista_id_entrevista" ColumnName="entrevista_id_entrevista" />
+          <ScalarProperty Name="respuesta_usuario" ColumnName="respuesta_usuario" />
+          <ScalarProperty Name="fecha_respuesta" ColumnName="fecha_respuesta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resultado">
+      <EntityTypeMapping TypeName="SDEModel.Resultado">
+        <MappingFragment StoreEntitySet="Resultado">
+          <ScalarProperty Name="id_resultado" ColumnName="id_resultado" />
+          <ScalarProperty Name="entrevista_id_entrevista" ColumnName="entrevista_id_entrevista" />
+          <ScalarProperty Name="puntaje_total" ColumnName="puntaje_total" />
+          <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+          <ScalarProperty Name="fecha_resultado" ColumnName="fecha_resultado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sesiones">
+      <EntityTypeMapping TypeName="SDEModel.Sesiones">
+        <MappingFragment StoreEntitySet="Sesiones">
+          <ScalarProperty Name="id_sesion" ColumnName="id_sesion" />
+          <ScalarProperty Name="usuarios_id_usuarios" ColumnName="usuarios_id_usuarios" />
+          <ScalarProperty Name="ip_sesion" ColumnName="ip_sesion" />
+          <ScalarProperty Name="dispositivo" ColumnName="dispositivo" />
+          <ScalarProperty Name="fecha_inicio_sesion" ColumnName="fecha_inicio_sesion" />
+          <ScalarProperty Name="fecha_cierre_sesion" ColumnName="fecha_cierre_sesion" />
+          <ScalarProperty Name="token_sesion" ColumnName="token_sesion" />
+          <ScalarProperty Name="activa" ColumnName="activa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temas">
+      <EntityTypeMapping TypeName="SDEModel.Temas">
+        <MappingFragment StoreEntitySet="Temas">
+          <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+          <ScalarProperty Name="nombre_tema" ColumnName="nombre_tema" />
+          <ScalarProperty Name="descripcion_tema" ColumnName="descripcion_tema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tokens_login">
+      <EntityTypeMapping TypeName="SDEModel.Tokens_login">
+        <MappingFragment StoreEntitySet="Tokens_login">
+          <ScalarProperty Name="id_tokens_login" ColumnName="id_tokens_login" />
+          <ScalarProperty Name="usuarios_id_usuarios" ColumnName="usuarios_id_usuarios" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="fecha_expiracion" ColumnName="fecha_expiracion" />
+          <ScalarProperty Name="token_activo" ColumnName="token_activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="SDEModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="id_usuarios" ColumnName="id_usuarios" />
+          <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+          <ScalarProperty Name="email_usuario" ColumnName="email_usuario" />
+          <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

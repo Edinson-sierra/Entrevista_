@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entrevista", "Entrevista.csproj", "{2EB0D507-4A93-472E-9BC1-F56C682D9891}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entrevista_DATA", "..\Entrevista_DATA\Entrevista_DATA.csproj", "{1EF10702-140A-4ACA-B102-C6F01D1F8112}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EB0D507-4A93-472E-9BC1-F56C682D9891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB0D507-4A93-472E-9BC1-F56C682D9891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB0D507-4A93-472E-9BC1-F56C682D9891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB0D507-4A93-472E-9BC1-F56C682D9891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EF10702-140A-4ACA-B102-C6F01D1F8112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EF10702-140A-4ACA-B102-C6F01D1F8112}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EF10702-140A-4ACA-B102-C6F01D1F8112}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EF10702-140A-4ACA-B102-C6F01D1F8112}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {158B85B8-1396-425B-91FD-1BB479B3F0C8}
+	EndGlobalSection
+EndGlobal
