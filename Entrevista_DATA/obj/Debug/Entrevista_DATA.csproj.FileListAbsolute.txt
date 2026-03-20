@@ -34,3 +34,39 @@ C:\Users\SENA\Desktop\Edinson\Entrevista_DATA\bin\Debug\System.IO.Pipelines.xml
 C:\Users\SENA\Desktop\Edinson\Entrevista_DATA\bin\Debug\System.Text.Encodings.Web.xml
 C:\Users\SENA\Desktop\Edinson\Entrevista_DATA\bin\Debug\System.Text.Json.xml
 C:\Users\SENA\Desktop\Edinson\Entrevista_DATA\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\Entrevista_DATA.dll.config
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\Entrevista_DATA.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\Entrevista_DATA.pdb
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\BCrypt.Net-Next.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\EntityFramework.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\Newtonsoft.Json.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\RestSharp.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Buffers.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.IO.Pipelines.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Memory.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Text.Json.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\BCrypt.Net-Next.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\EntityFramework.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\Newtonsoft.Json.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\RestSharp.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Buffers.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.IO.Pipelines.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Memory.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Text.Json.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\obj\Debug\Entrevista_DATA.csproj.AssemblyReference.cache
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\obj\Debug\Entrevista_DATA.csproj.CoreCompileInputs.cache
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\obj\Debug\Entrevis.5D4E9750.Up2Date
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\obj\Debug\Entrevista_DATA.dll
+C:\Users\DICAPRIO\Desktop\Edinson SENA\Instr. Mara\TDD\Entrevista_\Entrevista_DATA\obj\Debug\Entrevista_DATA.pdb
