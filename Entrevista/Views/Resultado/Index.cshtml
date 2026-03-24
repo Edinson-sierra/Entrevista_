@@ -3,20 +3,87 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Resultado</h2>
+<h2>Resultado de la Entrevista</h2>
 
-<div class="card p-4">
+<div class="card p-4 mb-4">
 
-    <h3>Puntaje: @Model.Puntaje</h3>
+    <div class="row">
+        <div class="col-md-3">
+            <strong>Fecha:</strong><br />
+            @Model.Fecha?.ToString("dd/MM/yyyy HH:mm")
+        </div>
+
+        <div class="col-md-3">
+            <strong>Tema:</strong><br />
+            @Model.Tema
+        </div>
+
+        <div class="col-md-3">
+            <strong>Dificultad:</strong><br />
+            @Model.Dificultad
+        </div>
+
+        <div class="col-md-3">
+            <strong>Estado:</strong><br />
+            @Model.Estado
+        </div>
+    </div>
 
     <hr />
 
-    <p>@Model.Observaciones</p>
+    <div class="row text-center">
+        <div class="col-md-4">
+            <h4>Puntaje</h4>
+            <span class="badge bg-primary p-2">@Model.Promedio / 10</span>
+        </div>
+
+        <div class="col-md-4">
+            <h4>Nivel</h4>
+            <span class="badge bg-success p-2">@Model.Nivel</span>
+        </div>
+
+        <div class="col-md-4">
+            <h4>Total Preguntas</h4>
+            <span class="badge bg-dark p-2">@Model.Detalles.Count</span>
+        </div>
+    </div>
 
 </div>
 
-<br />
+<hr />
 
-<a href="/Plan/Generar?entrevistaId=@Model.EntrevistaId" class="btn btn-primary">
-    Generar Plan
-</a>
+@for (int i = 0; i < Model.Detalles.Count; i++)
+{
+    var item = Model.Detalles[i];
+
+    <div class="card mb-4 p-3">
+
+        <h5>Pregunta @(i + 1)</h5>
+        <p><strong>@item.Pregunta</strong></p>
+
+        <hr />
+
+        <h6>Tu respuesta:</h6>
+        <p>@item.Respuesta</p>
+
+        <hr />
+
+        <h6>Puntaje:</h6>
+        <span class="badge bg-primary">@item.Puntaje / 10</span>
+
+        <hr />
+
+        <h6>Observación:</h6>
+        <p>@item.Observacion</p>
+
+    </div>
+}
+
+<hr />
+
+<div class="card p-4 bg-light">
+    <h4>Recomendación de Estudio</h4>
+    <div class="card p-4 shadow-sm">
+        @Model.RecomendacionFinal
+    </div>
+</div>

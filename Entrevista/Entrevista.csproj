@@ -186,6 +186,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ChatIAViewModel.cs" />
     <Compile Include="Services\IAService.cs" />
+    <Compile Include="ViewModels\ConfiguracionIAViewModel.cs" />
     <Compile Include="ViewModels\EntrevistaViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

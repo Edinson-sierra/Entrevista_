@@ -14,59 +14,64 @@ namespace Entrevista.Controllers
     public class ResultadoController : Controller
     {
         private readonly SDEEntities _context = new SDEEntities();
-        private readonly IIAService _ia = new IAService();
 
-        public async Task<ActionResult> Index(int id)
+        public ActionResult Index(int id)
         {
             var entrevista = _context.Entrevista
                 .Include("Preguntas")
                 .Include("Respuestas")
+                .Include("Resultado")
+                .Include("Temas")
+                .Include("Dificultad")
                 .FirstOrDefault(e => e.id_entrevista == id);
 
-            var sb = new StringBuilder();
+            if (entrevista == null)
+                return RedirectToAction("Index", "Home");
 
-            foreach (var pregunta in entrevista.Preguntas)
-            {
-                sb.AppendLine($"P: {pregunta.texto_pregunta}");
+            var detalles = entrevista.Preguntas
+                .OrderBy(p => p.id_pregunta)
+                .Select((p, index) =>
+                {
+                    var respuesta = entrevista.Respuestas
+                        .FirstOrDefault(r => r.preguntas_id_pregunta == p.id_pregunta);
 
-                var respuesta = entrevista.Respuestas
-                    .FirstOrDefault(r => r.preguntas_id_pregunta == pregunta.id_pregunta);
+                    var resultado = entrevista.Resultado
+                        .Skip(index)
+                        .FirstOrDefault();
 
-                if (respuesta != null)
-                    sb.AppendLine($"R: {respuesta.respuesta_usuario}");
-            }
+                    return new ResultadoDetalleViewModel
+                    {
+                        Pregunta = p.texto_pregunta,
+                        Respuesta = respuesta?.respuesta_usuario,
+                        Puntaje = resultado?.puntaje_total ?? 0,
+                        Observacion = resultado?.observaciones
+                    };
+                }).ToList();
 
-            string evaluacion = await _ia.PreguntarAsync(
-                $"Evalúa esta entrevista:\n{sb}\nFormato:\nPUNTAJE: numero\nOBSERVACIONES: texto"
-            );
+            var promedio = detalles.Any() ? detalles.Average(x => x.Puntaje) : 0;
 
-            int puntaje = 0;
-            string observaciones = evaluacion;
+            // 🔥 NIVEL AUTOMÁTICO
+            string nivel = "Junior";
 
-            // Parseo básico
-            try
-            {
-                var partes = evaluacion.Split(new[] { "OBSERVACIONES:" }, System.StringSplitOptions.None);
-                puntaje = int.Parse(partes[0].Replace("PUNTAJE:", "").Trim());
-                observaciones = partes[1].Trim();
-            }
-            catch { }
+            if (promedio >= 8) nivel = "Senior";
+            else if (promedio >= 5) nivel = "Mid";
 
-            var resultado = new Resultado
-            {
-                entrevista_id_entrevista = id,
-                puntaje_total = puntaje,
-                observaciones = observaciones
-            };
-
-            _context.Resultado.Add(resultado);
-            _context.SaveChanges();
+            var recomendacion = entrevista.Resultado
+                .OrderByDescending(r => r.id_resultado)
+                .FirstOrDefault()?.observaciones;
 
             var model = new ResultadoViewModel
             {
-                EntrevistaId = id,
-                Puntaje = puntaje,
-                Observaciones = observaciones
+                Detalles = detalles,
+                Promedio = promedio,
+                Nivel = nivel,
+                RecomendacionFinal = recomendacion,
+
+                // 🔥 NUEVO
+                Fecha = entrevista.fecha_entrevista,
+                Tema = entrevista.Temas.nombre_tema,
+                Dificultad = entrevista.Dificultad.nombre_dificultad,
+                Estado = entrevista.estado_entrevista
             };
 
             return View(model);

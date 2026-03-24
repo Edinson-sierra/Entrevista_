@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Entrevista"
+    "\\Entrevista",
+    "\\Entrevista_DATA"
   ],
-  "SelectedNode": "\\Entrevista\\Entrevista.sln",
+  "SelectedNode": "\\Entrevista_DATA\\packages.config",
   "PreviewInSolutionExplorer": false
 }

@@ -35,7 +35,9 @@
 <br />
 
 @using (Html.BeginForm("Responder", "Entrevista", FormMethod.Post))
+
 {
+    @Html.AntiForgeryToken() // 🔥 ESTA LÍNEA ES LA CLAVE
     @Html.HiddenFor(x => x.EntrevistaId)
 
     <div class="form-group">
