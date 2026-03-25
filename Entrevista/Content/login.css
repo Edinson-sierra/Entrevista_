@@ -1,6 +1,6 @@
 ﻿/* ============================================================
-           LOGIN PAGE — Dark Glassmorphism Corporativo
-           ============================================================ */
+   LOGIN PAGE — Dark Glassmorphism Corporativo
+   ============================================================ */
 :root {
     --bg: #0a0c12;
     --surface: rgba(19, 22, 30, 0.85);
@@ -21,15 +21,22 @@
     padding: 0;
 }
 
+/* 🔥 FONDO ANIMADO (ARREGLADO) */
 html, body {
     height: 100%;
     font-family: var(--font);
-    background: var(--bg);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
 }
 
-    /* — Grid de fondo — */
+body {
+    margin: 0;
+    background: linear-gradient(-45deg, #0f172a, #1e293b, #2563eb, #7c3aed);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+}
+
+    /* 🔥 GRID */
     body::before {
         content: '';
         position: fixed;
@@ -40,7 +47,7 @@ html, body {
         z-index: 0;
     }
 
-    /* — Glow orb — */
+    /* 🔥 GLOW */
     body::after {
         content: '';
         position: fixed;
@@ -52,6 +59,21 @@ html, body {
         pointer-events: none;
         z-index: 0;
     }
+
+/* 🔥 ANIMACIÓN */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
 
 /* — Layout central — */
 .auth-shell {
@@ -89,7 +111,7 @@ html, body {
     }
 }
 
-/* — Header de la card — */
+/* — Header — */
 .auth-header {
     text-align: center;
     margin-bottom: 32px;
@@ -111,8 +133,6 @@ html, body {
 .auth-title {
     font-size: 22px;
     font-weight: 700;
-    letter-spacing: -0.5px;
-    margin-bottom: 6px;
 }
 
 .auth-subtitle {
@@ -127,18 +147,14 @@ html, body {
     margin: 0 -36px 28px;
 }
 
-/* — Form groups — */
+/* — Form — */
 .fg {
     margin-bottom: 18px;
 }
 
     .fg label {
-        display: block;
         font-size: 13px;
-        font-weight: 600;
         color: var(--muted);
-        margin-bottom: 6px;
-        letter-spacing: 0.3px;
     }
 
 .input-wrap {
@@ -151,135 +167,65 @@ html, body {
         top: 50%;
         transform: translateY(-50%);
         color: var(--muted);
-        font-size: 15px;
-        pointer-events: none;
     }
 
     .input-wrap input {
         width: 100%;
+        padding: 11px 40px 11px 38px;
         background: rgba(255,255,255,.04);
         border: 1px solid var(--border);
         border-radius: 10px;
-        padding: 11px 14px 11px 38px;
         color: var(--text);
-        font-family: var(--font);
-        font-size: 14px;
-        outline: none;
-        transition: all 0.2s;
     }
 
-        .input-wrap input:focus {
-            border-color: var(--accent);
-            background: rgba(79,142,247,.06);
-            box-shadow: 0 0 0 3px rgba(79,142,247,.12);
-        }
-
-        .input-wrap input::placeholder {
-            color: var(--muted);
-            opacity: .5;
-        }
-
-/* Toggle password visibility */
+/* 🔥 BOTÓN OJO */
 .pwd-toggle {
     position: absolute;
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 15px;
     background: none;
     border: none;
-    padding: 2px;
-    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+    z-index: 10;
 }
 
     .pwd-toggle:hover {
-        color: var(--text);
+        color: #fff;
     }
 
-/* — Validation — */
-.field-validation-error,
-span[data-valmsg-for] {
-    display: block;
-    font-size: 12px;
-    color: var(--danger);
-    margin-top: 5px;
-}
-
-.val-summary {
-    background: rgba(248,113,113,.08);
-    border: 1px solid rgba(248,113,113,.2);
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 13px;
-    color: var(--danger);
-    margin-bottom: 18px;
-}
-
-    .val-summary ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-/* — Submit button — */
+/* — Botón — */
 .btn-submit {
     width: 100%;
     padding: 12px;
     background: var(--accent);
-    color: #fff;
-    font-family: var(--font);
-    font-size: 15px;
-    font-weight: 700;
     border: none;
     border-radius: 10px;
+    color: #fff;
     cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
 }
 
     .btn-submit:hover {
         background: var(--accent-h);
-        box-shadow: 0 6px 20px rgba(79,142,247,.35);
-        transform: translateY(-1px);
     }
 
-    .btn-submit:active {
-        transform: translateY(0);
-    }
-
-/* — Footer link — */
+/* — Footer — */
 .auth-footer {
     text-align: center;
-    margin-top: 24px;
-    font-size: 13px;
-    color: var(--muted);
+    margin-top: 20px;
 }
 
     .auth-footer a {
         color: var(--accent);
-        text-decoration: none;
-        font-weight: 600;
     }
-
-        .auth-footer a:hover {
-            color: var(--accent-h);
-        }
 
 /* — Watermark — */
 .auth-watermark {
     position: fixed;
     bottom: 20px;
-    left: 0;
-    right: 0;
+    width: 100%;
     text-align: center;
     font-size: 12px;
     color: rgba(107,114,128,.4);
-    font-family: var(--mono);
-    z-index: 1;
 }
