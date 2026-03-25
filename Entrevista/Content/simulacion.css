@@ -1,0 +1,236 @@
+﻿/* ============================================================
+       SIMULACION — Configurador de entrevista
+       ============================================================ */
+.sim-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.sim-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.sim-header-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.sim-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+.sim-subtitle {
+    font-size: 15px;
+    color: var(--sde-text-muted);
+}
+
+/* — Steps — */
+.sim-steps {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 32px;
+}
+
+.sim-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.sim-step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--sde-surface-2);
+    border: 1px solid var(--sde-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--sde-text-muted);
+    flex-shrink: 0;
+}
+
+.sim-step.active .sim-step-num {
+    background: var(--sde-accent);
+    border-color: var(--sde-accent);
+    color: #fff;
+}
+
+.sim-step-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--sde-text-muted);
+}
+
+.sim-step.active .sim-step-label {
+    color: var(--sde-text-primary);
+}
+
+.sim-step-line {
+    flex: 1;
+    height: 1px;
+    background: var(--sde-border);
+    margin: 0 8px;
+}
+
+/* — Card selector — */
+.sim-card {
+    background: var(--sde-surface);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius);
+    padding: 28px;
+    margin-bottom: 20px;
+}
+
+.sim-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--sde-text-primary);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .sim-card-title i {
+        color: var(--sde-accent);
+    }
+
+/* — Select decorado — */
+.sde-select-wrap {
+    position: relative;
+}
+
+    .sde-select-wrap::after {
+        content: '\F282';
+        font-family: 'bootstrap-icons';
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--sde-text-muted);
+        pointer-events: none;
+        font-size: 14px;
+    }
+
+    .sde-select-wrap select {
+        appearance: none;
+        -webkit-appearance: none;
+        padding-right: 40px;
+    }
+
+/* — Difficulty cards — */
+.dif-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.dif-card {
+    border: 2px solid var(--sde-border);
+    border-radius: var(--sde-radius-sm);
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--sde-transition);
+    background: var(--sde-surface-2);
+}
+
+    .dif-card:hover {
+        border-color: var(--sde-accent);
+    }
+
+    .dif-card.selected {
+        border-color: var(--sde-accent);
+        background: var(--sde-accent-dim);
+    }
+
+.dif-card-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.dif-card-name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.dif-card-desc {
+    font-size: 11px;
+    color: var(--sde-text-muted);
+}
+
+/* — Summary preview — */
+.sim-summary {
+    background: var(--sde-surface-2);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius-sm);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.sim-summary-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+    .sim-summary-item i {
+        color: var(--sde-accent);
+    }
+
+    .sim-summary-item strong {
+        color: var(--sde-text-primary);
+    }
+
+/* — Submit btn — */
+.sim-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--sde-accent);
+    color: #fff;
+    font-family: var(--sde-font);
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--sde-radius-sm);
+    cursor: pointer;
+    transition: all var(--sde-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+    .sim-submit:hover {
+        background: var(--sde-accent-hover);
+        box-shadow: 0 8px 28px rgba(79,142,247,.35);
+        transform: translateY(-1px);
+    }
+
+    .sim-submit:active {
+        transform: translateY(0);
+    }
+
+/* Validation */
+.field-validation-error {
+    color: var(--sde-danger);
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+}

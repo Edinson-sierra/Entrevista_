@@ -1,0 +1,182 @@
+﻿/* ============================================================
+       DASHBOARD — métricas, tabla, estado vacío
+       ============================================================ */
+
+/* — Grid de métricas — */
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+@media (max-width: 1100px) {
+    .metric-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .metric-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* — Metric card — */
+.metric-card {
+    background: var(--sde-surface);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius);
+    padding: 20px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--sde-transition), transform var(--sde-transition);
+}
+
+    .metric-card:hover {
+        border-color: var(--sde-accent);
+        transform: translateY(-2px);
+    }
+
+    /* Accent stripe top */
+    .metric-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--sde-accent);
+        opacity: 0;
+        transition: opacity var(--sde-transition);
+    }
+
+    .metric-card:hover::before {
+        opacity: 1;
+    }
+
+.metric-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    margin-bottom: 14px;
+}
+
+    .metric-icon.blue {
+        background: rgba(79,142,247,.12);
+        color: var(--sde-accent);
+    }
+
+    .metric-icon.green {
+        background: rgba(52,211,153,.12);
+        color: var(--sde-success);
+    }
+
+    .metric-icon.yellow {
+        background: rgba(251,191,36,.12);
+        color: var(--sde-warning);
+    }
+
+    .metric-icon.gray {
+        background: rgba(107,114,128,.12);
+        color: var(--sde-text-muted);
+    }
+
+.metric-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--sde-text-muted);
+    margin-bottom: 4px;
+}
+
+.metric-value {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    color: var(--sde-text-primary);
+    line-height: 1;
+    font-family: var(--sde-font-mono, monospace);
+}
+
+.metric-sub {
+    font-size: 12px;
+    color: var(--sde-text-muted);
+    margin-top: 4px;
+}
+
+/* — Section header — */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--sde-text-primary);
+}
+
+/* — Empty state — */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: .4;
+}
+
+.empty-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--sde-text-muted);
+    margin-bottom: 8px;
+}
+
+.empty-sub {
+    font-size: 14px;
+    color: var(--sde-text-dim);
+    margin-bottom: 20px;
+}
+
+/* — Nivel badge grande — */
+.nivel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--sde-font-mono, monospace);
+    letter-spacing: 0.5px;
+}
+
+/* — Score bar — */
+.score-bar-wrap {
+    margin-top: 6px;
+}
+
+.score-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--sde-border);
+    overflow: hidden;
+}
+
+.score-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--sde-accent);
+    transition: width 0.8s ease;
+}

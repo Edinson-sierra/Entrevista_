@@ -1,36 +1,172 @@
 ﻿@model Entrevista.ViewModels.RegisterViewModel
-
-<h2>Registro</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div>
-        <label>Nombre</label>
-        @Html.TextBoxFor(m => m.Nombre)
-    </div>
-
-    <div>
-        <label>Email</label>
-        @Html.TextBoxFor(m => m.Email)
-    </div>
-
-    <div>
-        <label>Password</label>
-        @Html.PasswordFor(m => m.Password)
-    </div>
-
-   /* <div>
-        <label> Confirmar Password </label>
-        @Html.PasswordFor(mc =>)
-    </div>
-   */
-    <br />
-
-    <button type="submit">Registrarse</button>
-
-    <div style="color:red;">
-        @Html.ValidationSummary()
-    </div>
+@{
+    Layout = null;
+    ViewBag.Title = "Crear cuenta";
 }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDE Interview — Crear Cuenta</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/Content/register.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="auth-shell">
+        <div class="auth-card">
+
+            @* Header *@
+            <div class="auth-header">
+                <div class="auth-logo">🚀</div>
+                <div class="auth-title">Crea tu cuenta</div>
+                <div class="auth-subtitle">Empieza a preparar tus entrevistas técnicas</div>
+            </div>
+
+            <div class="auth-divider"></div>
+
+            @* Step indicator visual *@
+            <div class="steps">
+                <div class="step-dot active"></div>
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+            </div>
+
+            @* Errores *@
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="val-summary">
+                    @Html.ValidationSummary(false)
+                </div>
+            }
+
+            @* Formulario *@
+            @using (Html.BeginForm("Register", "Auth", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                @* Nombre *@
+                <div class="fg">
+                    <label for="Nombre">Nombre completo</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-person"></i>
+                        @Html.TextBoxFor(m => m.Nombre, new
+                        {
+                            @class = "form-control",
+                            placeholder = "Juan Pérez",
+                            autocomplete = "name",
+                            id = "Nombre"
+                        })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Nombre)
+                </div>
+
+                @* Email *@
+                <div class="fg">
+                    <label for="Email">Correo electrónico</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-envelope"></i>
+                        @Html.TextBoxFor(m => m.Email, new
+                        {
+                            @class = "form-control",
+                            placeholder = "nombre@empresa.com",
+                            autocomplete = "email",
+                            id = "Email"
+                        })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                @* Password *@
+                <div class="fg">
+                    <label for="Password">Contraseña</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-lock"></i>
+                        @Html.PasswordFor(m => m.Password, new
+                        {
+                            @class = "form-control",
+                            placeholder = "Mínimo 6 caracteres",
+                            autocomplete = "new-password",
+                            id = "Password",
+                            oninput = "checkPwdStrength(this.value)"
+                        })
+                        <button type="button" class="pwd-toggle" onclick="togglePwd()" title="Mostrar contraseña">
+                            <i class="bi bi-eye" id="pwdIcon"></i>
+                        </button>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Password)
+
+                    @* Indicador de fuerza *@
+                    <div class="pwd-meter">
+                        <div class="pwd-meter-bar">
+                            <div class="pwd-meter-fill" id="pwdMeterFill"></div>
+                        </div>
+                        <div class="pwd-meter-label" id="pwdMeterLabel">Ingresa una contraseña</div>
+                    </div>
+                </div>
+
+                @* Submit *@
+                <button type="submit" class="btn-submit">
+                    <i class="bi bi-person-plus"></i>
+                    Crear Cuenta
+                </button>
+            }
+
+            <div class="tos-note">
+                Al registrarte aceptas los términos de uso y privacidad.
+            </div>
+
+            <div class="auth-footer">
+                ¿Ya tienes cuenta?
+                <a href="@Url.Action("Login","Auth")">Inicia sesión</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="auth-watermark">SDE Interview — Powered by Groq AI · v2.0</div>
+
+    <script>
+        function togglePwd() {
+            var input = document.getElementById('Password');
+            var icon = document.getElementById('pwdIcon');
+
+            input.type = (input.type === 'password') ? 'text' : 'password';
+            icon.className = (input.type === 'text') ? 'bi bi-eye-slash' : 'bi bi-eye';
+        }
+
+        function checkPwdStrength(val) {
+            var fill = document.getElementById('pwdMeterFill');
+            var label = document.getElementById('pwdMeterLabel');
+
+            var score = 0;
+
+            if (val.length >= 6) score++;
+            if (val.length >= 10) score++;
+            if (/[A-Z]/.test(val)) score++;
+            if (/[0-9]/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+
+            var configs = [
+                { pct: '0%', color: '', text: 'Ingresa una contraseña' },
+                { pct: '25%', color: '#f87171', text: 'Muy débil' },
+                { pct: '50%', color: '#fbbf24', text: 'Débil' },
+                { pct: '75%', color: '#60a5fa', text: 'Moderada' },
+                { pct: '90%', color: '#34d399', text: 'Fuerte' },
+                { pct: '100%', color: '#34d399', text: '¡Excelente!' }
+            ];
+
+            var cfg = configs[score] || configs[0];
+            fill.style.width = cfg.pct;
+            fill.style.background = cfg.color;
+            label.textContent = cfg.text;
+            label.style.color = cfg.color || '#6b7280';
+        }
+    </script>
+
+</body>
+</html>

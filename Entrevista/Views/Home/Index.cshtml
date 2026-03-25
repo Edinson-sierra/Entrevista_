@@ -1,143 +1,195 @@
 ﻿@model Entrevista.ViewModels.DashboardViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Dashboard";
+
+    var promedioWidth = (Model.PromedioPuntaje * 10).ToString("0") + "%";
+    var promedioColor = Model.PromedioPuntaje >= 8 ? "var(--sde-success)"
+                      : Model.PromedioPuntaje >= 5 ? "var(--sde-warning)"
+                      : "var(--sde-danger)";
 }
 
-<div class="container mt-4">
+@* ============================================================
+    SECCIÓN: Métricas principales
+    ============================================================ *@
 
-    <h2 class="mb-4">Dashboard</h2>
+<div class="metric-grid">
 
-    <!-- 🔥 CARDS PRINCIPALES -->
-    <div class="row">
-
-        <!-- Total entrevistas -->
-        <div class="col-md-3 mb-3">
-            <div class="card shadow-sm border-0 text-center p-3">
-                <h6 class="text-muted">Entrevistas</h6>
-                <h2 class="fw-bold">@Model.TotalEntrevistas</h2>
-            </div>
-        </div>
-
-        <!-- Promedio -->
-        <div class="col-md-3 mb-3">
-            <div class="card shadow-sm border-0 text-center p-3">
-                <h6 class="text-muted">Promedio</h6>
-                <h2 class="fw-bold">@Model.PromedioPuntaje / 10</h2>
-            </div>
-        </div>
-
-        <!-- Nivel -->
-        <div class="col-md-3 mb-3">
-            <div class="card shadow-sm border-0 text-center p-3">
-                <h6 class="text-muted">Nivel</h6>
-
-                @{
-                    var badgeClass = "bg-secondary";
-
-                    if (Model.Nivel == "Senior") { badgeClass = "bg-success"; }
-                    else if (Model.Nivel == "Mid") { badgeClass = "bg-warning text-dark"; }
-                    else { badgeClass = "bg-danger"; }
-                }
-
-                <span class="badge @badgeClass p-2">@Model.Nivel</span>
-            </div>
-        </div>
-
-        <!-- Última actividad -->
-        <div class="col-md-3 mb-3">
-            <div class="card shadow-sm border-0 text-center p-3">
-                <h6 class="text-muted">Última entrevista</h6>
-                <h5>
-                    @(Model.UltimaFecha.HasValue
-                        ? Model.UltimaFecha.Value.ToString("dd/MM/yyyy")
-                        : "Sin registros")
-                </h5>
-            </div>
-        </div>
-
+    @* Total entrevistas *@
+    <div class="metric-card">
+        <div class="metric-icon blue"><i class="bi bi-clipboard-check"></i></div>
+        <div class="metric-label">Entrevistas</div>
+        <div class="metric-value">@Model.TotalEntrevistas</div>
+        <div class="metric-sub">realizadas en total</div>
     </div>
 
-    <!-- 🔥 BOTÓN PRINCIPAL -->
-    <div class="mb-4">
-        <a href="@Url.Action("Index", "Simulacion")" class="btn btn-primary">
-            + Nueva Entrevista
+    @* Promedio *@
+    <div class="metric-card">
+        <div class="metric-icon green"><i class="bi bi-bar-chart"></i></div>
+        <div class="metric-label">Puntaje promedio</div>
+
+        <div class="metric-value">
+            @Model.PromedioPuntaje
+            <span style="font-size:14px;opacity:.5;">/10</span>
+        </div>
+
+        <div class="score-bar-wrap">
+            <div class="score-bar">
+                <div class="score-bar-fill"
+                     style="width:@promedioWidth; background:@promedioColor;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Nivel *@
+    <div class="metric-card">
+        <div class="metric-icon yellow"><i class="bi bi-trophy"></i></div>
+        <div class="metric-label">Nivel actual</div>
+
+        <div style="margin-top: 8px;">
+            @{
+                var nivelClass = Model.Nivel == "Senior" ? "sde-badge-green"
+                               : Model.Nivel == "Mid" ? "sde-badge-yellow"
+                               : "sde-badge-red";
+
+                var nivelIcon = Model.Nivel == "Senior" ? "bi-award-fill"
+                               : Model.Nivel == "Mid" ? "bi-lightning-fill"
+                               : "bi-person-fill";
+            }
+
+            <span class="nivel-badge @nivelClass">
+                <i class="bi @nivelIcon"></i>
+                @Model.Nivel
+            </span>
+        </div>
+    </div>
+
+    @* Última entrevista *@
+    <div class="metric-card">
+        <div class="metric-icon gray"><i class="bi bi-calendar3"></i></div>
+        <div class="metric-label">Última actividad</div>
+
+        <div class="metric-value" style="font-size:18px;">
+            @(Model.UltimaFecha.HasValue
+                ? Model.UltimaFecha.Value.ToString("dd MMM")
+                : "—")
+        </div>
+
+        <div class="metric-sub">
+            @(Model.UltimaFecha.HasValue
+                ? Model.UltimaFecha.Value.ToString("yyyy")
+                : "Sin registros aún")
+        </div>
+    </div>
+
+</div>
+
+@* ============================================================
+    SECCIÓN: Tabla de últimas entrevistas
+    ============================================================ *@
+<div class="sde-card" style="padding:0; overflow:hidden;">
+
+    <div class="section-header" style="padding:20px 24px 16px;">
+        <div class="section-title">
+            <i class="bi bi-list-check" style="color:var(--sde-accent); margin-right:8px;"></i>
+            Últimas entrevistas
+        </div>
+
+        <a href="@Url.Action("Index","Simulacion")"
+           class="sde-btn sde-btn-primary"
+           style="padding:8px 16px; font-size:13px;">
+            <i class="bi bi-plus-lg"></i>
+            Nueva
         </a>
     </div>
 
-    <!-- 🔥 TABLA DE ENTREVISTAS -->
-    <div class="card shadow-sm border-0">
-        <div class="card-header bg-white">
-            <h5 class="mb-0">Últimas entrevistas</h5>
-        </div>
+    @if (Model.UltimasEntrevistas != null && Model.UltimasEntrevistas.Any())
+    {
+        <table class="sde-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tema</th>
+                    <th>Dificultad</th>
+                    <th>Puntaje</th>
+                    <th>Progreso</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-        <div class="card-body p-0">
+            <tbody>
+                @foreach (var item in Model.UltimasEntrevistas)
+                {
+                    
+                        var difClass = item.Dificultad == "Alta" ? "sde-badge-red"
+                                     : item.Dificultad == "Media" ? "sde-badge-yellow"
+                                     : "sde-badge-green";
 
-            <table class="table table-hover mb-0">
-                <thead class="table-light">
+                        var scoreColor = item.Puntaje >= 8 ? "var(--sde-success)"
+                                       : item.Puntaje >= 5 ? "var(--sde-warning)"
+                                       : "var(--sde-danger)";
+
+                        var width = (item.Puntaje * 10).ToString("0") + "%";
+                    
+
                     <tr>
-                        <th>Fecha</th>
-                        <th>Tema</th>
-                        <th>Dificultad</th>
-                        <th>Puntaje</th>
-                        <th></th>
+                        <td>
+                            <span style="font-family:var(--sde-font-mono); font-size:13px;">
+                                @(item.Fecha.HasValue ? item.Fecha.Value.ToString("dd/MM/yy") : "—")
+                            </span>
+                        </td>
+
+                        <td>
+                            <span style="font-weight:600;">@item.Tema</span>
+                        </td>
+
+                        <td>
+                            <span class="sde-badge @difClass">@item.Dificultad</span>
+                        </td>
+
+                        <td>
+                            <span style="font-family:var(--sde-font-mono); font-weight:700; color:@scoreColor;">
+                                @item.Puntaje / 10
+                            </span>
+                        </td>
+
+                        <td style="width:120px;">
+                            <div class="score-bar">
+                                <div class="score-bar-fill"
+                                     style="width:@width; background:@scoreColor;">
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <a href="@Url.Action("Index","Resultado", new { id = item.EntrevistaId })"
+                               class="sde-btn sde-btn-ghost"
+                               style="padding:6px 12px; font-size:12px;">
+                                <i class="bi bi-eye"></i>
+                                Ver resultado
+                            </a>
+                        </td>
                     </tr>
-                </thead>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        @* Estado vacío *@
+        <div class="empty-state">
+            <div class="empty-icon">🎯</div>
+            <div class="empty-title">Sin entrevistas aún</div>
+            <div class="empty-sub">
+                Comienza tu primera simulación para ver tus métricas aquí.
+            </div>
 
-                <tbody>
-                    @if (Model.UltimasEntrevistas != null && Model.UltimasEntrevistas.Any())
-                    {
-                        foreach (var item in Model.UltimasEntrevistas)
-                        {
-                            <tr>
-                                <td>
-                                    @(item.Fecha.HasValue
-        ? item.Fecha.Value.ToString("dd/MM/yyyy")
-        : "-")
-                                </td>
-
-                                <td>@item.Tema</td>
-
-                                <td>
-                                    @{
-                                        var badgeDif = "bg-secondary";
-
-                                        if (item.Dificultad == "Alta") { badgeDif = "bg-danger"; }
-                                        else if (item.Dificultad == "Media") { badgeDif = "bg-warning text-dark"; }
-                                        else if (item.Dificultad == "Baja") { badgeDif = "bg-success"; }
-
-                                    }
-
-                                    <span class="badge @badgeDif">@item.Dificultad</span>
-                                </td>
-
-                                <td>
-                                    <span class="badge bg-primary">
-                                        @item.Puntaje / 10
-                                    </span>
-                                </td>
-
-                                <td>
-                                    <a href="@Url.Action("Index", "Resultado", new { id = item.EntrevistaId })"
-                                       class="btn btn-sm btn-outline-primary">
-                                        Ver resultado
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="5" class="text-center p-4">
-                                No hay entrevistas registradas
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-
-            </table>
-
+            <a href="@Url.Action("Index","Simulacion")" class="sde-btn sde-btn-primary">
+                <i class="bi bi-play-circle"></i>
+                Iniciar primera entrevista
+            </a>
         </div>
-    </div>
+    }
 
 </div>

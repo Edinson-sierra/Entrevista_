@@ -1,10 +1,67 @@
 ﻿@model Entrevista.ViewModels.PlanViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Plan de Entrenamiento";
+
+    var fecha = Model.Fecha != default(DateTime)
+        ? Model.Fecha
+        : DateTime.Now;
+}
+@section Styles {
+    <link href="~/Content/plan.css" rel="stylesheet" />
 }
 
-<h2>Plan de Entrenamiento</h2>
+<div class="plan-wrap">
 
-<div class="card p-4 shadow-sm">
-    @Html.Raw(Model.Recomendacion) <!-- 🔥 CLAVE -->
+    @* ============================================================
+        HEADER
+        ============================================================ *@
+    <div class="plan-header">
+        <div class="plan-header-icon">🎓</div>
+
+        <div>
+            <div class="plan-header-title">
+                Plan de entrenamiento
+            </div>
+
+            <div class="plan-header-sub">
+                Generado por Groq AI · @fecha.ToString("dd/MM/yyyy")
+            </div>
+        </div>
+    </div>
+
+    @* ============================================================
+        CONTENIDO
+        ============================================================ *@
+    <div class="plan-card">
+        <div class="plan-content">
+            @Html.Raw(Model.Recomendacion)
+        </div>
+    </div>
+
+    @* ============================================================
+        ACCIONES
+        ============================================================ *@
+    <div class="plan-actions">
+
+        <a href="@Url.Action("Index","Home")"
+           class="sde-btn sde-btn-ghost">
+            <i class="bi bi-arrow-left"></i>
+            Dashboard
+        </a>
+
+        <a href="@Url.Action("Index","Simulacion")"
+           class="sde-btn sde-btn-primary">
+            <i class="bi bi-play-circle"></i>
+            Practicar ahora
+        </a>
+
+        <button class="sde-btn sde-btn-ghost"
+                onclick="window.print()">
+            <i class="bi bi-printer"></i>
+            Imprimir
+        </button>
+
+    </div>
+
 </div>

@@ -1,0 +1,92 @@
+﻿/* ============================================================
+       PLAN — Plan de entrenamiento generado por IA
+       ============================================================ */
+.plan-wrap {
+    max-width: 780px;
+}
+
+.plan-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.plan-header-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--sde-accent), #7c4dff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(79,142,247,.3);
+}
+
+.plan-header-title {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+}
+
+.plan-header-sub {
+    font-size: 14px;
+    color: var(--sde-text-muted);
+    margin-top: 2px;
+}
+
+/* — Card de plan — */
+.plan-card {
+    background: var(--sde-surface);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+}
+
+/* Estilos del HTML generado por la IA */
+.plan-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--sde-text-primary);
+    margin: 20px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--sde-border);
+}
+
+    .plan-content h3:first-child {
+        margin-top: 0;
+    }
+
+.plan-content ul,
+.plan-content ol {
+    padding-left: 20px;
+    margin-bottom: 14px;
+}
+
+.plan-content li {
+    font-size: 14px;
+    color: var(--sde-text-primary);
+    line-height: 1.7;
+    margin-bottom: 5px;
+    padding-left: 4px;
+}
+
+.plan-content p {
+    font-size: 14px;
+    color: var(--sde-text-primary);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+/* — Acciones — */
+.plan-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}

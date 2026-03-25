@@ -1,45 +1,131 @@
 ﻿@model Entrevista.ViewModels.PerfilViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Mi Perfil";
+}
+@section Styles {
+<link href="~/Content/perfil.css" rel="stylesheet" />
 }
 
-<h2>Mi Perfil</h2>
+<div class="perfil-grid">
 
-<div class="row">
+    @* ============================================================
+        PANEL IZQUIERDO: Avatar
+        ============================================================ *@
+    <div class="avatar-panel">
 
-    <div class="col-md-4 text-center">
-        <img src="@Model.AvatarUrl" style="width:150px;border-radius:50%;" />
+        <div class="avatar-img-wrap">
+            <img class="avatar-img"
+                 id="avatarImg"
+                 src="@(string.IsNullOrEmpty(Model.AvatarUrl)
+                        ? "https://api.dicebear.com/7.x/adventurer/svg?seed=default"
+                        : Model.AvatarUrl)"
+                 alt="Avatar de @Model.Nombre" />
+        </div>
 
-        <br /><br />
+        <div class="avatar-name">@Model.Nombre</div>
+        <div class="avatar-email">@Model.Email</div>
 
-        <a href="/Perfil/GenerarAvatar" class="btn btn-secondary">
-            Cambiar Avatar
+        @* Botón regenerar avatar *@
+        <a href="@Url.Action("GenerarAvatar","Perfil")" class="avatar-btn">
+            <i class="bi bi-arrow-clockwise"></i>
+            Cambiar avatar
         </a>
+
     </div>
 
-    <div class="col-md-8">
+    @* ============================================================
+        PANEL DERECHO: Editar datos
+        ============================================================ *@
+    <div class="edit-panel">
+
+        <div class="edit-panel-title">
+            <i class="bi bi-pencil-square"></i>
+            Editar información
+        </div>
 
         @using (Html.BeginForm("Guardar", "Perfil", FormMethod.Post))
         {
-            <div class="form-group">
-                <label>Nombre</label>
-                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control", disabled = "disabled" })
+            @Html.AntiForgeryToken()
+
+            @* Nombre (readonly) *@
+            <div class="sde-form-group">
+                <label class="sde-label">Nombre completo</label>
+                <div class="field-readonly">@Model.Nombre</div>
+                @Html.HiddenFor(x => x.Nombre)
+
+                <div class="readonly-note">
+                    <i class="bi bi-lock" style="font-size: 10px;"></i>
+                    El nombre no se puede modificar
+                </div>
             </div>
 
-            <div class="form-group mt-2">
-                <label>Email</label>
-                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", disabled = "disabled" })
+            @* Email (readonly) *@
+            <div class="sde-form-group">
+                <label class="sde-label">Correo electrónico</label>
+                <div class="field-readonly">@Model.Email</div>
+                @Html.HiddenFor(x => x.Email)
+
+                <div class="readonly-note">
+                    <i class="bi bi-lock" style="font-size: 10px;"></i>
+                    El email no se puede modificar
+                </div>
             </div>
 
-            <div class="form-group mt-2">
-                <label>Bio</label>
-                @Html.TextAreaFor(x => x.Bio, new { @class = "form-control", rows = 4 })
+            @* Bio *@
+            <div class="sde-form-group">
+                <label class="sde-label" for="Bio">
+                    Biografía profesional
+                    <span style="font-weight: 400; font-size: 11px;">(opcional)</span>
+                </label>
+
+                @Html.TextAreaFor(x => x.Bio, new
+                {
+                    @class = "sde-textarea",
+                    id = "Bio",
+                    rows = 5,
+                    placeholder = "Cuéntanos sobre tu experiencia, tecnologías, objetivos...",
+                    maxlength = "500"
+                })
+
+                @Html.ValidationMessageFor(x => x.Bio, "", new { @class = "sde-field-error" })
+
+                <div style="text-align:right; font-size:11px; color:var(--sde-text-muted); margin-top:4px;">
+                    <span id="bioCount">0</span>/500 caracteres
+                </div>
             </div>
 
-            <br />
+            @* Botones *@
+            <div style="display:flex; gap:10px; margin-top:10px;">
+                <button type="submit" class="sde-btn sde-btn-primary">
+                    <i class="bi bi-check2"></i>
+                    Guardar cambios
+                </button>
 
-            <button class="btn btn-primary">Guardar</button>
+                <a href="@Url.Action("Index","Home")" class="sde-btn sde-btn-ghost">
+                    Cancelar
+                </a>
+            </div>
         }
+
     </div>
 
 </div>
+
+@section Scripts {
+    <script>
+        (function () {
+            var bioField = document.getElementById('Bio');
+            var bioCounter = document.getElementById('bioCount');
+
+            if (!bioField || !bioCounter) return;
+
+            function update() {
+                bioCounter.textContent = bioField.value.length;
+            }
+
+            bioField.addEventListener('input', update);
+            update();
+        })();
+    </script>
+}

@@ -1,33 +1,118 @@
 ﻿@model Entrevista.ViewModels.LoginViewModel
-
 @{
-    ViewBag.Title = "Login";
+    Layout = null;
+    ViewBag.Title = "Iniciar Sesión";
 }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SDE Interview — Iniciar Sesión</title>
 
-<h2>Iniciar Sesión</h2>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+</head>
 
-@using (Html.BeginForm("Login", "Auth", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+<body>
 
-    <div>
-        <label>Email</label>
-        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Email)
+    <div class="auth-shell">
+        <div class="auth-card">
+
+            @* Header *@
+            <div class="auth-header">
+                <div class="auth-logo">🧠</div>
+                <div class="auth-title">Bienvenido de vuelta</div>
+                <div class="auth-subtitle">Inicia sesión para continuar tu preparación</div>
+            </div>
+
+            <div class="auth-divider"></div>
+
+            @* Errores de validación *@
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="val-summary">
+                    @Html.ValidationSummary(false)
+                </div>
+            }
+
+            @* Formulario *@
+            @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                @* Email *@
+                <div class="fg">
+                    <label for="Email">Correo electrónico</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-envelope"></i>
+                        @Html.TextBoxFor(m => m.Email, new
+                        {
+                            @class = "form-control",
+                            placeholder = "nombre@empresa.com",
+                            autocomplete = "email",
+                            id = "Email"
+                        })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                @* Password *@
+                <div class="fg">
+                    <label for="Password">Contraseña</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-lock"></i>
+                        @Html.PasswordFor(m => m.Password, new
+                        {
+                            @class = "form-control",
+                            placeholder = "••••••••",
+                            autocomplete = "current-password",
+                            id = "Password"
+                        })
+                        <button type="button" class="pwd-toggle" onclick="togglePwd()"
+                                id="pwdToggleBtn" title="Mostrar/ocultar contraseña">
+                            <i class="bi bi-eye" id="pwdIcon"></i>
+                        </button>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+
+                @* Submit *@
+                <button type="submit" class="btn-submit">
+                    <i class="bi bi-arrow-right-circle"></i>
+                    Iniciar Sesión
+                </button>
+            }
+
+            @* Link a registro *@
+            <div class="auth-footer">
+                ¿No tienes cuenta?
+                <a href="@Url.Action("Register","Auth")">Regístrate aquí</a>
+            </div>
+
+        </div>
     </div>
 
-    <div>
-        <label>Password</label>
-        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Password)
-    </div>
+    <div class="auth-watermark">SDE Interview — Powered by Groq AI · v2.0</div>
 
-    <br />
+    <script>
+        /**
+         * Alterna la visibilidad del campo de contraseña.
+         */
+        function togglePwd() {
+            var input = document.getElementById('Password');
+            var icon = document.getElementById('pwdIcon');
 
-    <button type="submit">Ingresar</button>
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'bi bi-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'bi bi-eye';
+            }
+        }
+    </script>
 
-    <div style="color:red;">
-        @Html.ValidationSummary()
-    </div>
-}
-
+</body>
+</html>

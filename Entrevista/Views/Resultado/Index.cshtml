@@ -1,89 +1,178 @@
 ﻿@model Entrevista.ViewModels.ResultadoViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Resultado de Entrevista";
+
+    var headerClass = Model.Nivel == "Senior" ? "senior"
+                    : Model.Nivel == "Mid" ? "mid"
+                    : "junior";
+
+    var scoreClass = Model.Promedio >= 8 ? "high"
+                    : Model.Promedio >= 5 ? "medium"
+                    : "low";
+
+    var scoreColor = Model.Promedio >= 8 ? "var(--sde-success)"
+                    : Model.Promedio >= 5 ? "var(--sde-warning)"
+                    : "var(--sde-danger)";
+
+    var nivelColor = Model.Nivel == "Senior" ? "sde-badge-green"
+                    : Model.Nivel == "Mid" ? "sde-badge-yellow"
+                    : "sde-badge-red";
+}
+@section Styles {
+    <link href="~/Content/resultado.css" rel="stylesheet" />
 }
 
-<h2>Resultado de la Entrevista</h2>
+    @* ============================================================
+        HEADER
+        ============================================================ *@
+    <div class="result-header @headerClass">
+        <div class="result-header-grid">
 
-<div class="card p-4 mb-4">
+            <div>
+                <div style="font-size: 22px; font-weight: 800; margin-bottom: 14px;">
+                    Entrevista completada
+                </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            <strong>Fecha:</strong><br />
-            @Model.Fecha?.ToString("dd/MM/yyyy HH:mm")
-        </div>
+                <div class="result-meta">
+                    <div class="result-meta-item">
+                        <i class="bi bi-calendar3"></i>
+                        <strong>@(Model.Fecha?.ToString("dd/MM/yyyy HH:mm") ?? "—")</strong>
+                    </div>
+                    <div class="result-meta-item">
+                        <i class="bi bi-book"></i>
+                        <strong>@Model.Tema</strong>
+                    </div>
+                    <div class="result-meta-item">
+                        <i class="bi bi-speedometer2"></i>
+                        <strong>@Model.Dificultad</strong>
+                    </div>
+                    <div class="result-meta-item">
+                        <i class="bi bi-circle-fill" style="font-size: 8px; color: var(--sde-success);"></i>
+                        <strong>@Model.Estado</strong>
+                    </div>
+                </div>
 
-        <div class="col-md-3">
-            <strong>Tema:</strong><br />
-            @Model.Tema
-        </div>
+                <div class="result-actions">
+                    <a href="@Url.Action("Index","Home")" class="sde-btn sde-btn-ghost">
+                        <i class="bi bi-arrow-left"></i>
+                        Dashboard
+                    </a>
+                    <a href="@Url.Action("Index","Simulacion")" class="sde-btn sde-btn-primary">
+                        <i class="bi bi-plus-lg"></i>
+                        Nueva entrevista
+                    </a>
+                </div>
+            </div>
 
-        <div class="col-md-3">
-            <strong>Dificultad:</strong><br />
-            @Model.Dificultad
-        </div>
+            @* Score *@
+            <div class="score-circle-wrap">
+                <div class="score-circle @scoreClass">
+                    <div class="score-number" style="color:@scoreColor;">
+                        @Model.Promedio.ToString("0.0")
+                    </div>
+                    <div class="score-denom">/ 10</div>
+                </div>
+                <span class="sde-badge @nivelColor score-nivel">@Model.Nivel</span>
+            </div>
 
-        <div class="col-md-3">
-            <strong>Estado:</strong><br />
-            @Model.Estado
         </div>
     </div>
 
-    <hr />
-
-    <div class="row text-center">
-        <div class="col-md-4">
-            <h4>Puntaje</h4>
-            <span class="badge bg-primary p-2">@Model.Promedio / 10</span>
-        </div>
-
-        <div class="col-md-4">
-            <h4>Nivel</h4>
-            <span class="badge bg-success p-2">@Model.Nivel</span>
-        </div>
-
-        <div class="col-md-4">
-            <h4>Total Preguntas</h4>
-            <span class="badge bg-dark p-2">@Model.Detalles.Count</span>
-        </div>
+    @* ============================================================
+        DESGLOSE
+        ============================================================ *@
+    <div style="font-size:16px; font-weight:700; margin-bottom:16px;">
+        <i class="bi bi-list-check" style="color:var(--sde-accent); margin-right:6px;"></i>
+        Desglose por pregunta
     </div>
 
-</div>
+    <div class="qa-grid">
+        @for (int i = 0; i < Model.Detalles.Count; i++)
+        {
+            var item = Model.Detalles[i];
 
-<hr />
+            var sBadge = item.Puntaje >= 8 ? "sde-badge-green"
+                       : item.Puntaje >= 5 ? "sde-badge-yellow"
+                       : "sde-badge-red";
 
-@for (int i = 0; i < Model.Detalles.Count; i++)
-{
-    var item = Model.Detalles[i];
+            var sBarColor = item.Puntaje >= 8 ? "var(--sde-success)"
+                           : item.Puntaje >= 5 ? "var(--sde-warning)"
+                           : "var(--sde-danger)";
 
-    <div class="card mb-4 p-3">
+            <div class="qa-card" id="qaCard_@i">
 
-        <h5>Pregunta @(i + 1)</h5>
-        <p><strong>@item.Pregunta</strong></p>
+                <div class="qa-card-header" onclick="toggleQA(@i)">
+                    <div class="qa-num">@(i + 1)</div>
+                    <div class="qa-question-preview">@item.Pregunta</div>
+                    <span class="sde-badge @sBadge qa-score-badge">
+                        @item.Puntaje/10
+                    </span>
+                    <i class="bi bi-chevron-down qa-chevron"></i>
+                </div>
 
-        <hr />
+                <div class="qa-card-body">
 
-        <h6>Tu respuesta:</h6>
-        <p>@item.Respuesta</p>
+                    @* Barra *@
+                    <div class="qa-score-bar">
+                        <div class="qa-score-bar-fill"
+                             style="width:@((item.Puntaje * 10).ToString())%; background:@sBarColor;">
+                        </div>
+                    </div>
 
-        <hr />
+                    @* Pregunta *@
+                    <div class="qa-section-label">Pregunta</div>
+                    <div class="qa-text">@item.Pregunta</div>
 
-        <h6>Puntaje:</h6>
-        <span class="badge bg-primary">@item.Puntaje / 10</span>
+                    @* Respuesta *@
+                    <div class="qa-section-label">Tu respuesta</div>
+                    <div class="qa-text answer">
+                        @(string.IsNullOrWhiteSpace(item.Respuesta)
+                        ? "Sin respuesta registrada"
+                        : item.Respuesta)
+                    </div>
 
-        <hr />
+                    @* Feedback *@
+                    @if (!string.IsNullOrWhiteSpace(item.Observacion))
+                    {
+                        <div class="qa-section-label">Feedback de la IA</div>
+                        <div class="qa-feedback">
+                            <i class="bi bi-robot" style="color:var(--sde-accent); margin-right:6px;"></i>
+                            @item.Observacion
+                        </div>
+                    }
 
-        <h6>Observación:</h6>
-        <p>@item.Observacion</p>
-
+                </div>
+            </div>
+        }
     </div>
-}
 
-<hr />
+    @* ============================================================
+        RECOMENDACIÓN FINAL
+        ============================================================ *@
+    @if (!string.IsNullOrWhiteSpace(Model.RecomendacionFinal))
+    {
+        <div class="recomendacion-card">
+            <h4>
+                <i class="bi bi-stars"></i>
+                Análisis y plan de mejora — IA
+            </h4>
+            <div class="recomendacion-content">
+                @Html.Raw(Model.RecomendacionFinal)
+            </div>
+        </div>
+    }
 
-<div class="card p-4 bg-light">
-    <h4>Recomendación de Estudio</h4>
-    <div class="card p-4 shadow-sm">
-        @Model.RecomendacionFinal
-    </div>
-</div>
+    @section Scripts {
+        <script>
+            function toggleQA(i) {
+                var card = document.getElementById('qaCard_' + i);
+                if (card) card.classList.toggle('open');
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var first = document.getElementById('qaCard_0');
+                if (first) first.classList.add('open');
+            });
+        </script>
+    }
