@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\ChatbotController.cs" />
     <Compile Include="Controllers\EntrevistaController.cs" />
+    <Compile Include="ViewModels\EvaluacionItemViewModels.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\PlanController.cs" />

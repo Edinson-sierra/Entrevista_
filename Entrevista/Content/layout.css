@@ -537,3 +537,37 @@ html, body {
         padding: 16px;
     }
 }
+/* 🔥 Overlay móvil */
+.sde-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 998;
+    display: none;
+}
+
+    .sde-overlay.active {
+        display: block;
+    }
+
+/* 🔥 Sidebar animado */
+.sde-sidebar {
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .sde-sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 999;
+        height: 100%;
+    }
+
+        .sde-sidebar.open {
+            transform: translateX(0);
+        }
+}
+
+body.no-scroll {
+    overflow: hidden;
+}

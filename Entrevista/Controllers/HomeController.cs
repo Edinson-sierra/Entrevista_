@@ -40,9 +40,6 @@ namespace Entrevista.Controllers
         {
             int usuarioId = SessionHelper.ObtenerUsuarioId(this);
 
-            // ── Cargar entrevistas del usuario con sus métricas ──────────────
-            // Se proyecta a un tipo anónimo para evitar cargar entidades
-            // completas con todas sus navegaciones
             var entrevistas = _context.Entrevista
                 .Where(e => e.usuarios_id_usuarios == usuarioId)
                 .Select(e => new
@@ -51,8 +48,6 @@ namespace Entrevista.Controllers
                     e.fecha_entrevista,
                     Tema = e.Temas.nombre_tema,
                     Dificultad = e.Dificultad.nombre_dificultad,
-
-                    // Promedio de puntajes de esa entrevista (0 si no tiene resultados)
                     Promedio = e.Resultado.Any()
                         ? e.Resultado.Average(r => (double?)r.puntaje_total) ?? 0.0
                         : 0.0
@@ -60,18 +55,16 @@ namespace Entrevista.Controllers
                 .OrderByDescending(e => e.fecha_entrevista)
                 .ToList();
 
-            // ── Métricas agregadas ───────────────────────────────────────────
             int totalEntrevistas = entrevistas.Count;
+
             double promedioGeneral = totalEntrevistas > 0
                 ? Math.Round(entrevistas.Average(e => e.Promedio), 1)
                 : 0.0;
 
             DateTime? ultimaFecha = entrevistas.FirstOrDefault()?.fecha_entrevista;
 
-            // ── Nivel técnico usando NivelCalculator centralizado ────────────
             string nivel = NivelCalculator.Calcular(promedioGeneral);
 
-            // ── Últimas 5 entrevistas para la tabla ──────────────────────────
             var ultimas = entrevistas
                 .Take(5)
                 .Select(e => new DashboardEntrevistaItemViewModel
@@ -84,14 +77,27 @@ namespace Entrevista.Controllers
                 })
                 .ToList();
 
-            // ── Construir ViewModel ──────────────────────────────────────────
+            // 🔥 NUEVO: datos para gráficos
+            var datosGraficos = entrevistas
+                .Select(e => new DashboardGraficoItem
+                {
+                    tema = e.Tema,
+                    dificultad = e.Dificultad,
+                    puntaje = Math.Round(e.Promedio, 1),
+                    fecha = e.fecha_entrevista.HasValue
+                        ? e.fecha_entrevista.Value.ToString("dd/MM")
+                        : ""
+                })
+                .ToList();
+
             var model = new DashboardViewModel
             {
                 TotalEntrevistas = totalEntrevistas,
                 PromedioPuntaje = promedioGeneral,
                 Nivel = nivel,
                 UltimaFecha = ultimaFecha,
-                UltimasEntrevistas = ultimas
+                UltimasEntrevistas = ultimas,
+                DatosGraficos = datosGraficos // 🔥 IMPORTANTE
             };
 
             ViewBag.Title = "Dashboard";

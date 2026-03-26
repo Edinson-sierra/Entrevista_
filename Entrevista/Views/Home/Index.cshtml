@@ -207,7 +207,7 @@
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script>
-
+        const datosEntrevistas = @Html.Raw(Json.Encode(Model.DatosGraficos));
 // ═══════════════════════════════════════════════════
 //  DATOS desde el servidor (Razor → JS)
 // ═══════════════════════════════════════════════════
