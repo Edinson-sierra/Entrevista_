@@ -1,0 +1,59 @@
+﻿@model List<Entrevista_DATA.Entrevista>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Historial de entrevistas";
+}
+
+@section Styles {
+    <link href="~/Content/layout.css" rel="stylesheet" />
+    <link href="~/Content/resultado.css" rel="stylesheet" />
+}
+
+<div class="page-header">
+    <h2><i class="bi bi-clock-history"></i> Historial de entrevistas</h2>
+</div>
+
+<div class="historial-list">
+    @if (Model == null || !Model.Any())
+    {
+        <div class="empty-state">
+            <p>No se encontraron entrevistas en tu historial.</p>
+            <a href="@Url.Action("Index","Simulacion")" class="sde-btn sde-btn-primary">Iniciar nueva entrevista</a>
+        </div>
+    }
+    else
+    {
+        <table class="sde-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tema</th>
+                    <th>Dificultad</th>
+                    <th>Estado</th>
+                    <th>Puntaje</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var e in Model)
+                {
+                    var ultimo = e.Resultado?.OrderByDescending(r => r.id_resultado).FirstOrDefault();
+                    var promedio = e.Resultado != null && e.Resultado.Any() ? Math.Round(e.Resultado.Take(e.Resultado.Count()-1).Average(r => r.puntaje_total),1) : 0;
+
+                    <tr>
+                        <td>@(e.fecha_entrevista?.ToString("dd/MM/yyyy HH:mm") ?? "—")</td>
+                        <td>@e.Temas?.nombre_tema</td>
+                        <td>@e.Dificultad?.nombre_dificultad</td>
+                        <td>@e.estado_entrevista</td>
+                        <td>@(promedio.ToString("0.0"))</td>
+                        <td>
+                            <a class="sde-btn sde-btn-ghost" href="@Url.Action("Index","Resultado", new { id = e.id_entrevista })">Ver</a>
+                            <a class="sde-btn sde-btn-primary" href="@Url.Action("ExportToCrystal","Historial", new { id = e.id_entrevista })">Exportar PDF</a>
+                            <a class="sde-btn sde-btn-primary" style="background:var(--sde-accent); border-color:var(--sde-accent);" href="@Url.Action("Print","Historial", new { id = e.id_entrevista })">Imprimir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

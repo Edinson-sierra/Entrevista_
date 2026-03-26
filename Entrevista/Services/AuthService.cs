@@ -73,8 +73,10 @@ namespace Entrevista.Services
                 return AuthResult.Error("Completa todos los campos.");
 
             // ── Buscar usuario por email ──────────────────────────────────────
+            var normalizedEmail = model.Email?.Trim().ToLower();
+
             var usuario = _context.Usuarios
-                .FirstOrDefault(u => u.email_usuario == model.Email
+                .FirstOrDefault(u => u.email_usuario.ToLower() == normalizedEmail
                                   && u.activo == true);
 
             if (usuario == null)
@@ -170,8 +172,9 @@ namespace Entrevista.Services
         public bool Registrar(RegisterViewModel model)
         {
             // ── Verificar email duplicado ─────────────────────────────────────
+            var normalizedEmailReg = model.Email?.Trim().ToLower();
             bool emailExiste = _context.Usuarios
-                .Any(u => u.email_usuario == model.Email);
+                .Any(u => u.email_usuario.ToLower() == normalizedEmailReg);
 
             if (emailExiste) return false;
 

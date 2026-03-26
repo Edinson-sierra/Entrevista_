@@ -1,0 +1,67 @@
+@model Entrevista_DATA.Entrevista
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Content/layout.css" rel="stylesheet" />
+    <link href="~/Content/resultado.css" rel="stylesheet" />
+    <style>
+        /* Print-specific tweaks: ensure compact, monochrome-friendly PDF while keeping brand colors */
+        @media print {
+            .no-print { display: none !important; }
+            .sde-btn { display: none !important; }
+        }
+
+        .print-header {
+            display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;
+        }
+        .print-title { font-size:20px; font-weight:800; }
+        .print-meta { font-size:13px; color:var(--sde-muted); }
+        .qa-print { margin-top:14px; }
+        .qa-print .qa-item { border-bottom:1px solid #eee; padding:10px 0; }
+        .qa-print .qa-question { font-weight:700; margin-bottom:6px; }
+        .qa-print .qa-answer { white-space:pre-wrap; }
+    </style>
+}
+
+<div class="sde-card">
+    <div class="print-header">
+        <div>
+            <div class="print-title">Historial de entrevista</div>
+            <div class="print-meta">@Model.Temas?.nombre_tema — @Model.Dificultad?.nombre_dificultad</div>
+        </div>
+        <div class="no-print">
+            <a href="javascript:window.print()" class="sde-btn sde-btn-primary">Imprimir / Guardar PDF</a>
+            <a href="@Url.Action("Index","Historial")" class="sde-btn sde-btn-ghost">Volver</a>
+        </div>
+    </div>
+
+    <div style="margin-bottom:12px;">
+        <strong>Fecha:</strong> @(Model.fecha_entrevista?.ToString("dd/MM/yyyy HH:mm") ?? "—")<br />
+        <strong>Estado:</strong> @Model.estado_entrevista<br />
+        <strong>Puntaje promedio:</strong> @((Model.Resultado != null && Model.Resultado.Any()) ? Math.Round(Model.Resultado.Average(r => r.puntaje_total),1).ToString("0.0") : "—")
+    </div>
+
+    <div class="qa-print">
+        @if (Model.Resultado != null && Model.Resultado.Any())
+        {
+            foreach (var r in Model.Resultado.OrderBy(rt => rt.id_resultado))
+            {
+                <div class="qa-item">
+                    <div class="qa-question">Pregunta: @(r.Preguntas?.pregunta ?? "—")</div>
+                    <div class="qa-answer">Respuesta: @(string.IsNullOrWhiteSpace(r.respuesta_usuario) ? "Sin respuesta" : r.respuesta_usuario)</div>
+                    <div style="margin-top:6px; font-size:13px; color:var(--sde-muted);">Puntaje: @r.puntaje_total / 10</div>
+                    @if (!string.IsNullOrWhiteSpace(r.observacion))
+                    {
+                        <div style="margin-top:6px;">Feedback: @r.observacion</div>
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <div>No hay resultados guardados para esta entrevista.</div>
+        }
+    </div>
+</div>

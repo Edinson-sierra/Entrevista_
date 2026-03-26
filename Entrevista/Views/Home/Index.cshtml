@@ -2,577 +2,194 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dashboard";
+
+    var promedioWidth = (Model.PromedioPuntaje * 10).ToString("0") + "%";
+    var promedioColor = Model.PromedioPuntaje >= 8 ? "var(--sde-success)"
+                      : Model.PromedioPuntaje >= 5 ? "var(--sde-warning)"
+                      : "var(--sde-danger)";
 }
 
-@section Styles {
-    <link href="~/Content/home.css" rel="stylesheet" />
-}
+@* ============================================================
+    SECCIÓN: Métricas principales
+    ============================================================ *@
 
-<div class="dash-wrap">
+<div class="metric-grid">
 
-    <!-- ══════════════════════════════════
-         PANEL IZQUIERDO — Gráficos
-    ══════════════════════════════════ -->
-    <div class="dash-left">
+    @* Total entrevistas *@
+    <div class="metric-card">
+        <div class="metric-icon blue"><i class="bi bi-clipboard-check"></i></div>
+        <div class="metric-label">Entrevistas</div>
+        <div class="metric-value">@Model.TotalEntrevistas</div>
+        <div class="metric-sub">realizadas en total</div>
+    </div>
 
-        <!-- MÉTRICAS TOP -->
-        <div class="metrics-row">
-            <div class="metric-card-new blue">
-                <div class="metric-glow"></div>
-                <span class="m-icon">🎯</span>
-                <div class="m-value">@Model.TotalEntrevistas</div>
-                <div class="m-label">Entrevistas totales</div>
-            </div>
-            <div class="metric-card-new green">
-                <div class="metric-glow"></div>
-                <span class="m-icon">📈</span>
-                <div class="m-value">@Model.PromedioPuntaje<span style="font-size:14px;opacity:.5;">/10</span></div>
-                <div class="m-label">Puntaje promedio</div>
-            </div>
-            <div class="metric-card-new yellow">
-                <div class="metric-glow"></div>
-                <span class="m-icon">🏆</span>
-                <div class="m-value" style="font-size:20px;">@Model.Nivel</div>
-                <div class="m-label">Nivel técnico actual</div>
-            </div>
-            <div class="metric-card-new red">
-                <div class="metric-glow"></div>
-                <span class="m-icon">📅</span>
-                <div class="m-value" style="font-size:18px;">
-                    @(Model.UltimaFecha.HasValue ? Model.UltimaFecha.Value.ToString("dd MMM") : "—")
-                </div>
-                <div class="m-label">Última actividad</div>
-            </div>
+    @* Promedio *@
+    <div class="metric-card">
+        <div class="metric-icon green"><i class="bi bi-bar-chart"></i></div>
+        <div class="metric-label">Puntaje promedio</div>
+
+        <div class="metric-value">
+            @Model.PromedioPuntaje
+            <span style="font-size:14px;opacity:.5;">/10</span>
         </div>
 
-        <!-- GRÁFICOS FILA 1 -->
-        <div class="charts-row">
-
-            <!-- Radar de habilidades -->
-            <div class="chart-card">
-                <div class="chart-header">
-                    <div>
-                        <div class="chart-title">⚡ Radar de habilidades</div>
-                        <div class="chart-sub">por tema de entrevista</div>
-                    </div>
-                    <span class="chart-badge">RADAR</span>
+        <div class="score-bar-wrap">
+            <div class="score-bar">
+                <div class="score-bar-fill"
+                     style="width:@promedioWidth; background:@promedioColor;">
                 </div>
-                <div class="canvas-wrap" style="height:220px;">
-                    <canvas id="radarChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Doughnut dificultades -->
-            <div class="chart-card">
-                <div class="chart-header">
-                    <div>
-                        <div class="chart-title">🎨 Distribución por dificultad</div>
-                        <div class="chart-sub">entrevistas realizadas</div>
-                    </div>
-                    <span class="chart-badge">DONUT</span>
-                </div>
-                <div class="canvas-wrap" style="height:220px;">
-                    <canvas id="donutChart"></canvas>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- GRÁFICO EVOLUCIÓN FULL WIDTH -->
-        <div class="chart-card">
-            <div class="chart-header">
-                <div>
-                    <div class="chart-title">🚀 Evolución de puntajes</div>
-                    <div class="chart-sub">últimas @(Model.UltimasEntrevistas?.Count ?? 0) entrevistas en el tiempo</div>
-                </div>
-                <span class="chart-badge">LÍNEA</span>
-            </div>
-            <div class="canvas-wrap" style="height:180px;">
-                <canvas id="lineChart"></canvas>
             </div>
         </div>
+    </div>
 
-        <!-- TABLA RECIENTES -->
-        <div class="recent-card">
-            <div class="recent-header">
-                <div class="recent-title">🗂️ Últimas entrevistas</div>
-                <a href="@Url.Action("Index","Simulacion")" class="sde-btn sde-btn-primary" style="padding:7px 14px; font-size:12px;">
-                    <i class="bi bi-plus-lg"></i> Nueva
-                </a>
-            </div>
+    @* Nivel *@
+    <div class="metric-card">
+        <div class="metric-icon yellow"><i class="bi bi-trophy"></i></div>
+        <div class="metric-label">Nivel actual</div>
 
-            @if (Model.UltimasEntrevistas != null && Model.UltimasEntrevistas.Any())
-            {
-                <table class="sde-table">
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Tema</th>
-                            <th>Dificultad</th>
-                            <th>Puntaje</th>
-                            <th>Barra</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.UltimasEntrevistas)
-                        {
-                            <tr>
-                                <td><span style="font-family:var(--sde-font-mono);font-size:12px;">@item.FechaTexto</span></td>
-                                <td><span style="font-weight:600;">@item.Tema</span></td>
-                                <td><span class="sde-badge @item.DificultadBadgeClass">@item.Dificultad</span></td>
-                                <td>
-                                    <span style="font-family:var(--sde-font-mono);font-weight:700;color:@item.PuntajeColor;">
-                                        @item.Puntaje/10
-                                    </span>
-                                </td>
-                                <td style="width:100px;">
-                                    <div class="score-bar">
-                                        <div class="score-bar-fill" style="width:@(item.PuntajePorcentaje)%;background:@item.PuntajeColor;"></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Index","Resultado", new { id = item.EntrevistaId })"
-                                       class="sde-btn sde-btn-ghost" style="padding:5px 11px;font-size:12px;">
-                                        <i class="bi bi-eye"></i> Ver
-                                    </a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+        <div style="margin-top: 8px;">
+            @{
+                var nivelClass = Model.Nivel == "Senior" ? "sde-badge-green"
+                               : Model.Nivel == "Mid" ? "sde-badge-yellow"
+                               : "sde-badge-red";
+
+                var nivelIcon = Model.Nivel == "Senior" ? "bi-award-fill"
+                               : Model.Nivel == "Mid" ? "bi-lightning-fill"
+                               : "bi-person-fill";
             }
-            else
-            {
-                <div class="empty-state">
-                    <div class="empty-icon">🎯</div>
-                    <div class="empty-title">Sin entrevistas aún</div>
-                    <div class="empty-sub">Comienza tu primera simulación para ver métricas aquí.</div>
-                    <a href="@Url.Action("Index","Simulacion")" class="sde-btn sde-btn-primary">
-                        <i class="bi bi-play-circle"></i> Iniciar primera entrevista
-                    </a>
-                </div>
-            }
+
+            <span class="nivel-badge @nivelClass">
+                <i class="bi @nivelIcon"></i>
+                @Model.Nivel
+            </span>
+        </div>
+    </div>
+
+    @* Última entrevista *@
+    <div class="metric-card">
+        <div class="metric-icon gray"><i class="bi bi-calendar3"></i></div>
+        <div class="metric-label">Última actividad</div>
+
+        <div class="metric-value" style="font-size:18px;">
+            @(Model.UltimaFecha.HasValue
+                ? Model.UltimaFecha.Value.ToString("dd MMM")
+                : "—")
         </div>
 
-    </div><!-- /dash-left -->
-    <!-- ══════════════════════════════════
-         PANEL DERECHO — Chatbot
-    ══════════════════════════════════ -->
-    <div class="dash-right">
+        <div class="metric-sub">
+            @(Model.UltimaFecha.HasValue
+                ? Model.UltimaFecha.Value.ToString("yyyy")
+                : "Sin registros aún")
+        </div>
+    </div>
 
-        <!-- Header -->
-        <div class="bot-panel-header">
-            <div class="bot-panel-left">
-                <div class="bot-panel-avatar">🤖</div>
-                <div>
-                    <div class="bot-panel-name">EntrevistBot</div>
-                    <div class="bot-panel-status">
-                        <div class="status-pulse"></div>
-                        IA activa · Groq
-                    </div>
-                </div>
-            </div>
-            <button class="btn-nuevo" onclick="nuevoChat()">+ Nuevo</button>
+</div>
+
+@* ============================================================
+    SECCIÓN: Tabla de últimas entrevistas
+    ============================================================ *@
+<div class="sde-card" style="padding:0; overflow:hidden;">
+
+    <div class="section-header" style="padding:20px 24px 16px;">
+        <div class="section-title">
+            <i class="bi bi-list-check" style="color:var(--sde-accent); margin-right:8px;"></i>
+            Últimas entrevistas
         </div>
 
-        <!-- Mensajes -->
-        <div class="bot-messages" id="botMessages"></div>
+        <a href="@Url.Action("Index","Simulacion")"
+           class="sde-btn sde-btn-primary"
+           style="padding:8px 16px; font-size:13px;">
+            <i class="bi bi-plus-lg"></i>
+            Nueva
+        </a>
+    </div>
 
-        <!-- Chips -->
-        <div class="chips-wrap" id="botChips">
-            <button class="chip" onclick="enviarChip('¿Cuántas entrevistas he hecho?')">📊 Mis stats</button>
-            <button class="chip" onclick="enviarChip('Muéstrame mis últimas entrevistas')">🗂️ Últimas</button>
-            <button class="chip" onclick="enviarChip('¿Cuál es mi puntaje promedio?')">🎯 Promedio</button>
-            <button class="chip" onclick="enviarChip('Quiero hacer una nueva entrevista')">▶️ Nueva entrevista</button>
-            <button class="chip" onclick="enviarChip('Dame consejos para mejorar')">💡 Consejos</button>
-        </div>
+    @if (Model.UltimasEntrevistas != null && Model.UltimasEntrevistas.Any())
+    {
+        <table class="sde-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tema</th>
+                    <th>Dificultad</th>
+                    <th>Puntaje</th>
+                    <th>Progreso</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-        <!-- Input -->
-        <div class="bot-input-section">
-            <div class="bot-input-wrap">
-                <input id="botInput"
-                       placeholder="Pregunta algo o pide navegar al sistema..."
-                       onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviarBot()}" />
-                <button class="bot-send-btn" id="botSendBtn" onclick="enviarBot()">
-                    <svg width="15" height="15" viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z" /></svg>
-                </button>
-            </div>
-        </div>
+            <tbody>
+                @foreach (var item in Model.UltimasEntrevistas)
+                {
+                    
+                        var difClass = item.Dificultad == "Alta" ? "sde-badge-red"
+                                     : item.Dificultad == "Media" ? "sde-badge-yellow"
+                                     : "sde-badge-green";
 
-    </div><!-- /dash-right -->
+                        var scoreColor = item.Puntaje >= 8 ? "var(--sde-success)"
+                                       : item.Puntaje >= 5 ? "var(--sde-warning)"
+                                       : "var(--sde-danger)";
 
-</div><!-- /dash-wrap -->
+                        var width = (item.Puntaje * 10).ToString("0") + "%";
+                    
 
-@section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script>
-        const datosEntrevistas = @Html.Raw(Json.Encode(Model.DatosGraficos));
-// ═══════════════════════════════════════════════════
-//  DATOS desde el servidor (Razor → JS)
-// ═══════════════════════════════════════════════════
+                    <tr>
+                        <td>
+                            <span style="font-family:var(--sde-font-mono); font-size:13px;">
+                                @(item.Fecha.HasValue ? item.Fecha.Value.ToString("dd/MM/yy") : "—")
+                            </span>
+                        </td>
 
-const totalEntrevistas = @Model.TotalEntrevistas;
-const promedio         = @Model.PromedioPuntaje.ToString(System.Globalization.CultureInfo.InvariantCulture);
+                        <td>
+                            <span style="font-weight:600;">@item.Tema</span>
+                        </td>
 
-// ─── Colores globales ────────────────────────────────
-const C = {
-    accent:  '#4f8ef7',
-    success: '#34d399',
-    warn:    '#fbbf24',
-    danger:  '#f87171',
-    muted:   'rgba(255,255,255,0.07)',
-    text:    '#e8eaf0',
-    grid:    'rgba(255,255,255,0.04)'
-};
+                        <td>
+                            <span class="sde-badge @difClass">@item.Dificultad</span>
+                        </td>
 
-const defaultFont = { family: 'DM Sans', size: 12, color: '#6b7280' };
+                        <td>
+                            <span style="font-family:var(--sde-font-mono); font-weight:700; color:@scoreColor;">
+                                @item.Puntaje / 10
+                            </span>
+                        </td>
 
-Chart.defaults.color = '#6b7280';
-Chart.defaults.font.family = 'DM Sans';
+                        <td style="width:120px;">
+                            <div class="score-bar">
+                                <div class="score-bar-fill"
+                                     style="width:@width; background:@scoreColor;">
+                                </div>
+                            </div>
+                        </td>
 
-// ═══════════════════════════════════════════════════
-//  RADAR — habilidades por tema
-// ═══════════════════════════════════════════════════
-(function buildRadar() {
-    const temaMap = {};
-    datosEntrevistas.forEach(e => {
-        if (!temaMap[e.tema]) temaMap[e.tema] = [];
-        temaMap[e.tema].push(e.puntaje);
-    });
-
-    const labels = Object.keys(temaMap).length > 0
-        ? Object.keys(temaMap)
-        : ['JavaScript', 'Python', 'SQL', 'Algoritmos', 'Diseño'];
-
-    const valores = labels.map(t =>
-        temaMap[t] ? temaMap[t].reduce((a,b)=>a+b,0)/temaMap[t].length : 0
-    );
-
-    new Chart(document.getElementById('radarChart'), {
-        type: 'radar',
-        data: {
-            labels,
-            datasets: [{
-                label: 'Puntaje promedio',
-                data: valores,
-                borderColor: C.accent,
-                backgroundColor: 'rgba(79,142,247,0.12)',
-                borderWidth: 2,
-                pointBackgroundColor: C.accent,
-                pointRadius: 4
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                r: {
-                    min: 0, max: 10,
-                    ticks: { stepSize: 2, backdropColor: 'transparent', color: '#6b7280', font: { size: 10 } },
-                    grid: { color: C.grid },
-                    angleLines: { color: C.grid },
-                    pointLabels: { color: C.text, font: { size: 11, weight: '600' } }
+                        <td>
+                            <a href="@Url.Action("Index","Resultado", new { id = item.EntrevistaId })"
+                               class="sde-btn sde-btn-ghost"
+                               style="padding:6px 12px; font-size:12px;">
+                                <i class="bi bi-eye"></i>
+                                Ver resultado
+                            </a>
+                        </td>
+                    </tr>
                 }
-            },
-            plugins: { legend: { display: false } }
-        }
-    });
-})();
-
-// ═══════════════════════════════════════════════════
-//  DONUT — distribución por dificultad
-// ═══════════════════════════════════════════════════
-(function buildDonut() {
-    const counts = { Baja: 0, Media: 0, Alta: 0 };
-    datosEntrevistas.forEach(e => { if (counts[e.dificultad] !== undefined) counts[e.dificultad]++; });
-
-    const total = Object.values(counts).reduce((a,b)=>a+b,0);
-    if (total === 0) { counts.Baja = 1; } // evitar chart vacío
-
-    new Chart(document.getElementById('donutChart'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Baja', 'Media', 'Alta'],
-            datasets: [{
-                data: [counts.Baja, counts.Media, counts.Alta],
-                backgroundColor: [C.success, C.warn, C.danger],
-                borderColor: '#13161e',
-                borderWidth: 3,
-                hoverOffset: 8
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: '68%',
-            plugins: {
-                legend: {
-                    position: 'right',
-                    labels: { color: C.text, font: { size: 12 }, padding: 14, boxWidth: 12 }
-                }
-            }
-        }
-    });
-})();
-
-// ═══════════════════════════════════════════════════
-//  LÍNEA — evolución de puntajes
-// ═══════════════════════════════════════════════════
-(function buildLine() {
-    const reversed = [...datosEntrevistas].reverse();
-    const labels   = reversed.map((e, i) => e.fecha || `#${i+1}`);
-    const datos    = reversed.map(e => e.puntaje);
-
-    // Gradiente
-    const ctx = document.getElementById('lineChart').getContext('2d');
-    const grad = ctx.createLinearGradient(0, 0, 0, 180);
-    grad.addColorStop(0,   'rgba(79,142,247,0.25)');
-    grad.addColorStop(1,   'rgba(79,142,247,0)');
-
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                label: 'Puntaje',
-                data: datos,
-                borderColor: C.accent,
-                backgroundColor: grad,
-                borderWidth: 2.5,
-                fill: true,
-                tension: 0.45,
-                pointBackgroundColor: C.accent,
-                pointRadius: 5,
-                pointHoverRadius: 7
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: { grid: { color: C.grid }, ticks: { color: '#6b7280', font: { size: 11 } } },
-                y: {
-                    min: 0, max: 10,
-                    grid: { color: C.grid },
-                    ticks: { color: '#6b7280', font: { size: 11 }, stepSize: 2 }
-                }
-            },
-            plugins: { legend: { display: false },
-                tooltip: {
-                    backgroundColor: '#1a1e28',
-                    borderColor: '#252a38',
-                    borderWidth: 1,
-                    titleColor: '#e8eaf0',
-                    bodyColor: '#6b7280',
-                    callbacks: {
-                        label: ctx => ` Puntaje: ${ctx.parsed.y}/10`
-                    }
-                }
-            }
-        }
-    });
-})();
-
-// ═══════════════════════════════════════════════════
-//  CHATBOT — lógica completa
-// ═══════════════════════════════════════════════════
-const botMessages = document.getElementById('botMessages');
-const botInput    = document.getElementById('botInput');
-const botSendBtn  = document.getElementById('botSendBtn');
-let   chatId      = 0;
-
-// Mapeo de intenciones de navegación
-const navegaciones = {
-    'nueva entrevista':     '/Simulacion',
-    'iniciar entrevista':   '/Simulacion',
-    'hacer entrevista':     '/Simulacion',
-    'resultados':           '/Resultados',
-    'ver resultados':       '/Resultados',
-    'plan de entrenamiento':'/Plan',
-    'mi plan':              '/Plan',
-    'mi perfil':            '/Perfil',
-    'ver perfil':           '/Perfil',
-    'chatbot completo':     '/Chatbot',
-    'abrir chatbot':        '/Chatbot'
-};
-
-function hora() {
-    return new Date().toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit' });
-}
-
-function scrollAbajo() {
-    botMessages.scrollTop = botMessages.scrollHeight;
-}
-
-function formatText(txt) {
-    if (!txt) return '';
-    return txt
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.+?)\*/g, '<em>$1</em>')
-        .replace(/\n/g, '<br>');
-}
-
-function agregarBot(html, conAccion) {
-    const row = document.createElement('div');
-    row.className = 'msg-row bot';
-    row.innerHTML = `
-        <div class="msg-ava">🤖</div>
-        <div>
-            <div class="bubble">${html}</div>
-            ${conAccion ? conAccion : ''}
-        </div>
-        <span class="msg-time">${hora()}</span>
-    `;
-    botMessages.appendChild(row);
-    scrollAbajo();
-}
-
-function agregarUsuario(texto) {
-    const safe = texto.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    const row = document.createElement('div');
-    row.className = 'msg-row user';
-    row.innerHTML = `
-        <div class="msg-ava">TÚ</div>
-        <div class="bubble">${safe}</div>
-        <span class="msg-time">${hora()}</span>
-    `;
-    botMessages.appendChild(row);
-    scrollAbajo();
-}
-
-function mostrarTyping() {
-    const row = document.createElement('div');
-    row.className = 'typing-row'; row.id = 'typing';
-    row.innerHTML = `
-        <div class="msg-ava" style="width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--sde-accent),#60a5fa);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">🤖</div>
-        <div class="typing-bubble">
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-        </div>
-    `;
-    botMessages.appendChild(row);
-    scrollAbajo();
-}
-
-function quitarTyping() {
-    const t = document.getElementById('typing');
-    if (t) t.remove();
-}
-
-// Detectar intención de navegación
-function detectarNavegacion(texto) {
-    const lower = texto.toLowerCase();
-    for (const [clave, url] of Object.entries(navegaciones)) {
-        if (lower.includes(clave)) return url;
+            </tbody>
+        </table>
     }
-    return null;
-}
+    else
+    {
+        @* Estado vacío *@
+        <div class="empty-state">
+            <div class="empty-icon">🎯</div>
+            <div class="empty-title">Sin entrevistas aún</div>
+            <div class="empty-sub">
+                Comienza tu primera simulación para ver tus métricas aquí.
+            </div>
 
-// Cargar historial o mostrar saludo
-async function iniciarBot() {
-    try {
-        const res  = await fetch('/Chatbot/NuevoChat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `__RequestVerificationToken=${getToken()}`
-        });
-        const data = await res.json();
-        chatId = data.chatId;
-    } catch { chatId = 0; }
-
-    // Saludo automático personalizado
-    const div = document.createElement('div');
-    div.className = 'date-divider';
-    div.textContent = `Hoy · ${hora()}`;
-    botMessages.appendChild(div);
-
-    agregarBot(
-        `¡Hola! 👋 Soy <strong>EntrevistBot</strong>.<br>` +
-        `Tienes <strong>${totalEntrevistas}</strong> entrevistas y un promedio de <strong>${promedio}/10</strong>. ` +
-        `¿En qué puedo ayudarte hoy? Puedo consultar tus datos o llevarte a cualquier sección. 🚀`
-    );
-
-    document.getElementById('botChips').style.display = 'flex';
-}
-
-// Enviar mensaje
-async function enviarBot() {
-    const texto = botInput.value.trim();
-    if (!texto || botSendBtn.disabled) return;
-
-    document.getElementById('botChips').style.display = 'none';
-    agregarUsuario(texto);
-    botInput.value = '';
-    botSendBtn.disabled = true;
-    mostrarTyping();
-
-    // Detectar navegación antes de llamar a la API
-    const urlNav = detectarNavegacion(texto);
-
-    try {
-        const res  = await fetch('/Chatbot/Enviar', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `mensaje=${encodeURIComponent(texto)}&chatId=${chatId}&__RequestVerificationToken=${getToken()}`
-        });
-        const data = await res.json();
-        quitarTyping();
-
-        // Si hay navegación, mostrar botón de acción
-        let accion = null;
-        if (urlNav) {
-            accion = `<a href="${urlNav}" class="action-bubble">
-                <i class="bi bi-arrow-right-circle"></i> Ir ahora →
-            </a>`;
-        }
-
-        agregarBot(formatText(data.respuesta || data.error || 'Error'), accion);
-
-    } catch {
-        quitarTyping();
-        agregarBot('❌ Error de conexión.');
+            <a href="@Url.Action("Index","Simulacion")" class="sde-btn sde-btn-primary">
+                <i class="bi bi-play-circle"></i>
+                Iniciar primera entrevista
+            </a>
+        </div>
     }
 
-    botSendBtn.disabled = false;
-    botInput.focus();
-}
-
-function enviarChip(texto) {
-    botInput.value = texto;
-    enviarBot();
-}
-
-async function nuevoChat() {
-    try {
-        const res  = await fetch('/Chatbot/NuevoChat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `__RequestVerificationToken=${getToken()}`
-        });
-        const data = await res.json();
-        chatId = data.chatId;
-    } catch {}
-
-    botMessages.innerHTML = '';
-    const div = document.createElement('div');
-    div.className = 'date-divider';
-    div.textContent = `Nuevo chat · ${hora()}`;
-    botMessages.appendChild(div);
-    agregarBot('Chat limpiado 🧹 ¿En qué te puedo ayudar?');
-    document.getElementById('botChips').style.display = 'flex';
-}
-
-function getToken() {
-    const el = document.querySelector('input[name="__RequestVerificationToken"]');
-    return el ? encodeURIComponent(el.value) : '';
-}
-
-// ── INIT ─────────────────────────────────────────
-iniciarBot();
-botInput.focus();
-    </script>
-
-    @Html.AntiForgeryToken()
-}
+</div>

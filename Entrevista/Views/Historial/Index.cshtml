@@ -1,0 +1,154 @@
+@model List<Entrevista_DATA.Entrevista>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Historial de simulaciones";
+}
+
+@section Styles {
+    <link href="~/Content/layout.css" rel="stylesheet" />
+    <link href="~/Content/resultado.css" rel="stylesheet" />
+    <style>
+        .historial-container { max-width: 1200px; margin: 0 auto; }
+        .historial-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--sde-text-muted);
+        }
+        .historial-empty i { font-size: 48px; margin-bottom: 16px; display: block; }
+        .historial-empty p { font-size: 16px; margin-bottom: 20px; }
+        .historial-table-wrap { overflow-x: auto; }
+        .historial-select-all {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: var(--sde-surface);
+            border-radius: 8px;
+            border: 1px solid var(--sde-border);
+        }
+        .historial-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .historial-actions-left { display: flex; gap: 12px; align-items: center; }
+        .historial-row-selected { background: rgba(79, 142, 247, 0.1) !important; }
+        .btn-export:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
+}
+
+<div class="historial-container">
+    <div class="page-header">
+        <h2><i class="bi bi-clock-history"></i> Historial de simulaciones</h2>
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="historial-empty">
+            <i class="bi bi-inbox"></i>
+            <p>No has realizado simulaciones anteriormente</p>
+            <a href="@Url.Action("Index","Simulacion")" class="sde-btn sde-btn-primary">Iniciar primera simulación</a>
+        </div>
+    }
+    else
+    {
+        <form id="exportForm" method="post" action="@Url.Action("ExportSelectedToPdf", "Historial")">
+            <div class="historial-actions">
+                <div class="historial-actions-left">
+                    <div class="historial-select-all">
+                        <input type="checkbox" id="selectAll" />
+                        <label for="selectAll">Seleccionar todas</label>
+                    </div>
+                </div>
+                <button type="submit" class="sde-btn sde-btn-primary btn-export" id="btnExport" disabled>
+                    <i class="bi bi-file-earmark-pdf"></i> Exportar a PDF
+                </button>
+            </div>
+
+            <div class="historial-table-wrap">
+                <table class="sde-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px;"></th>
+                            <th>Tema</th>
+                            <th>Fecha</th>
+                            <th>Puntaje</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var e in Model)
+                        {
+                            double promedio = 0.0;
+                            if (e.Resultado != null && e.Resultado.Count() > 1)
+                            {
+                                promedio = Math.Round(e.Resultado.Take(e.Resultado.Count() - 1)
+                                    .Average(r => (double)(r.puntaje_total ?? 0)), 1);
+                            }
+
+                            <tr data-id="@e.id_entrevista">
+                                <td>
+                                    <input type="checkbox" name="selectedIds" value="@e.id_entrevista" class="row-checkbox" />
+                                </td>
+                                <td>
+                                    <strong>@e.Temas?.nombre_tema</strong>
+                                </td>
+                                <td>@(e.fecha_entrevista?.ToString("dd/MM/yyyy HH:mm") ?? "—")</td>
+                                <td>
+                                    <span class="sde-badge @(promedio >= 8 ? "sde-badge-green" : promedio >= 5 ? "sde-badge-yellow" : "sde-badge-red")">
+                                        @promedio.ToString("0.0")
+                                    </span>
+                                </td>
+                                <td>
+                                    <a class="sde-btn sde-btn-ghost" href="@Url.Action("Detalle", "Historial", new { id = e.id_entrevista })">
+                                        <i class="bi bi-eye"></i> Ver detalle
+                                    </a>
+                                    <a class="sde-btn sde-btn-primary" href="@Url.Action("Print","Historial", new { id = e.id_entrevista })">
+                                        <i class="bi bi-printer"></i> PDF
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('selectAll').addEventListener('change', function() {
+            var checkboxes = document.querySelectorAll('.row-checkbox');
+            checkboxes.forEach(function(cb) {
+                cb.checked = this.checked;
+                var row = cb.closest('tr');
+                if (this.checked) row.classList.add('historial-row-selected');
+                else row.classList.remove('historial-row-selected');
+            });
+            updateExportButton();
+        });
+
+        document.querySelectorAll('.row-checkbox').forEach(function(cb) {
+            cb.addEventListener('change', function() {
+                var row = this.closest('tr');
+                if (this.checked) row.classList.add('historial-row-selected');
+                else row.classList.remove('historial-row-selected');
+
+                var allCheckboxes = document.querySelectorAll('.row-checkbox');
+                var allChecked = Array.from(allCheckboxes).every(function(c) { return c.checked; });
+                document.getElementById('selectAll').checked = allChecked;
+                updateExportButton();
+            });
+        });
+
+        function updateExportButton() {
+            var checked = document.querySelectorAll('.row-checkbox:checked');
+            document.getElementById('btnExport').disabled = checked.length === 0;
+        }
+    </script>
+}

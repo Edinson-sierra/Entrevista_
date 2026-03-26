@@ -1,0 +1,10 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Entrevista_DATA
+{
+    // Partial kept intentionally empty because the generated EF model
+    // already exposes the required PascalCase properties.
+    public partial class Usuarios
+    {
+    }
+}

@@ -1,0 +1,163 @@
+@model Entrevista.Controllers.DetalleHistorialViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Detalle de simulación";
+}
+
+@section Styles {
+    <link href="~/Content/layout.css" rel="stylesheet" />
+    <link href="~/Content/resultado.css" rel="stylesheet" />
+    <style>
+        .detalle-container { max-width: 1000px; margin: 0 auto; }
+        .detalle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: var(--sde-card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--sde-border);
+        }
+        .detalle-header-info h3 { margin: 0 0 8px 0; font-size: 20px; }
+        .detalle-header-meta { display: flex; gap: 20px; color: var(--sde-muted); font-size: 14px; }
+        .detalle-header-meta i { margin-right: 4px; }
+        .detalle-score {
+            text-align: center;
+            padding: 16px 24px;
+            background: var(--sde-surface);
+            border-radius: 12px;
+            border: 1px solid var(--sde-border);
+        }
+        .detalle-score-value { font-size: 32px; font-weight: 700; }
+        .detalle-score-label { font-size: 12px; color: var(--sde-muted); }
+        .detalle-pregunta-card {
+            background: var(--sde-card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--sde-border);
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        .detalle-pregunta-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: var(--sde-surface);
+            border-bottom: 1px solid var(--sde-border);
+        }
+        .detalle-pregunta-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--sde-accent);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .detalle-pregunta-text { flex: 1; font-weight: 500; }
+        .detalle-pregunta-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .detalle-badge-correcto { background: #dcfce7; color: #16a34a; }
+        .detalle-badge-incorrecto { background: #fee2e2; color: #dc2626; }
+        .detalle-pregunta-body { padding: 16px; }
+        .detalle-section { margin-bottom: 16px; }
+        .detalle-section:last-child { margin-bottom: 0; }
+        .detalle-section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--sde-muted);
+            margin-bottom: 6px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .detalle-section-content {
+            padding: 12px;
+            background: var(--sde-surface);
+            border-radius: 8px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+        .detalle-section-content.respuesta-correcta { border-left: 3px solid #22c55e; }
+        .detalle-section-content.respuesta-incorrecta { border-left: 3px solid #ef4444; }
+        .detalle-empty { text-align: center; padding: 40px; color: var(--sde-muted); }
+    </style>
+}
+
+<div class="detalle-container">
+    <div class="page-header" style="margin-bottom: 24px;">
+        <a href="@Url.Action("Index", "Historial")" class="sde-btn sde-btn-ghost" style="margin-bottom: 12px;">
+            <i class="bi bi-arrow-left"></i> Volver al historial
+        </a>
+        <h2><i class="bi bi-card-text"></i> Detalle de simulación</h2>
+    </div>
+
+    <div class="detalle-header">
+        <div class="detalle-header-info">
+            <h3>@Model.Tema</h3>
+            <div class="detalle-header-meta">
+                <span><i class="bi bi-calendar3"></i> @(Model.Fecha?.ToString("dd/MM/yyyy HH:mm") ?? "—")</span>
+            </div>
+        </div>
+        <div class="detalle-score">
+            <div class="detalle-score-value" style="color: @(Model.Promedio >= 5 ? "var(--sde-success)" : "var(--sde-danger)");">
+                @Model.Promedio.ToString("0.0")
+            </div>
+            <div class="detalle-score-label">Puntaje promedio</div>
+        </div>
+    </div>
+
+    @if (Model.Detalles == null || !Model.Detalles.Any())
+    {
+        <div class="detalle-empty">
+            <i class="bi bi-inbox" style="font-size: 48px; display: block; margin-bottom: 16px;"></i>
+            <p>No hay preguntas registradas para esta simulación.</p>
+        </div>
+    }
+    else
+    {
+        for (int i = 0; i < Model.Detalles.Count; i++)
+        {
+            var item = Model.Detalles[i];
+            <div class="detalle-pregunta-card">
+                <div class="detalle-pregunta-header">
+                    <div class="detalle-pregunta-num">@(i + 1)</div>
+                    <div class="detalle-pregunta-text">@item.Pregunta</div>
+                    <span class="detalle-pregunta-badge @(item.EsCorrecto ? "detalle-badge-correcto" : "detalle-badge-incorrecto")">
+                        @(item.EsCorrecto ? "Correcto" : "Incorrecto")
+                    </span>
+                    <span class="sde-badge @(item.Puntaje >= 8 ? "sde-badge-green" : item.Puntaje >= 5 ? "sde-badge-yellow" : "sde-badge-red")">
+                        @item.Puntaje/10
+                    </span>
+                </div>
+                <div class="detalle-pregunta-body">
+                    <div class="detalle-section">
+                        <div class="detalle-section-label">Tu respuesta</div>
+                        <div class="detalle-section-content @(item.EsCorrecto ? "respuesta-correcta" : "respuesta-incorrecta")">
+                            @(string.IsNullOrWhiteSpace(item.Respuesta) ? "Sin respuesta" : item.Respuesta)
+                        </div>
+                    </div>
+                    @if (!string.IsNullOrWhiteSpace(item.Observacion))
+                    {
+                        <div class="detalle-section">
+                            <div class="detalle-section-label">Feedback</div>
+                            <div class="detalle-section-content">
+                                <i class="bi bi-robot" style="color: var(--sde-accent); margin-right: 6px;"></i>
+                                @item.Observacion
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>

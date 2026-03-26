@@ -1,0 +1,21 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Entrevista_DATA
+{
+    // Partial to complement (or replace missing) generated EF entity for Usuarios.
+    // Add the properties used across the application so compilation succeeds.
+    public partial class Usuarios
+    {
+        // Primary key as used in the codebase
+        public int id_usuarios { get; set; }
+
+        // Display name and email used by controllers and views
+        public string nombre_usuario { get; set; }
+        public string email_usuario { get; set; }
+        public bool activo { get; set; }
+        public string password_hash { get; set; }
+
+        // Optional: keep a parameterless constructor for EF compatibility
+        public Usuarios() { }
+    }
+}
