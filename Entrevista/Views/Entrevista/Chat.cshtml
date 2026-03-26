@@ -1,48 +1,156 @@
 ﻿@model Entrevista.ViewModels.EntrevistaViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Entrevista en curso";
 }
+@section Styles {
+    <link href="~/Content/chat.css" rel="stylesheet" />
+}
+<div class="chat-shell">
 
-<h2>Entrevista Técnica</h2>
+    @* PANEL IZQUIERDO *@
+    <div class="chat-panel">
 
-<div class="card p-3 chat-box">
+        @* Header *@
+        <div class="chat-header">
+            <div class="chat-ai-avatar">🤖</div>
+            <div>
+                <div class="chat-ai-name">Entrevistador IA</div>
+                <div class="chat-ai-status">
+                    <span class="status-dot"></span>
+                    Activo · Groq AI
+                </div>
+            </div>
 
-    @if (Model.Historial != null)
-    {
-        foreach (var msg in Model.Historial)
+            <div class="chat-progress">
+                <span>
+                    @(Model.NumeroPregunta + 1)/5
+                </span>
+
+                <div class="progress-dots">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        var dotClass = i < Model.NumeroPregunta ? "done"
+                                     : i == Model.NumeroPregunta ? "current"
+                                     : "";
+
+                        <div class="progress-dot @dotClass"></div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        @* MENSAJES *@
+        <div class="chat-messages" id="chatMessages">
+
+            @if (Model.Historial != null)
+            {
+                foreach (var msg in Model.Historial)
+                {
+                    if (msg.Tipo == "IA")
+                    {
+                        <div class="msg-ai">
+                            <div class="msg-ai-icon">🤖</div>
+                            <div class="bubble-ai" data-text="@msg.Texto">
+                                @msg.Texto
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="msg-user">
+                            <div class="bubble-user">@msg.Texto</div>
+                        </div>
+                    }
+                }
+            }
+
+            @* Pregunta actual *@
+            <div class="msg-ai">
+                <div class="msg-ai-icon">🤖</div>
+                <div class="bubble-ai current" data-text="@Model.PreguntaActual">
+                    @Model.PreguntaActual
+                </div>
+            </div>
+
+        </div>
+
+        @* INPUT *@
+        <div class="chat-input-area">
+
+            @using (Html.BeginForm("Responder", "Entrevista", FormMethod.Post, new { id = "chatForm" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.EntrevistaId)
+
+                <div class="chat-input-row">
+
+                    @Html.TextAreaFor(x => x.RespuestaUsuario, new
+                    {
+                        @class = "chat-textarea",
+                        id = "respuestaInput",
+                        placeholder = "Escribe tu respuesta...",
+                        rows = 1
+                    })
+
+                    <button type="submit" class="chat-send-btn">
+                        Enviar
+                    </button>
+
+                </div>
+            }
+
+        </div>
+    </div>
+
+    @* SIDEBAR *@
+    <div class="chat-sidebar">
+
+        <div class="sidebar-card">
+            <div>📋 Esta sesión</div>
+
+            <div>
+                Pregunta: @(Model.NumeroPregunta + 1) / 5
+            </div>
+
+            <div>
+                Restantes: @(5 - Model.NumeroPregunta)
+            </div>
+        </div>
+
+        @* 🔥 FOREACH CORREGIDO 
+        @if (Model.UltimasEntrevistas != null)
         {
-            if (msg.Tipo == "Usuario")
+            foreach (var item in Model.UltimasEntrevistas)
             {
-                <div class="msg-user">
-                    <div class="bubble user">@msg.Texto</div>
-                </div>
-            }
-            else
-            {
-                <div class="msg-ai">
-                    <div class="bubble ai">@msg.Texto</div>
-                </div>
-            }
-        }
-    }
+                var difClass = item.Dificultad == "Alta" ? "sde-badge-red"
+                             : item.Dificultad == "Media" ? "sde-badge-yellow"
+                             : "sde-badge-green";
 
-    <div class="msg-ai">
-        <div class="bubble ai">@Model.PreguntaActual</div>
+                var scoreColor = item.Puntaje >= 8 ? "var(--sde-success)"
+                               : item.Puntaje >= 5 ? "var(--sde-warning)"
+                               : "var(--sde-danger)";
+
+                var width = (item.Puntaje * 10).ToString("0") + "%";
+
+                <div class="entrevista-card">
+
+                    <span class="@difClass">
+                        @item.Dificultad
+                    </span>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                             style="width:@width; background:@scoreColor;">
+                        </div>
+                    </div>
+
+                    <span>@item.Puntaje / 10</span>
+
+                </div>
+            }
+        }*@
+
     </div>
 
 </div>
-
-<br />
-
-@using (Html.BeginForm("Responder", "Entrevista", FormMethod.Post))
-{
-    @Html.HiddenFor(x => x.EntrevistaId)
-
-    <div class="form-group">
-        @Html.TextAreaFor(x => x.RespuestaUsuario, new { @class = "form-control", rows = 3 })
-    </div>
-
-    <br />
-
-    <button class="btn btn-success">Enviar</button>
-}

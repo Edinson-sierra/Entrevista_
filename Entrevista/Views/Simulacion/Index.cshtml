@@ -3,27 +3,162 @@
 @{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Title = "Nueva entrevista";
+}
+@section Styles {
+    <link href="~/Content/simulacion.css" rel="stylesheet" />
 }
 
+<div class="sim-wrap">
 
-<h2>Iniciar Simulación</h2>
+    @* Header *@
+    <div class="sim-header">
+        <span class="sim-header-icon">🎯</span>
+        <div class="sim-title">Configura tu entrevista</div>
+        <div class="sim-subtitle">Elige el tema y dificultad — la IA se adapta a ti</div>
+    </div>
 
-<div class="card p-4">
+    @* Steps *@
+    <div class="sim-steps">
+        <div class="sim-step active">
+            <div class="sim-step-num">1</div>
+            <div class="sim-step-label">Configuración</div>
+        </div>
+        <div class="sim-step-line"></div>
+        <div class="sim-step">
+            <div class="sim-step-num">2</div>
+            <div class="sim-step-label">Entrevista</div>
+        </div>
+        <div class="sim-step-line"></div>
+        <div class="sim-step">
+            <div class="sim-step-num">3</div>
+            <div class="sim-step-label">Resultados</div>
+        </div>
+    </div>
 
+    @* Formulario *@
     @using (Html.BeginForm("Iniciar", "Simulacion", FormMethod.Post))
     {
-        <div class="form-group">
-            <label>Tema</label>
-            @Html.DropDownListFor(x => x.TemaSeleccionado, Model.Temas, "Seleccione", new { @class = "form-control" })
+        @Html.AntiForgeryToken()
+
+        @* Tema *@
+        <div class="sim-card">
+            <div class="sim-card-title">
+                <i class="bi bi-book"></i>
+                Selecciona el tema
+            </div>
+
+            <div class="sde-select-wrap">
+                @Html.DropDownListFor(x => x.TemaSeleccionado,
+                    Model.Temas,
+                    "— Elige un tema técnico —",
+                    new { @class = "sde-select", id = "temaSelect", onchange = "updateSummary()" })
+            </div>
+            @Html.ValidationMessageFor(x => x.TemaSeleccionado)
         </div>
 
-        <div class="form-group mt-3">
-            <label>Dificultad</label>
-            @Html.DropDownListFor(x => x.DificultadSeleccionada, Model.Dificultades, "Seleccione", new { @class = "form-control" })
+        @* Dificultad *@
+        <div class="sim-card">
+            <div class="sim-card-title">
+                <i class="bi bi-speedometer2"></i>
+                Nivel de dificultad
+            </div>
+
+            @Html.HiddenFor(x => x.DificultadSeleccionada, new { id = "difInput" })
+            @Html.ValidationMessageFor(x => x.DificultadSeleccionada)
+
+            <div class="dif-grid" id="difGrid">
+                @foreach (var d in Model.Dificultades)
+                {
+                    <div class="dif-card"
+                         data-val="@d.Value"
+                         onclick="selectDif(this, '@d.Value')">
+
+                        <div class="dif-card-icon">
+                            @(d.Text == "Alta" ? "🔥" : d.Text == "Media" ? "⚡" : "🌱")
+                        </div>
+
+                        <div class="dif-card-name">@d.Text</div>
+
+                        <div class="dif-card-desc">
+                            @(d.Text == "Alta"  ? "Arquitectura y optimización" :
+                              d.Text == "Media" ? "Implementación práctica" :
+                                                  "Conceptos fundamentales")
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
 
-        <br />
+        @* Resumen *@
+        <div class="sim-summary" id="simSummary">
+            <div class="sim-summary-item">
+                <i class="bi bi-info-circle"></i>
+                <span>Completa los campos para ver el resumen</span>
+            </div>
+        </div>
 
-        <button class="btn btn-primary">Iniciar Entrevista</button>
+        @* Submit *@
+        <button type="submit" class="sim-submit">
+            <i class="bi bi-play-circle-fill"></i>
+            Iniciar Entrevista con IA
+        </button>
     }
+
 </div>
+
+@section Scripts {
+    <script>
+        function selectDif(el, val) {
+            document.querySelectorAll('.dif-card').forEach(function (c) {
+                c.classList.remove('selected');
+            });
+
+            el.classList.add('selected');
+            document.getElementById('difInput').value = val;
+            updateSummary();
+        }
+
+        function updateSummary() {
+            var temaEl = document.getElementById('temaSelect');
+            var difVal = document.getElementById('difInput').value;
+
+            var temaText = temaEl.options[temaEl.selectedIndex]
+                ? temaEl.options[temaEl.selectedIndex].text
+                : '';
+
+            var summary = document.getElementById('simSummary');
+
+            if (!temaText || temaText.startsWith('—') || !difVal) {
+                summary.innerHTML =
+                    '<div class="sim-summary-item">' +
+                    '<i class="bi bi-info-circle"></i>' +
+                    '<span>Completa los campos para ver el resumen</span></div>';
+                return;
+            }
+
+            var difLabel = '';
+            document.querySelectorAll('.dif-card').forEach(function (c) {
+                if (c.dataset.val === difVal)
+                    difLabel = c.querySelector('.dif-card-name').textContent;
+            });
+
+            summary.innerHTML =
+                '<div class="sim-summary-item">' +
+                '<i class="bi bi-book"></i>' +
+                '<strong>Tema:</strong> ' + temaText +
+                '</div>' +
+                '<span style="color: var(--sde-border)">|</span>' +
+                '<div class="sim-summary-item">' +
+                '<i class="bi bi-speedometer2"></i>' +
+                '<strong>Dificultad:</strong> ' + difLabel +
+                '</div>' +
+                '<span style="color: var(--sde-border)">|</span>' +
+                '<div class="sim-summary-item">' +
+                '<i class="bi bi-question-circle"></i>' +
+                '<strong>Preguntas:</strong> 5 con IA adaptativa' +
+                '</div>';
+        }
+    </script>
+}

@@ -1,0 +1,573 @@
+﻿/* ============================================================
+           DESIGN TOKENS — Variables globales del sistema
+           ============================================================ */
+:root {
+    --sde-bg: #0d0f14;
+    --sde-surface: #13161e;
+    --sde-surface-2: #1a1e28;
+    --sde-border: #252a38;
+    --sde-accent: #4f8ef7;
+    --sde-accent-dim: rgba(79, 142, 247, 0.12);
+    --sde-accent-hover: #6ba3ff;
+    --sde-success: #34d399;
+    --sde-warning: #fbbf24;
+    --sde-danger: #f87171;
+    --sde-text-primary: #e8eaf0;
+    --sde-text-muted: #6b7280;
+    --sde-text-dim: #374151;
+    --sde-sidebar-w: 260px;
+    --sde-radius: 12px;
+    --sde-radius-sm: 8px;
+    --sde-font: 'DM Sans', sans-serif;
+    --sde-font-mono: 'DM Mono', monospace;
+    --sde-transition: 0.2s ease;
+}
+
+/* ============================================================
+           BASE
+           ============================================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: var(--sde-font);
+    background: var(--sde-bg);
+    color: var(--sde-text-primary);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+           LAYOUT SHELL
+           ============================================================ */
+.sde-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ============================================================
+           SIDEBAR
+           ============================================================ */
+.sde-sidebar {
+    width: var(--sde-sidebar-w);
+    background: var(--sde-surface);
+    border-right: 1px solid var(--sde-border);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 100;
+    transition: transform var(--sde-transition);
+}
+
+/* — Logo / Brand — */
+.sde-brand {
+    padding: 24px 20px 18px;
+    border-bottom: 1px solid var(--sde-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sde-brand-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--sde-accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.sde-brand-text {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--sde-text-primary);
+}
+
+.sde-brand-sub {
+    font-size: 11px;
+    color: var(--sde-text-muted);
+    font-family: var(--sde-font-mono);
+}
+
+/* — Avatar Block — */
+.sde-user-block {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--sde-border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sde-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--sde-border);
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--sde-surface-2);
+}
+
+.sde-user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sde-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sde-user-email {
+    font-size: 11px;
+    color: var(--sde-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* — Nav — */
+.sde-nav {
+    flex: 1;
+    padding: 12px 12px;
+    overflow-y: auto;
+}
+
+.sde-nav-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--sde-text-dim);
+    padding: 10px 8px 6px;
+}
+
+.sde-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--sde-radius-sm);
+    color: var(--sde-text-muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all var(--sde-transition);
+    margin-bottom: 2px;
+}
+
+    .sde-nav-item:hover {
+        background: var(--sde-surface-2);
+        color: var(--sde-text-primary);
+        text-decoration: none;
+    }
+
+    .sde-nav-item.active {
+        background: var(--sde-accent-dim);
+        color: var(--sde-accent);
+    }
+
+    .sde-nav-item i {
+        font-size: 16px;
+        width: 20px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    .sde-nav-item.danger {
+        color: var(--sde-danger);
+        opacity: 0.8;
+    }
+
+        .sde-nav-item.danger:hover {
+            background: rgba(248, 113, 113, 0.08);
+            color: var(--sde-danger);
+            opacity: 1;
+        }
+
+/* — Sidebar footer — */
+.sde-sidebar-footer {
+    padding: 14px 12px;
+    border-top: 1px solid var(--sde-border);
+}
+
+/* — New interview CTA — */
+.sde-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    background: var(--sde-accent);
+    color: #fff;
+    border-radius: var(--sde-radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--sde-transition);
+    margin-bottom: 10px;
+}
+
+    .sde-cta-btn:hover {
+        background: var(--sde-accent-hover);
+        color: #fff;
+        text-decoration: none;
+    }
+
+/* ============================================================
+           MAIN CONTENT
+           ============================================================ */
+.sde-main {
+    margin-left: var(--sde-sidebar-w);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* — Topbar — */
+.sde-topbar {
+    height: 60px;
+    background: var(--sde-surface);
+    border-bottom: 1px solid var(--sde-border);
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.sde-topbar-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--sde-text-primary);
+    flex: 1;
+}
+
+.sde-topbar-badge {
+    font-size: 11px;
+    font-family: var(--sde-font-mono);
+    background: var(--sde-accent-dim);
+    color: var(--sde-accent);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+/* — Page body — */
+.sde-content {
+    padding: 28px;
+    flex: 1;
+}
+
+/* ============================================================
+           COMMON COMPONENTS
+           ============================================================ */
+
+/* Cards */
+.sde-card {
+    background: var(--sde-surface);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius);
+    padding: 24px;
+}
+
+.sde-card-sm {
+    padding: 16px 20px;
+}
+
+/* Badges */
+.sde-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--sde-font-mono);
+}
+
+.sde-badge-blue {
+    background: rgba(79,142,247,.15);
+    color: var(--sde-accent);
+}
+
+.sde-badge-green {
+    background: rgba(52,211,153,.15);
+    color: var(--sde-success);
+}
+
+.sde-badge-yellow {
+    background: rgba(251,191,36,.15);
+    color: var(--sde-warning);
+}
+
+.sde-badge-red {
+    background: rgba(248,113,113,.15);
+    color: var(--sde-danger);
+}
+
+.sde-badge-gray {
+    background: rgba(107,114,128,.15);
+    color: var(--sde-text-muted);
+}
+
+/* Buttons */
+.sde-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--sde-radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--sde-font);
+    border: none;
+    cursor: pointer;
+    transition: all var(--sde-transition);
+    text-decoration: none;
+}
+
+.sde-btn-primary {
+    background: var(--sde-accent);
+    color: #fff;
+}
+
+    .sde-btn-primary:hover {
+        background: var(--sde-accent-hover);
+        color: #fff;
+        text-decoration: none;
+    }
+
+.sde-btn-ghost {
+    background: var(--sde-surface-2);
+    color: var(--sde-text-muted);
+    border: 1px solid var(--sde-border);
+}
+
+    .sde-btn-ghost:hover {
+        color: var(--sde-text-primary);
+        border-color: var(--sde-accent);
+        text-decoration: none;
+    }
+
+.sde-btn-danger {
+    background: rgba(248,113,113,.12);
+    color: var(--sde-danger);
+    border: 1px solid rgba(248,113,113,.2);
+}
+
+    .sde-btn-danger:hover {
+        background: rgba(248,113,113,.2);
+        color: var(--sde-danger);
+        text-decoration: none;
+    }
+
+/* Form controls */
+.sde-form-group {
+    margin-bottom: 18px;
+}
+
+.sde-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--sde-text-muted);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+.sde-input,
+.sde-select,
+.sde-textarea {
+    width: 100%;
+    background: var(--sde-surface-2);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius-sm);
+    padding: 10px 14px;
+    color: var(--sde-text-primary);
+    font-family: var(--sde-font);
+    font-size: 14px;
+    transition: border-color var(--sde-transition);
+    outline: none;
+}
+
+    .sde-input:focus,
+    .sde-select:focus,
+    .sde-textarea:focus {
+        border-color: var(--sde-accent);
+        box-shadow: 0 0 0 3px var(--sde-accent-dim);
+    }
+
+    .sde-input::placeholder {
+        color: var(--sde-text-muted);
+        opacity: 0.6;
+    }
+
+    .sde-select option {
+        background: var(--sde-surface-2);
+    }
+
+/* Tables */
+.sde-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .sde-table th {
+        text-align: left;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--sde-text-muted);
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--sde-border);
+    }
+
+    .sde-table td {
+        padding: 14px 16px;
+        font-size: 14px;
+        border-bottom: 1px solid var(--sde-border);
+        color: var(--sde-text-primary);
+    }
+
+    .sde-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .sde-table tbody tr:hover {
+        background: var(--sde-surface-2);
+    }
+
+/* Validation errors */
+.sde-field-error {
+    font-size: 12px;
+    color: var(--sde-danger);
+    margin-top: 4px;
+}
+
+.field-validation-error {
+    color: var(--sde-danger);
+    font-size: 12px;
+}
+
+.validation-summary-errors ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.validation-summary-errors {
+    background: rgba(248,113,113,.08);
+    border: 1px solid rgba(248,113,113,.2);
+    border-radius: var(--sde-radius-sm);
+    padding: 12px 16px;
+    color: var(--sde-danger);
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--sde-border);
+    border-radius: 3px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--sde-text-dim);
+    }
+
+/* Fade-in animation */
+@keyframes sde-fadein {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sde-fadein {
+    animation: sde-fadein 0.3s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sde-sidebar {
+        transform: translateX(-100%);
+    }
+
+        .sde-sidebar.open {
+            transform: translateX(0);
+        }
+
+    .sde-main {
+        margin-left: 0;
+    }
+
+    .sde-content {
+        padding: 16px;
+    }
+}
+/* 🔥 Overlay móvil */
+.sde-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 998;
+    display: none;
+}
+
+    .sde-overlay.active {
+        display: block;
+    }
+
+/* 🔥 Sidebar animado */
+.sde-sidebar {
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .sde-sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 999;
+        height: 100%;
+    }
+
+        .sde-sidebar.open {
+            transform: translateX(0);
+        }
+}
+
+body.no-scroll {
+    overflow: hidden;
+}

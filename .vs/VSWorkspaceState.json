@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Entrevista",
+    "\\Entrevista\\Views",
+    "\\Entrevista\\Views\\Auth",
+    "\\Entrevista\\Views\\Plan",
+    "\\Entrevista\\Views\\Resultado",
+    "\\Entrevista_DATA"
+  ],
+  "SelectedNode": "\\Entrevista\\Views\\Auth\\Login.cshtml",
+  "PreviewInSolutionExplorer": false
+}

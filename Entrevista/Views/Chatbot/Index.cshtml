@@ -1,0 +1,329 @@
+﻿@{
+    ViewBag.Title = "EntrevistBot — Asistente IA";
+    int chatId = ViewBag.ChatId;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/Content/chatbot.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <div class="brand-dot"></div>
+            EntrevistIA
+            <span class="nav-badge">BOT</span>
+        </a>
+        <a href="/Home" class="nav-back">
+            ← Volver al inicio
+        </a>
+    </nav>
+
+    <!-- LAYOUT -->
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="bot-card">
+                    <div class="bot-avatar">🤖</div>
+                    <div>
+                        <div class="bot-info-name">EntrevistBot</div>
+                        <div class="bot-status">
+                            <div class="status-dot"></div>
+                            En línea · IA activa
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats del usuario -->
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-num">@ViewBag.TotalEntrevistas</div>
+                    <div class="stat-label">Entrevistas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num">@ViewBag.EntrevistasFinalizadas</div>
+                    <div class="stat-label">Finalizadas</div>
+                </div>
+                <div class="stat-box" style="grid-column: span 2;">
+                    <div class="stat-num">@ViewBag.PromedioGeneral<span style="font-size:13px;color:var(--muted)">/10</span></div>
+                    <div class="stat-label">Puntaje promedio general</div>
+                </div>
+            </div>
+
+            <!-- Accesos rápidos -->
+            <div class="quick-section">
+                <div class="section-label">Accesos rápidos</div>
+                <button class="quick-btn" onclick="enviarRapido('¿Cuántas entrevistas he hecho?')">
+                    <span class="qicon">📊</span> Mis estadísticas
+                </button>
+                <button class="quick-btn" onclick="enviarRapido('Muéstrame mis últimas entrevistas')">
+                    <span class="qicon">🗂️</span> Mis entrevistas
+                </button>
+                <button class="quick-btn" onclick="enviarRapido('¿Cuál es mi puntaje promedio?')">
+                    <span class="qicon">🎯</span> Mi puntaje promedio
+                </button>
+                <button class="quick-btn" onclick="enviarRapido('¿Qué temas están disponibles?')">
+                    <span class="qicon">📚</span> Temas disponibles
+                </button>
+                <button class="quick-btn" onclick="enviarRapido('Dame consejos para mejorar en entrevistas')">
+                    <span class="qicon">💡</span> Consejos de mejora
+                </button>
+                <button class="quick-btn" onclick="enviarRapido('¿Cuáles son mis planes de entrenamiento?')">
+                    <span class="qicon">🏋️</span> Mis planes
+                </button>
+            </div>
+        </aside>
+
+        <!-- CHAT PRINCIPAL -->
+        <main class="chat-main">
+            <div class="chat-header">
+                <div class="chat-header-left">
+                    <div class="header-avatar">🤖</div>
+                    <div>
+                        <div class="header-name">EntrevistBot</div>
+                        <div class="header-sub">Asistente inteligente con acceso a tu base de datos</div>
+                    </div>
+                </div>
+                <button class="btn-nuevo-chat" onclick="nuevoChat()">+ Nuevo chat</button>
+            </div>
+
+            <!-- Mensajes -->
+            <div class="messages-area" id="messages"></div>
+
+            <!-- Chips de sugerencia -->
+            <div class="chips-wrap" id="chips">
+                <button class="chip" onclick="enviarChip(this)">📊 Mis estadísticas</button>
+                <button class="chip" onclick="enviarChip(this)">🗂️ Últimas entrevistas</button>
+                <button class="chip" onclick="enviarChip(this)">🎯 Mi puntaje promedio</button>
+                <button class="chip" onclick="enviarChip(this)">📚 Temas disponibles</button>
+                <button class="chip" onclick="enviarChip(this)">💡 Cómo mejorar</button>
+            </div>
+
+            <!-- Input -->
+            <div class="input-section">
+                <div class="input-wrap">
+                    <input id="inputMsg"
+                           placeholder="Pregúntame sobre tus entrevistas, resultados, estadísticas..."
+                           onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();enviar()}" />
+                    <button class="btn-send" id="btnSend" onclick="enviar()">
+                        <svg width="17" height="17" viewBox="0 0 24 24">
+                            <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="input-hint">Enter para enviar · Puedo consultar tu base de datos en lenguaje natural</div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+    // ─── Variables globales ────────────────────────────────────────
+    const messagesDiv = document.getElementById('messages');
+    const inputMsg    = document.getElementById('inputMsg');
+    const btnSend     = document.getElementById('btnSend');
+    let   chatId      = @chatId;
+
+    // ─── Helpers ──────────────────────────────────────────────────
+    function hora() {
+        return new Date().toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function scrollAbajo() {
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function formatearTexto(txt) {
+        if (!txt) return '';
+        return txt
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.+?)\*/g,     '<em>$1</em>')
+            .replace(/\n/g,            '<br>');
+    }
+
+    // ─── Mensajes ─────────────────────────────────────────────────
+    function agregarBot(html) {
+        const row = document.createElement('div');
+        row.className = 'msg-row bot';
+        row.innerHTML = `
+            <div class="msg-ava">🤖</div>
+            <div class="bubble">${html}</div>
+            <span class="msg-time">${hora()}</span>
+        `;
+        messagesDiv.appendChild(row);
+        scrollAbajo();
+    }
+
+    function agregarUsuario(texto) {
+        const safe = texto.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const row = document.createElement('div');
+        row.className = 'msg-row user';
+        row.innerHTML = `
+            <div class="msg-ava">TÚ</div>
+            <div class="bubble">${safe}</div>
+            <span class="msg-time">${hora()}</span>
+        `;
+        messagesDiv.appendChild(row);
+        scrollAbajo();
+    }
+
+    // ─── Typing indicator ────────────────────────────────────────
+    function mostrarTyping() {
+        const row = document.createElement('div');
+        row.className = 'typing-row'; row.id = 'typing';
+        row.innerHTML = `
+            <div class="msg-ava" style="width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--accent));display:flex;align-items:center;justify-content:center;font-size:13px;">🤖</div>
+            <div class="typing-bubble">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        `;
+        messagesDiv.appendChild(row);
+        scrollAbajo();
+    }
+
+    function quitarTyping() {
+        const t = document.getElementById('typing');
+        if (t) t.remove();
+    }
+
+    // ─── Cargar historial ─────────────────────────────────────────
+    async function cargarHistorial() {
+        try {
+            const res  = await fetch(`/Chatbot/Historial?chatId=${chatId}`);
+            const data = await res.json();
+
+            if (!data || data.length === 0) {
+                const div = document.createElement('div');
+                div.className = 'date-divider';
+                div.textContent = `Hoy · ${hora()}`;
+                messagesDiv.appendChild(div);
+
+                agregarBot(
+                    `¡Hola, <strong>@ViewBag.NombreUsuario</strong>! 👋 Soy <strong>EntrevistBot</strong>.<br><br>` +
+                    `Tengo acceso completo a la base de datos de EntrevistIA. Puedes preguntarme cosas como:<br>` +
+                    `• <em>"¿Cuántas entrevistas he hecho?"</em><br>` +
+                    `• <em>"¿Cuál es mi puntaje promedio?"</em><br>` +
+                    `• <em>"Muéstrame los temas disponibles"</em><br><br>` +
+                    `¿En qué te puedo ayudar hoy? 🚀`
+                );
+
+                document.getElementById('chips').style.display = 'flex';
+            } else {
+                const div = document.createElement('div');
+                div.className = 'date-divider';
+                div.textContent = `Conversación anterior · ${data.length} mensajes`;
+                messagesDiv.appendChild(div);
+
+                data.forEach(msg => {
+                    if (msg.Remitente === 'usuario') agregarUsuario(msg.Mensaje);
+                    else agregarBot(formatearTexto(msg.Mensaje));
+                });
+
+                const ahora = document.createElement('div');
+                ahora.className = 'date-divider';
+                ahora.textContent = `Ahora · ${hora()}`;
+                messagesDiv.appendChild(ahora);
+            }
+        } catch {
+            agregarBot('¡Hola! 👋 Soy <strong>EntrevistBot</strong>. ¿En qué te puedo ayudar?');
+        }
+
+        scrollAbajo();
+    }
+
+    // ─── Enviar mensaje ───────────────────────────────────────────
+    async function enviar() {
+        const texto = inputMsg.value.trim();
+        if (!texto || btnSend.disabled) return;
+
+        document.getElementById('chips').style.display = 'none';
+        agregarUsuario(texto);
+        inputMsg.value = '';
+        btnSend.disabled = true;
+        mostrarTyping();
+
+        try {
+            const res  = await fetch('/Chatbot/Enviar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `mensaje=${encodeURIComponent(texto)}&chatId=${chatId}&__RequestVerificationToken=${getToken()}`
+            });
+            const data = await res.json();
+            quitarTyping();
+
+            if (data.error) agregarBot(`❌ ${data.error}`);
+            else agregarBot(formatearTexto(data.respuesta));
+
+        } catch {
+            quitarTyping();
+            agregarBot('❌ Error de conexión. Intenta de nuevo.');
+        }
+
+        btnSend.disabled = false;
+        inputMsg.focus();
+    }
+
+    function enviarRapido(texto) {
+        inputMsg.value = texto;
+        enviar();
+    }
+
+    function enviarChip(chip) {
+        const mapeo = {
+            '📊 Mis estadísticas':      '¿Cuántas entrevistas he hecho y cuál es mi progreso?',
+            '🗂️ Últimas entrevistas':   'Muéstrame mis últimas entrevistas',
+            '🎯 Mi puntaje promedio':   '¿Cuál es mi puntaje promedio en todas las entrevistas?',
+            '📚 Temas disponibles':     '¿Qué temas están disponibles para practicar?',
+            '💡 Cómo mejorar':          'Dame consejos personalizados para mejorar mis entrevistas'
+        };
+        const txt = mapeo[chip.textContent.trim()] || chip.textContent.trim();
+        enviarRapido(txt);
+    }
+
+    // ─── Nuevo chat ───────────────────────────────────────────────
+    async function nuevoChat() {
+        try {
+            const res  = await fetch('/Chatbot/NuevoChat', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: `__RequestVerificationToken=${getToken()}` });
+            const data = await res.json();
+            chatId = data.chatId;
+            messagesDiv.innerHTML = '';
+
+            const div = document.createElement('div');
+            div.className = 'date-divider';
+            div.textContent = `Nuevo chat · ${hora()}`;
+            messagesDiv.appendChild(div);
+
+            agregarBot('Chat nuevo iniciado 🧹 ¿Sobre qué quieres consultar?');
+            document.getElementById('chips').style.display = 'flex';
+        } catch {
+            agregarBot('❌ Error al crear nuevo chat.');
+        }
+    }
+
+    // ─── CSRF token helper ────────────────────────────────────────
+    function getToken() {
+        const el = document.querySelector('input[name="__RequestVerificationToken"]');
+        return el ? encodeURIComponent(el.value) : '';
+    }
+
+    // ─── Init ─────────────────────────────────────────────────────
+    cargarHistorial();
+    inputMsg.focus();
+    </script>
+
+    @Html.AntiForgeryToken()
+</body>
+</html>

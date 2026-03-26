@@ -1,0 +1,123 @@
+﻿/* ============================================================
+       PERFIL — Edición de datos del usuario
+       ============================================================ */
+.perfil-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    max-width: 900px;
+}
+
+@media (max-width: 768px) {
+    .perfil-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* — Panel izquierdo: avatar — */
+.avatar-panel {
+    background: var(--sde-surface);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius);
+    padding: 28px 24px;
+    text-align: center;
+}
+
+.avatar-img-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.avatar-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--sde-accent);
+    object-fit: cover;
+    background: var(--sde-surface-2);
+    display: block;
+    box-shadow: 0 0 0 6px var(--sde-accent-dim);
+}
+
+.avatar-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.avatar-email {
+    font-size: 13px;
+    color: var(--sde-text-muted);
+    margin-bottom: 20px;
+    word-break: break-all;
+}
+
+.avatar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--sde-radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--sde-font);
+    cursor: pointer;
+    transition: all var(--sde-transition);
+    text-decoration: none;
+    background: var(--sde-surface-2);
+    border: 1px solid var(--sde-border);
+    color: var(--sde-text-muted);
+    margin-bottom: 8px;
+}
+
+    .avatar-btn:hover {
+        border-color: var(--sde-accent);
+        color: var(--sde-accent);
+        text-decoration: none;
+    }
+
+/* — Panel derecho: formulario — */
+.edit-panel {
+    background: var(--sde-surface);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius);
+    padding: 28px;
+}
+
+.edit-panel-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--sde-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .edit-panel-title i {
+        color: var(--sde-accent);
+    }
+
+.field-readonly {
+    background: rgba(255,255,255,.02);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius-sm);
+    padding: 10px 14px;
+    color: var(--sde-text-muted);
+    font-size: 14px;
+    cursor: not-allowed;
+    font-family: var(--sde-font);
+}
+
+.readonly-note {
+    font-size: 11px;
+    color: var(--sde-text-muted);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
