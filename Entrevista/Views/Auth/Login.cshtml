@@ -20,16 +20,14 @@
     <div class="auth-shell">
         <div class="auth-card">
 
-            @* Header *@
             <div class="auth-header">
                 <div class="auth-logo">🧠</div>
-                <div class="auth-title">Bienvenido de vuelta</div>
+                <div class="auth-title">Bienvenido</div>
                 <div class="auth-subtitle">Inicia sesión para continuar tu preparación</div>
             </div>
 
             <div class="auth-divider"></div>
 
-            @* Errores de validación *@
             @if (!ViewData.ModelState.IsValid)
             {
                 <div class="val-summary">
@@ -37,12 +35,10 @@
                 </div>
             }
 
-            @* Formulario *@
             @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
-                @* Email *@
                 <div class="fg">
                     <label for="Email">Correo electrónico</label>
                     <div class="input-wrap">
@@ -58,11 +54,11 @@
                     @Html.ValidationMessageFor(m => m.Email)
                 </div>
 
-                @* Password *@
                 <div class="fg">
                     <label for="Password">Contraseña</label>
                     <div class="input-wrap">
                         <i class="bi bi-lock"></i>
+
                         @Html.PasswordFor(m => m.Password, new
                         {
                             @class = "form-control",
@@ -70,22 +66,23 @@
                             autocomplete = "current-password",
                             id = "Password"
                         })
-                        <button type="button" class="pwd-toggle" onclick="togglePwd()"
-                                id="pwdToggleBtn" title="Mostrar/ocultar contraseña">
+
+                        
+                        <button type="button" class="pwd-toggle"
+                                onclick="togglePwd('Password','pwdIcon')">
                             <i class="bi bi-eye" id="pwdIcon"></i>
                         </button>
+
                     </div>
                     @Html.ValidationMessageFor(m => m.Password)
                 </div>
 
-                @* Submit *@
                 <button type="submit" class="btn-submit">
                     <i class="bi bi-arrow-right-circle"></i>
                     Iniciar Sesión
                 </button>
             }
 
-            @* Link a registro *@
             <div class="auth-footer">
                 ¿No tienes cuenta?
                 <a href="@Url.Action("Register","Auth")">Regístrate aquí</a>
@@ -97,19 +94,18 @@
     <div class="auth-watermark">SDE Interview — Powered by Groq AI · v2.0</div>
 
     <script>
-        /**
-         * Alterna la visibilidad del campo de contraseña.
-         */
-        function togglePwd() {
-            var input = document.getElementById('Password');
-            var icon = document.getElementById('pwdIcon');
+        function togglePwd(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
 
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.className = 'bi bi-eye-slash';
+            if (!input || !icon) return;
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace("bi-eye", "bi-eye-slash");
             } else {
-                input.type = 'password';
-                icon.className = 'bi bi-eye';
+                input.type = "password";
+                icon.classList.replace("bi-eye-slash", "bi-eye");
             }
         }
     </script>
