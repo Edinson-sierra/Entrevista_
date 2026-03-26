@@ -171,6 +171,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\ChatbotController.cs" />
     <Compile Include="Controllers\EntrevistaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="Models\AuthResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Chatbotservice.cs" />
     <Compile Include="ViewModels\ChatIAViewModel.cs" />
     <Compile Include="Services\IAService.cs" />
     <Compile Include="ViewModels\ConfiguracionIAViewModel.cs" />
@@ -216,6 +218,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\chat.css" />
+    <Content Include="Content\chatbot.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\layout.css" />
     <Content Include="Content\login.css" />
@@ -271,6 +274,7 @@
     <Content Include="Views\Resultado\Index.cshtml" />
     <Content Include="Views\Plan\Index.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
+    <Content Include="Views\Chatbot\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

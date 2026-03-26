@@ -133,5 +133,21 @@ namespace Entrevista.Controllers
             ViewBag.Title = $"Resultado — {entrevista.Temas.nombre_tema}";
             return View(model);
         }
+        // En ResultadoController.cs — agregar este método
+        public ActionResult Historial()
+        {
+            int usuarioId = SessionHelper.ObtenerUsuarioId(this);
+
+            var resultados = _context.Entrevista
+                .Include("Temas")
+                .Include("Dificultad")
+                .Include("Resultado")
+                .Where(e => e.usuarios_id_usuarios == usuarioId
+                         && e.estado_entrevista == "FINALIZADA")
+                .OrderByDescending(e => e.fecha_entrevista)
+                .ToList();
+
+            return View(resultados);
+        }
     }
 }

@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\Entrevista",
+    "\\Entrevista\\Views",
+    "\\Entrevista\\Views\\Plan",
     "\\Entrevista_DATA"
   ],
-  "SelectedNode": "\\Entrevista_DATA\\Model1.edmx",
+  "SelectedNode": "\\Entrevista\\Views\\Plan\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

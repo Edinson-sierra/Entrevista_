@@ -150,20 +150,57 @@ Devuelve JSON:
         }
 
         // =====================================================
-        // 🎯 PLAN DE ENTRENAMIENTO
+        // 🎯 PLAN DE ENTRENAMIENTO — Devuelve JSON de calendario
+        // Reemplaza el método GenerarPlanAsync en IAService.cs
         // =====================================================
         public async Task<string> GenerarPlanAsync(string resultadoFinal)
         {
+            // Calcular fecha de inicio del plan (mañana)
+            var fechaInicio = DateTime.Now.AddDays(1);
+
             var mensajes = new object[]
             {
-                new {
-                    role = "system",
-                    content = "Genera plan de estudio en HTML."
-                },
-                new {
-                    role = "user",
-                    content = resultadoFinal
-                }
+        new {
+            role = "system",
+            content = @"
+Eres un coach técnico experto. Analiza el resultado de la entrevista y genera un plan
+de estudio PERSONALIZADO solo para los conceptos en los que el candidato tuvo bajo desempeño.
+ 
+REGLAS CRÍTICAS:
+- Si el candidato respondió correctamente un tema (puntaje >= 7), NO lo incluyas en el plan.
+- Solo incluye temas donde haya brechas reales de conocimiento.
+- Si no hay brechas (todos los temas >= 7), devuelve dias: [] y resumen explicando que el desempeño fue excelente.
+- Máximo 14 días, mínimo 1.
+- Los días deben estar ordenados de mayor a menor prioridad (primero lo más crítico).
+- Las fechas usan formato dd/MM/yyyy.
+- Responde ÚNICAMENTE con el JSON, sin texto adicional, sin bloques markdown.
+ 
+ESTRUCTURA EXACTA del JSON:
+{
+  ""resumen"": ""Descripción breve de qué se detectó y el enfoque del plan"",
+  ""dias"": [
+    {
+      ""fecha"": ""dd/MM/yyyy"",
+      ""titulo"": ""Título corto del día de estudio"",
+      ""nivel"": ""alto|medio|bajo"",
+      ""duracion_estimada"": ""2-3 horas"",
+      ""recomendacion"": ""Consejo específico para este día"",
+      ""temas"": [
+        {
+          ""nombre"": ""Nombre del concepto"",
+          ""dificultad"": ""alta|media|baja"",
+          ""descripcion"": ""Qué debe estudiar y por qué lo necesita"",
+          ""recursos"": [""Recurso 1"", ""Recurso 2""]
+        }
+      ]
+    }
+  ]
+}"
+        },
+        new {
+            role = "user",
+            content = $"Fecha de inicio del plan: {fechaInicio:dd/MM/yyyy}\n\nResultado de la entrevista:\n{resultadoFinal}"
+        }
             };
 
             return await LlamarIA(mensajes, TEMP_REPORTE);
