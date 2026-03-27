@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Entrevista.ViewModels
 {
     /// <summary>
     /// ViewModel para la pantalla de chat de entrevista técnica.
-    /// Transporta la pregunta actual, el historial de conversación
-    /// y la respuesta que el usuario está escribiendo.
+    ///
+    /// CAMPOS NUEVOS para la mejora de simulación:
+    ///   - PuntajesAcumulados : historial de puntajes para dificultad adaptativa
+    ///   - DificultadBase     : dificultad elegida por el usuario al inicio
+    ///   - DificultadActual   : dificultad adaptada por rendimiento (puede diferir)
+    ///   - NivelActual        : nivel técnico estimado según puntajes
+    ///   - UltimaEvaluacion   : feedback de la última respuesta evaluada
+    ///   - UltimaMejora       : consejo concreto de mejora de la última evaluación
     /// </summary>
     public class EntrevistaViewModel : IValidatableObject
     {
@@ -16,7 +23,7 @@ namespace Entrevista.ViewModels
 
         /// <summary>
         /// ID de la entrevista activa (FK → Entrevista.id_entrevista).
-        /// Se transmite como campo oculto en el formulario del chat.
+        /// Se transmite como campo oculto en el formulario.
         /// </summary>
         [Required(ErrorMessage = "La entrevista no es válida.")]
         [Range(1, int.MaxValue, ErrorMessage = "ID de entrevista inválido.")]
@@ -27,14 +34,15 @@ namespace Entrevista.ViewModels
         // ────────────────────────────────────────────────────────────
 
         /// <summary>
-        /// Texto de la pregunta generada por la IA para mostrar en el chat.
+        /// Texto de la pregunta activa generada por la IA.
         /// Solo lectura — se genera en el servidor.
+        /// NO está incluida en el historial (se renderiza por separado).
         /// </summary>
         public string PreguntaActual { get; set; }
 
         /// <summary>
         /// Número de respuestas ya enviadas (0-indexed).
-        /// Determina el progreso visual (1/5, 2/5, etc.).
+        /// NumeroPregunta=0 → es la pregunta 1 de 5.
         /// </summary>
         public int NumeroPregunta { get; set; }
 
@@ -43,8 +51,7 @@ namespace Entrevista.ViewModels
         // ────────────────────────────────────────────────────────────
 
         /// <summary>
-        /// Texto de la respuesta ingresada por el usuario.
-        /// Puede venir del textarea o del Speech-to-Text.
+        /// Texto de la respuesta ingresada (textarea o Speech-to-Text).
         /// </summary>
         [Required(ErrorMessage = "Debes escribir o dictar una respuesta antes de continuar.")]
         [StringLength(5000, MinimumLength = 5,
@@ -53,73 +60,164 @@ namespace Entrevista.ViewModels
         public string RespuestaUsuario { get; set; }
 
         // ────────────────────────────────────────────────────────────
-        // Historial de la conversación
+        // Historial de conversación
         // ────────────────────────────────────────────────────────────
 
         /// <summary>
-        /// Historial completo de preguntas y respuestas de la sesión.
-        /// Se usa para renderizar el chat y como contexto para la IA.
+        /// Historial de preguntas respondidas + sus respuestas.
+        /// IMPORTANTE: NO incluye PreguntaActual — se renderiza por separado
+        /// para evitar duplicación visual.
         /// </summary>
         public List<MensajeViewModel> Historial { get; set; } = new List<MensajeViewModel>();
 
         // ────────────────────────────────────────────────────────────
-        // Propiedades calculadas (solo lectura)
+        // Datos de dificultad adaptativa (NUEVOS)
         // ────────────────────────────────────────────────────────────
 
         /// <summary>
-        /// Número de pregunta mostrado al usuario (base 1).
-        /// Ejemplo: NumeroPregunta=2 → "Pregunta 3 de 5".
+        /// Dificultad elegida por el usuario al iniciar la simulación.
+        /// Ej: "Baja", "Media", "Alta".
         /// </summary>
+        public string DificultadBase { get; set; }
+
+        /// <summary>
+        /// Dificultad real usada en la pregunta actual.
+        /// Puede diferir de DificultadBase si el sistema la ajustó por rendimiento.
+        /// Ej: Base="Media" → Actual="Alta" (porque el candidato está rindiendo muy bien).
+        /// </summary>
+        public string DificultadActual { get; set; }
+
+        /// <summary>
+        /// Nivel técnico estimado del candidato según sus puntajes acumulados.
+        /// Ej: "Junior", "Mid", "Mid+", "Senior".
+        /// Se actualiza después de cada respuesta evaluada.
+        /// </summary>
+        public string NivelActual { get; set; } = "Por evaluar";
+
+        // ────────────────────────────────────────────────────────────
+        // Historial de puntajes (NUEVO)
+        // ────────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Lista de puntajes de cada respuesta evaluada (0–10).
+        /// Se usa para calcular la dificultad adaptativa de la siguiente pregunta.
+        /// Se persiste como string en la sesión y se parsea al cargar.
+        /// </summary>
+        public List<int> PuntajesAcumulados { get; set; } = new List<int>();
+
+        // ────────────────────────────────────────────────────────────
+        // Feedback de la última evaluación (NUEVO)
+        // ────────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Feedback de la IA sobre la última respuesta evaluada.
+        /// Se muestra brevemente en la UI antes de pasar a la siguiente pregunta.
+        /// Null si es la primera pregunta o no hay evaluación previa.
+        /// </summary>
+        public string UltimaEvaluacion { get; set; }
+
+        /// <summary>
+        /// Consejo de la IA sobre cómo mejorar la última respuesta.
+        /// </summary>
+        public string UltimaMejora { get; set; }
+
+        /// <summary>
+        /// Puntaje de la última respuesta evaluada (0–10).
+        /// -1 si no hay evaluación previa (primer turno).
+        /// </summary>
+        public int UltimoPuntaje { get; set; } = -1;
+
+        /// <summary>
+        /// Categoría de la última pregunta evaluada.
+        /// Ej: "teoria", "practica", "algoritmos", "arquitectura".
+        /// </summary>
+        public string UltimaCategoria { get; set; }
+
+        // ────────────────────────────────────────────────────────────
+        // Propiedades calculadas
+        // ────────────────────────────────────────────────────────────
+
+        /// <summary>Número de pregunta mostrado al usuario (base 1). Ej: 1, 2, 3...</summary>
         public int NumeroPreguntaDisplay => NumeroPregunta + 1;
 
-        /// <summary>
-        /// Preguntas restantes para completar la entrevista.
-        /// </summary>
+        /// <summary>Preguntas restantes para completar la entrevista.</summary>
         public int PreguntasRestantes => 5 - NumeroPregunta;
 
-        /// <summary>
-        /// Porcentaje de progreso de la entrevista (0–100).
-        /// </summary>
+        /// <summary>Porcentaje de progreso de 0 a 100.</summary>
         public int PorcentajeProgreso => NumeroPregunta * 20;
 
+        /// <summary>Promedio de puntajes acumulados, o 0 si no hay.</summary>
+        public double PromedioActual =>
+            PuntajesAcumulados.Any()
+                ? System.Math.Round(PuntajesAcumulados.Average(), 1)
+                : 0.0;
+
         /// <summary>
-        /// Indica si la entrevista está completa (5 respuestas enviadas).
+        /// Indica si la dificultad fue ajustada automáticamente por el sistema.
+        /// Se usa para mostrar una notificación en la UI.
         /// </summary>
-        public bool EstaCompleta => NumeroPregunta >= 5;
+        public bool DificultadFueAjustada =>
+            !string.IsNullOrEmpty(DificultadBase) &&
+            !string.IsNullOrEmpty(DificultadActual) &&
+            !string.Equals(DificultadBase, DificultadActual,
+                System.StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// Clase CSS para el badge de nivel actual.
+        /// </summary>
+        public string NivelBadgeClass
+        {
+            get
+            {
+                switch (NivelActual?.ToLower())
+                {
+                    case "senior": return "sde-badge-green";
+                    case "mid+": return "sde-badge-blue";
+                    case "mid": return "sde-badge-yellow";
+                    case "junior+": return "sde-badge-orange";
+                    default: return "sde-badge-gray";
+                }
+            }
+        }
+
+        /// <summary>
+        /// Clase CSS para el badge de dificultad actual.
+        /// </summary>
+        public string DificultadBadgeClass
+        {
+            get
+            {
+                switch (DificultadActual?.ToLower())
+                {
+                    case "alta": return "sde-badge-red";
+                    case "media": return "sde-badge-yellow";
+                    default: return "sde-badge-green";
+                }
+            }
+        }
 
         // ────────────────────────────────────────────────────────────
         // Validación personalizada
         // ────────────────────────────────────────────────────────────
 
-        /// <summary>
-        /// Validaciones de negocio que no pueden expresarse con atributos simples.
-        /// </summary>
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            // Evitar respuestas que solo contienen espacios o caracteres repetidos
             if (!string.IsNullOrWhiteSpace(RespuestaUsuario))
             {
-                var trimmed = RespuestaUsuario.Trim();
+                var t = RespuestaUsuario.Trim();
 
-                if (trimmed.Length < 5)
-                {
+                if (t.Length < 5)
                     yield return new ValidationResult(
-                        "La respuesta es demasiado corta para ser evaluada.",
+                        "La respuesta es demasiado corta.",
                         new[] { nameof(RespuestaUsuario) }
                     );
-                }
 
-                // Detectar respuesta de "relleno" (mismo carácter repetido)
-                bool esSoloRepeticion = trimmed.Length > 0 &&
-                    trimmed.Replace(trimmed[0].ToString(), "").Length == 0;
-
-                if (esSoloRepeticion && trimmed.Length < 20)
-                {
+                // Detectar relleno (mismo carácter repetido)
+                if (t.Length < 20 && t.Distinct().Count() <= 2)
                     yield return new ValidationResult(
                         "Ingresa una respuesta real para continuar.",
                         new[] { nameof(RespuestaUsuario) }
                     );
-                }
             }
         }
     }
