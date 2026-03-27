@@ -81,10 +81,10 @@ namespace Entrevista.Controllers
             var datosGraficos = entrevistas
                 .Select(e => new DashboardGraficoItem
                 {
-                    tema = e.Tema,
-                    dificultad = e.Dificultad,
-                    puntaje = Math.Round(e.Promedio, 1),
-                    fecha = e.fecha_entrevista.HasValue
+                    Tema = e.Tema,
+                    Dificultad = e.Dificultad,
+                    Puntaje = Math.Round(e.Promedio, 1),
+                    Fecha = e.fecha_entrevista.HasValue
                         ? e.fecha_entrevista.Value.ToString("dd/MM")
                         : ""
                 })

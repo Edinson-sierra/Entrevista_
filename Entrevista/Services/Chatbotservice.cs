@@ -56,7 +56,7 @@ Tablas disponibles en la base de datos SQL Server (SDE):
 - Respuestas(id_respuesta PK, entrevista_id_entrevista FK, preguntas_id_pregunta FK, respuesta_usuario, fecha_respuesta)
 - Resultado(id_resultado PK, entrevista_id_entrevista FK, puntaje_total, observaciones, fecha_resultado)
   * puntaje_total: 0 a 10
-- Planes_entrenamiento(id_plan PK, usuarios_id_usuarios FK, recomendacion, fecha_plan)
+- Planes_entrenamiento(id_plan_entrenamiento PK, usuarios_id_usuarios FK, recomendacion, fecha_plan)
 - Sesiones(id_sesion PK, usuarios_id_usuarios FK, ip_sesion, dispositivo, fecha_inicio_sesion, activa)
 - Intentos_login(id_intento PK, usuarios_id_usuarios FK, exito_intento, fecha_intento)
 - Chat_conversacion(id_chat_conversacion PK, usuarios_id_usuarios FK, fecha_inicio_conversacion, titulo_conversacion)

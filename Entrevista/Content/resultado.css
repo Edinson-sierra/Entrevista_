@@ -1,46 +1,32 @@
-﻿/* ============================================================
-       RESULTADO — Análisis completo post-entrevista
-       ============================================================ */
-
-/* — Header de resultado — */
+﻿/* ── Header ─────────────────────────────────────────────── */
 .result-header {
     background: var(--sde-surface);
     border: 1px solid var(--sde-border);
     border-radius: var(--sde-radius);
-    padding: 28px 32px;
-    margin-bottom: 24px;
+    padding: 26px 30px;
+    margin-bottom: 22px;
     position: relative;
     overflow: hidden;
 }
 
-    /* Accent line top según nivel */
-    .result-header.senior::before {
+    .result-header::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         height: 3px;
+    }
+
+    .result-header.senior::before {
         background: var(--sde-success);
     }
 
     .result-header.mid::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
         background: var(--sde-warning);
     }
 
     .result-header.junior::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
         background: var(--sde-danger);
     }
 
@@ -54,14 +40,14 @@
 .result-meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 18px;
     margin-bottom: 16px;
 }
 
 .result-meta-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     font-size: 13px;
     color: var(--sde-text-muted);
 }
@@ -74,71 +60,106 @@
         color: var(--sde-accent);
     }
 
-/* — Score circle — */
+.result-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+/* Score circle */
 .score-circle-wrap {
     text-align: center;
 }
 
 .score-circle {
-    width: 100px;
-    height: 100px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
+    border: 3px solid;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 3px solid;
     margin: 0 auto 8px;
 }
 
     .score-circle.high {
         border-color: var(--sde-success);
-        background: rgba(52,211,153,.08);
+        background: rgba(52,211,153,.07);
     }
 
     .score-circle.medium {
         border-color: var(--sde-warning);
-        background: rgba(251,191,36,.08);
+        background: rgba(251,191,36,.07);
     }
 
     .score-circle.low {
         border-color: var(--sde-danger);
-        background: rgba(248,113,113,.08);
+        background: rgba(248,113,113,.07);
     }
 
 .score-number {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 800;
     font-family: var(--sde-font-mono);
     line-height: 1;
 }
 
 .score-denom {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--sde-text-muted);
 }
 
 .score-nivel {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     font-family: var(--sde-font-mono);
-    letter-spacing: 0.5px;
 }
 
-/* — Acciones — */
-.result-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+/* ── Stats row ──────────────────────────────────────────── */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 22px;
 }
 
-/* — Detalles preguntas — */
+@media(max-width:600px) {
+    .stats-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.stat-card {
+    background: var(--sde-surface);
+    border: 1px solid var(--sde-border);
+    border-radius: var(--sde-radius-sm);
+    padding: 14px 16px;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 800;
+    font-family: var(--sde-font-mono);
+    margin-bottom: 2px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: var(--sde-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* ── Desglose preguntas ─────────────────────────────────── */
 .qa-grid {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 14px;
+    margin-bottom: 22px;
 }
 
 .qa-card {
@@ -146,7 +167,7 @@
     border: 1px solid var(--sde-border);
     border-radius: var(--sde-radius);
     overflow: hidden;
-    transition: border-color var(--sde-transition);
+    transition: border-color .2s;
 }
 
     .qa-card:hover {
@@ -154,23 +175,27 @@
     }
 
 .qa-card-header {
-    padding: 14px 20px;
+    padding: 13px 18px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
     cursor: pointer;
     user-select: none;
-    border-bottom: 1px solid var(--sde-border);
-    background: var(--sde-surface);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s;
+}
+
+.qa-card.open .qa-card-header {
+    border-bottom-color: var(--sde-border);
 }
 
 .qa-num {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     background: var(--sde-accent-dim);
     color: var(--sde-accent);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -181,7 +206,7 @@
 
 .qa-question-preview {
     flex: 1;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: var(--sde-text-primary);
     white-space: nowrap;
@@ -189,19 +214,17 @@
     text-overflow: ellipsis;
 }
 
-.qa-score-badge {
-    font-size: 13px;
-    font-weight: 700;
-    font-family: var(--sde-font-mono);
-    padding: 3px 10px;
-    border-radius: 20px;
+.qa-badges {
+    display: flex;
+    gap: 6px;
+    align-items: center;
     flex-shrink: 0;
 }
 
 .qa-chevron {
     color: var(--sde-text-muted);
-    font-size: 14px;
-    transition: transform var(--sde-transition);
+    font-size: 13px;
+    transition: transform .2s;
     flex-shrink: 0;
 }
 
@@ -211,7 +234,7 @@
 
 .qa-card-body {
     display: none;
-    padding: 20px;
+    padding: 18px 20px;
 }
 
 .qa-card.open .qa-card-body {
@@ -219,68 +242,84 @@
 }
 
 .qa-section-label {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
+    letter-spacing: .8px;
     color: var(--sde-text-muted);
-    margin-bottom: 6px;
+    margin-bottom: 5px;
+    margin-top: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
+    .qa-section-label:first-child {
+        margin-top: 0;
+    }
+
 .qa-text {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--sde-text-primary);
-    line-height: 1.7;
-    margin-bottom: 16px;
+    line-height: 1.65;
 }
 
     .qa-text.answer {
         background: var(--sde-surface-2);
-        border-left: 3px solid var(--sde-accent);
-        padding: 10px 14px;
-        border-radius: 0 var(--sde-radius-sm) var(--sde-radius-sm) 0;
+        border-left: 2px solid var(--sde-accent);
+        padding: 9px 12px;
+        border-radius: 0 6px 6px 0;
         font-family: var(--sde-font-mono);
-        font-size: 13px;
+        font-size: 12px;
     }
 
 .qa-feedback {
-    background: rgba(79,142,247,.06);
-    border: 1px solid rgba(79,142,247,.15);
+    background: rgba(79,142,247,.05);
+    border: 1px solid rgba(79,142,247,.12);
     border-radius: var(--sde-radius-sm);
-    padding: 12px 14px;
+    padding: 10px 13px;
     font-size: 13px;
-    color: var(--sde-text-primary);
     line-height: 1.6;
 }
 
-/* — Score bar inline — */
+.qa-mejora {
+    background: rgba(52,211,153,.05);
+    border: 1px solid rgba(52,211,153,.15);
+    border-radius: var(--sde-radius-sm);
+    padding: 9px 13px;
+    font-size: 12px;
+    color: var(--sde-success);
+    line-height: 1.6;
+}
+
 .qa-score-bar {
-    height: 4px;
+    height: 3px;
     background: var(--sde-border);
     border-radius: 2px;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 13px;
 }
 
 .qa-score-bar-fill {
     height: 100%;
     border-radius: 2px;
+    transition: width .6s ease;
 }
 
-/* — Recomendación final — */
+/* ── Recomendación ──────────────────────────────────────── */
 .recomendacion-card {
     background: var(--sde-surface);
     border: 1px solid var(--sde-accent);
     border-radius: var(--sde-radius);
-    padding: 24px;
-    margin-bottom: 24px;
+    padding: 22px 26px;
+    margin-bottom: 22px;
 }
 
     .recomendacion-card h4 {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 700;
         color: var(--sde-accent);
-        margin-bottom: 16px;
+        margin-bottom: 14px;
         display: flex;
         align-items: center;
         gap: 8px;
@@ -293,14 +332,20 @@
 }
 
     .recomendacion-content h3 {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 700;
-        margin: 16px 0 8px;
-        color: var(--sde-text-primary);
+        margin: 14px 0 7px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--sde-border);
     }
 
+        .recomendacion-content h3:first-child {
+            margin-top: 0;
+        }
+
     .recomendacion-content ul, .recomendacion-content ol {
-        padding-left: 20px;
+        padding-left: 18px;
+        margin-bottom: 10px;
     }
 
     .recomendacion-content li {
@@ -308,5 +353,5 @@
     }
 
     .recomendacion-content p {
-        margin-bottom: 10px;
+        margin-bottom: 9px;
     }

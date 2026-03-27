@@ -6,44 +6,97 @@
 @section Styles {
     <link href="~/Content/chat.css" rel="stylesheet" />
 }
+
+
+
+
 <div class="chat-shell">
 
-    @* PANEL IZQUIERDO *@
+   
     <div class="chat-panel">
 
-        @* Header *@
+      
         <div class="chat-header">
             <div class="chat-ai-avatar">🤖</div>
             <div>
                 <div class="chat-ai-name">Entrevistador IA</div>
                 <div class="chat-ai-status">
                     <span class="status-dot"></span>
-                    Activo · Groq AI
+                    Groq · Adaptativo
                 </div>
             </div>
 
-            <div class="chat-progress">
-                <span>
-                    @(Model.NumeroPregunta + 1)/5
+            <div class="chat-header-right">
+                
+                <span class="sde-badge @Model.DificultadBadgeClass dif-adapted-badge"
+                      title="@(Model.DificultadFueAjustada ? "Ajustada automáticamente según tu rendimiento" : "Dificultad elegida")">
+                    @if (Model.DificultadFueAjustada)
+                    {
+                        <i class="bi bi-arrow-up-circle-fill" style="font-size:10px;"></i>
+                    }
+                    @Model.DificultadActual
                 </span>
 
+                
+                <span style="font-size:11px; color:var(--sde-text-muted); font-family:var(--sde-font-mono);">
+                    @(Model.NumeroPregunta + 1)/5
+                </span>
                 <div class="progress-dots">
                     @for (int i = 0; i < 5; i++)
                     {
-                        var dotClass = i < Model.NumeroPregunta ? "done"
-                                     : i == Model.NumeroPregunta ? "current"
-                                     : "";
-
-                        <div class="progress-dot @dotClass"></div>
+                        var dc = i < Model.NumeroPregunta ? "done"
+                               : i == Model.NumeroPregunta ? "current" : "";
+                        <div class="progress-dot @dc"></div>
                     }
                 </div>
             </div>
         </div>
 
-        @* MENSAJES *@
+        @if (!string.IsNullOrEmpty(Model.UltimaEvaluacion) && Model.UltimoPuntaje >= 0)
+        {
+            var scoreClass = Model.UltimoPuntaje >= 8 ? "high"
+                           : Model.UltimoPuntaje >= 5 ? "medium" : "low";
+            var scoreColor = Model.UltimoPuntaje >= 8 ? "var(--sde-success)"
+                           : Model.UltimoPuntaje >= 5 ? "var(--sde-warning)"
+                           : "var(--sde-danger)";
+
+            <div class="feedback-banner visible" id="feedbackBanner">
+                <div class="feedback-banner-inner">
+                    <div class="feedback-score-circle @scoreClass">
+                        <span class="feedback-score-num" style="color:@scoreColor;">@Model.UltimoPuntaje</span>
+                        <span class="feedback-score-den">/10</span>
+                    </div>
+                    <div class="feedback-text">
+                        <div class="feedback-title">
+                            Evaluación de tu respuesta anterior
+                            @if (!string.IsNullOrEmpty(Model.UltimaCategoria))
+                            {
+                                <span class="sde-badge sde-badge-gray" style="font-size:10px; padding:1px 7px;">
+                                    @Model.UltimaCategoria
+                                </span>
+                            }
+                        </div>
+                        <div class="feedback-body">@Model.UltimaEvaluacion</div>
+                        @if (!string.IsNullOrEmpty(Model.UltimaMejora))
+                        {
+                            <div class="feedback-mejora">
+                                <i class="bi bi-lightbulb-fill" style="font-size:10px;"></i>
+                                @Model.UltimaMejora
+                            </div>
+                        }
+                    </div>
+                    <button class="feedback-close" onclick="cerrarFeedback()" title="Cerrar">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
+            </div>
+        }
+
+
         <div class="chat-messages" id="chatMessages">
 
-            @if (Model.Historial != null)
+          
+            @if (Model.Historial != null && Model.Historial.Any())
             {
                 foreach (var msg in Model.Historial)
                 {
@@ -53,6 +106,9 @@
                             <div class="msg-ai-icon">🤖</div>
                             <div class="bubble-ai" data-text="@msg.Texto">
                                 @msg.Texto
+                                <button type="button" class="tts-btn" onclick="speakText(this)" title="Escuchar">
+                                    <i class="bi bi-volume-up"></i>
+                                </button>
                             </div>
                         </div>
                     }
@@ -65,92 +121,380 @@
                 }
             }
 
-            @* Pregunta actual *@
-            <div class="msg-ai">
+        
+            <div class="msg-ai" id="preguntaActiva">
                 <div class="msg-ai-icon">🤖</div>
-                <div class="bubble-ai current" data-text="@Model.PreguntaActual">
+                <div class="bubble-ai current" id="bubblePreguntaActiva"
+                     data-text="@Model.PreguntaActual">
                     @Model.PreguntaActual
+                    <button type="button" class="tts-btn" id="ttsActiva"
+                            onclick="speakText(this)" title="Escuchar pregunta">
+                        <i class="bi bi-volume-up"></i>
+                    </button>
                 </div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="msg-ai-icon">🤖</div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
             </div>
 
         </div>
 
-        @* INPUT *@
+        
         <div class="chat-input-area">
-
             @using (Html.BeginForm("Responder", "Entrevista", FormMethod.Post, new { id = "chatForm" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(x => x.EntrevistaId)
 
                 <div class="chat-input-row">
+                    <button type="button" id="micBtn" class="chat-action-btn"
+                            onclick="toggleMic()" title="Micrófono (Alt+M)">
+                        <i class="bi bi-mic" id="micIcon"></i>
+                    </button>
 
                     @Html.TextAreaFor(x => x.RespuestaUsuario, new
                     {
                         @class = "chat-textarea",
                         id = "respuestaInput",
-                        placeholder = "Escribe tu respuesta...",
-                        rows = 1
+                        placeholder = "Escribe tu respuesta o usa el micrófono...",
+                        rows = 1,
+                        onkeydown = "handleKeydown(event)",
+                        oninput = "autoResize(this)"
                     })
 
-                    <button type="submit" class="chat-send-btn">
-                        Enviar
+                    <button type="button" class="chat-action-btn"
+                            onclick="leerPreguntaActual()" title="Escuchar pregunta">
+                        <i class="bi bi-headphones"></i>
                     </button>
 
+                    <button type="submit" id="sendBtn" class="chat-send-btn" title="Enviar (Enter)">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </div>
+
+                <div class="chat-hints">
+                    <span class="chat-hint"><span class="kbd">Enter</span> Enviar</span>
+                    <span class="chat-hint"><span class="kbd">Shift+Enter</span> Salto</span>
+                    <span class="chat-hint"><span class="kbd">Alt+M</span> Mic</span>
                 </div>
             }
-
         </div>
+
     </div>
 
-    @* SIDEBAR *@
+    
     <div class="chat-sidebar">
 
+       
         <div class="sidebar-card">
-            <div>📋 Esta sesión</div>
+            <div class="sidebar-card-title">📊 Estado actual</div>
 
-            <div>
-                Pregunta: @(Model.NumeroPregunta + 1) / 5
+            <div class="info-row">
+                <span class="info-row-label">Pregunta</span>
+                <span class="info-row-value">@(Model.NumeroPregunta + 1) / 5</span>
             </div>
 
-            <div>
-                Restantes: @(5 - Model.NumeroPregunta)
+            <div class="info-row">
+                <span class="info-row-label">Nivel estimado</span>
+                <span class="sde-badge @Model.NivelBadgeClass" style="font-size:11px;">
+                    @Model.NivelActual
+                </span>
             </div>
-        </div>
 
-        @* 🔥 FOREACH CORREGIDO 
-        @if (Model.UltimasEntrevistas != null)
-        {
-            foreach (var item in Model.UltimasEntrevistas)
+            @if (Model.PuntajesAcumulados.Any())
             {
-                var difClass = item.Dificultad == "Alta" ? "sde-badge-red"
-                             : item.Dificultad == "Media" ? "sde-badge-yellow"
-                             : "sde-badge-green";
-
-                var scoreColor = item.Puntaje >= 8 ? "var(--sde-success)"
-                               : item.Puntaje >= 5 ? "var(--sde-warning)"
-                               : "var(--sde-danger)";
-
-                var width = (item.Puntaje * 10).ToString("0") + "%";
-
-                <div class="entrevista-card">
-
-                    <span class="@difClass">
-                        @item.Dificultad
+                <div class="info-row">
+                    <span class="info-row-label">Promedio</span>
+                    <span class="info-row-value" style="color: @(Model.PromedioActual >= 8 ? "var(--sde-success)" : Model.PromedioActual >= 5 ? "var(--sde-warning)" : "var(--sde-danger)")">
+                        @Model.PromedioActual.ToString("0.0")/10
                     </span>
-
-                    <div class="progress-bar">
-                        <div class="progress-fill"
-                             style="width:@width; background:@scoreColor;">
-                        </div>
-                    </div>
-
-                    <span>@item.Puntaje / 10</span>
-
                 </div>
             }
-        }*@
+
+          
+            <div style="margin-top:8px;">
+                <div style="height:4px; background:var(--sde-border); border-radius:2px; overflow:hidden;">
+                    <div style="height:100%; width:@(Model.PorcentajeProgreso)%;
+                            background:var(--sde-accent); border-radius:2px; transition:width .5s;">
+                    </div>
+                </div>
+                <div style="font-size:10px; color:var(--sde-text-muted); margin-top:3px; text-align:right;">
+                    @(Model.PorcentajeProgreso)% completado
+                </div>
+            </div>
+
+          
+            @if (Model.PuntajesAcumulados.Any())
+            {
+                <div class="puntaje-history" id="puntajeHistory">
+                    @foreach (var pts in Model.PuntajesAcumulados)
+                    {
+                        var pColor = pts >= 8 ? "var(--sde-success)"
+                                   : pts >= 5 ? "var(--sde-warning)"
+                                   : "var(--sde-danger)";
+                        var pHeight = (pts * 10);
+                        <div class="puntaje-bar"
+                             style="height:@(pHeight)%; background:@pColor;"
+                             title="Pregunta: @pts/10">
+                            <span class="puntaje-bar-tip">@pts</span>
+                        </div>
+                    }
+                   
+                    @for (int k = Model.PuntajesAcumulados.Count; k < 5; k++)
+                    {
+                        <div class="puntaje-bar"
+                             style="height:4px; background:var(--sde-border);">
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="sidebar-card">
+            <div class="sidebar-card-title">⚡ Dificultad adaptativa</div>
+
+            <div class="info-row">
+                <span class="info-row-label">Base</span>
+                <span class="sde-badge @(Model.DificultadBase == "Alta" ? "sde-badge-red" : Model.DificultadBase == "Media" ? "sde-badge-yellow" : "sde-badge-green")"
+                      style="font-size:11px;">@Model.DificultadBase</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-row-label">Actual</span>
+                    <span class="sde-badge @Model.DificultadBadgeClass" style="font-size:11px;">
+                        @Model.DificultadActual
+                        @if (Model.DificultadFueAjustada)
+                        {
+                            <i class="bi bi-lightning-fill" style="font-size:9px; margin-left:2px;"></i>
+                        }
+                    </span>
+                </div>
+
+                @if (Model.DificultadFueAjustada)
+                {
+                    <div style="font-size:11px; color:var(--sde-accent); margin-top:6px; line-height:1.5;">
+                        <i class="bi bi-info-circle"></i>
+                        Ajustada automáticamente según tu rendimiento.
+                    </div>
+                }
+                else
+                {
+                    <div style="font-size:11px; color:var(--sde-text-muted); margin-top:6px; line-height:1.5;">
+                        Se ajusta automáticamente si tu rendimiento sube o baja.
+                    </div>
+                }
+            </div>
+
+       
+            <div class="sidebar-card">
+                <div class="sidebar-card-title">🎙️ Voz</div>
+
+                <button class="sde-btn sde-btn-ghost" style="width:100%; margin-bottom:7px;"
+                        onclick="leerPreguntaActual()">
+                    <i class="bi bi-volume-up"></i> Leer pregunta
+                </button>
+
+                <button class="sde-btn sde-btn-ghost" style="width:100%;"
+                        id="micSideBtn" onclick="toggleMic()">
+                    <i class="bi bi-mic" id="micSideIcon"></i>
+                    <span id="micSideLabel">Activar micrófono</span>
+                </button>
+
+                <div class="vu-meter" id="vuMeter">
+                    @for (int i = 0; i < 10; i++)
+                    {
+                        <div class="vu-bar" id="vuBar_@i" style="height:30%;"></div>
+                    }
+                </div>
+
+                <div id="micStatus" style="font-size:11px; color:var(--sde-text-muted); margin-top:7px; text-align:center;">
+                    Micrófono inactivo
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <div class="sidebar-card-title">💡 Tips</div>
+                <div class="tip-item"><i class="bi bi-lightbulb"></i>Menciona tecnologías y ejemplos concretos.</div>
+                <div class="tip-item"><i class="bi bi-clock"></i>Tómate 10–15 segundos antes de responder.</div>
+                <div class="tip-item"><i class="bi bi-mic"></i>El micrófono simula una entrevista verbal real.</div>
+            </div>
+
+        </div>
 
     </div>
 
-</div>
+    @section Scripts {
+        <script>
+/* ── Speech Recognition ─────────────────────────────────── */
+var recognition = null, micActive = false, currentUtter = null;
+
+function initSTT() {
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { console.warn('STT no disponible'); return; }
+
+    recognition = new SR();
+    recognition.lang = 'es-ES';
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    recognition.onresult = function(e) {
+        var transcript = '', isFinal = false;
+        for (var i = e.resultIndex; i < e.results.length; i++) {
+            transcript += e.results[i][0].transcript;
+            if (e.results[i].isFinal) isFinal = true;
+        }
+        var inp = document.getElementById('respuestaInput');
+        if (isFinal) inp.value = (inp.value + ' ' + transcript).trim();
+        else inp.placeholder = '🎙️ ' + transcript + '...';
+        autoResize(inp);
+    };
+
+    recognition.onerror = function(e) {
+        setMicInactivo();
+        if (e.error === 'not-allowed') alert('Permite el acceso al micrófono en tu navegador.');
+    };
+
+    recognition.onend = function() {
+        if (micActive) { try { recognition.start(); } catch(err){} }
+        else setMicInactivo();
+    };
+}
+
+function toggleMic() {
+    if (!recognition) { alert('Reconocimiento de voz no disponible. Usa Chrome o Edge.'); return; }
+    micActive ? stopMic() : startMic();
+}
+
+function startMic() {
+    if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
+    micActive = true;
+    try { recognition.start(); } catch(e) {}
+
+    document.getElementById('micBtn').classList.add('mic-active');
+    document.getElementById('micIcon').className     = 'bi bi-mic-fill';
+    document.getElementById('micSideIcon').className = 'bi bi-mic-fill';
+    document.getElementById('micSideLabel').textContent = 'Detener micrófono';
+    document.getElementById('micStatus').textContent = '🔴 Escuchando...';
+    document.getElementById('micStatus').style.color = 'var(--sde-danger)';
+    startVU();
+}
+
+function stopMic() {
+    micActive = false;
+    try { recognition.stop(); } catch(e) {}
+    setMicInactivo();
+}
+
+function setMicInactivo() {
+    micActive = false;
+    document.getElementById('micBtn').classList.remove('mic-active');
+    document.getElementById('micIcon').className     = 'bi bi-mic';
+    document.getElementById('micSideIcon').className = 'bi bi-mic';
+    document.getElementById('micSideLabel').textContent = 'Activar micrófono';
+    document.getElementById('micStatus').textContent = 'Micrófono inactivo';
+    document.getElementById('micStatus').style.color = 'var(--sde-text-muted)';
+    document.getElementById('respuestaInput').placeholder = 'Escribe tu respuesta o usa el micrófono...';
+    stopVU();
+}
+
+/* ── VU Meter ──────────────────────────────────────────── */
+var vuInterval = null;
+function startVU() {
+    document.getElementById('vuMeter').style.display = 'flex';
+    vuInterval = setInterval(function() {
+        for (var i = 0; i < 10; i++) {
+            var b = document.getElementById('vuBar_' + i);
+            if (b) b.style.height = Math.floor(Math.random() * 80 + 10) + '%';
+        }
+    }, 110);
+}
+function stopVU() {
+    clearInterval(vuInterval);
+    document.getElementById('vuMeter').style.display = 'none';
+}
+
+/* ── TTS ───────────────────────────────────────────────── */
+function speakText(btn) {
+    var text = btn.closest('[data-text]').getAttribute('data-text');
+    speakString(text, btn);
+}
+
+function leerPreguntaActual() {
+    var b = document.getElementById('bubblePreguntaActiva');
+    if (b) speakString(b.getAttribute('data-text'), document.getElementById('ttsActiva'));
+}
+
+function speakString(text, btn) {
+    if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        if (btn && btn.classList.contains('speaking')) {
+            btn.classList.remove('speaking'); return;
+        }
+    }
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'es-ES'; u.rate = 0.95;
+    if (btn) {
+        btn.classList.add('speaking');
+        u.onend = u.onerror = function() { btn.classList.remove('speaking'); };
+    }
+    window.speechSynthesis.speak(u);
+}
+
+/* ── Formulario ────────────────────────────────────────── */
+function handleKeydown(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); enviarRespuesta(); }
+}
+
+function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+}
+
+function enviarRespuesta() {
+    var inp = document.getElementById('respuestaInput');
+    if (!inp.value.trim()) return;
+    if (micActive) stopMic();
+    if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
+
+    document.getElementById('typingIndicator').classList.add('show');
+    document.getElementById('sendBtn').disabled = true;
+    document.getElementById('micBtn').disabled  = true;
+    inp.disabled = true;
+
+    document.getElementById('chatForm').submit();
+}
+
+/* ── Feedback banner ───────────────────────────────────── */
+function cerrarFeedback() {
+    var b = document.getElementById('feedbackBanner');
+    if (b) { b.style.opacity = '0'; b.style.transition = 'opacity .25s'; setTimeout(function(){ b.style.display='none'; }, 250); }
+}
+
+/* ── Atajos globales ───────────────────────────────────── */
+document.addEventListener('keydown', function(e) {
+    if (e.altKey && e.key === 'm') { e.preventDefault(); toggleMic(); }
+});
+
+/* ── Init ──────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function() {
+    initSTT();
+    var msgs = document.getElementById('chatMessages');
+    msgs.scrollTop = msgs.scrollHeight;
+
+    @if (Model.Historial == null || !Model.Historial.Any())
+    {
+        <text>setTimeout(function() { leerPreguntaActual(); }, 900);</text>
+    }
+
+    // Auto-cerrar feedback banner después de 12 segundos
+    @if (!string.IsNullOrEmpty(Model.UltimaEvaluacion))
+    {
+        <text>setTimeout(function() { cerrarFeedback(); }, 12000);</text>
+    }
+});
+        </script>
+    }
