@@ -16,13 +16,14 @@ namespace Entrevista.Controllers
     {
         private const int TOTAL_PREGUNTAS = 5;
         private const string ESTADO_FINALIZADA = "FINALIZADA";
+        private const string SEP_PLAN = "\n\n---PLAN---\n\n";
 
         private readonly SDEEntities _context = new SDEEntities();
         private readonly IIAService _ia = new IAService();
 
-        // =====================================================
+        // =========================
         // GET: Chat
-        // =====================================================
+        // =========================
         public async Task<ActionResult> Chat(int id)
         {
             int usuarioId = SessionHelper.ObtenerUsuarioId(this);
@@ -34,47 +35,105 @@ namespace Entrevista.Controllers
             if (entrevista.estado_entrevista == ESTADO_FINALIZADA)
                 return RedirectToAction("Index", "Resultado", new { id });
 
-            // 🔥 PRIMERA PREGUNTA (ADAPTATIVA)
+            var puntajes = ObtenerPuntajesDeSesion(id);
+            string dificultadBase = entrevista.Dificultad.nombre_dificultad;
+            string dificultadActual = IAService.AdaptarDificultad(dificultadBase, puntajes);
+
+            // Generar primera pregunta
             if (!entrevista.Preguntas.Any())
             {
-                string primeraPregunta = await _ia.GenerarPreguntaAsync(
+                string primera = await _ia.GenerarPreguntaAsync(
                     entrevista.Temas.nombre_tema,
+                    dificultadBase,
                     new List<MensajeViewModel>(),
-                    new List<int>()
+                    puntajes
                 );
 
-                entrevista.Preguntas.Add(new Preguntas
+                _context.Preguntas.Add(new Preguntas
                 {
-                    texto_pregunta = primeraPregunta,
+                    texto_pregunta = primera,
                     entrevista_id_entrevista = entrevista.id_entrevista
                 });
 
                 _context.SaveChanges();
+                entrevista = CargarEntrevistaCompleta(id);
             }
 
-            var ultimaPregunta = entrevista.Preguntas
-                .OrderByDescending(p => p.id_pregunta)
+            var preguntaActiva = entrevista.Preguntas
+                .OrderByDescending(preg => preg.id_pregunta)
                 .First();
 
-            var historial = ConstruirHistorial(entrevista);
+            bool yaRespondida = entrevista.Respuestas
+                .Any(resp => resp.preguntas_id_pregunta == preguntaActiva.id_pregunta);
+
+            if (yaRespondida)
+            {
+                int totalRespuestas = _context.Respuestas
+                    .Count(resp => resp.entrevista_id_entrevista == entrevista.id_entrevista);
+
+                if (totalRespuestas >= TOTAL_PREGUNTAS)
+                {
+                    entrevista = CargarEntrevistaCompleta(id);
+                    return await FinalizarEntrevista(entrevista, puntajes);
+                }
+
+                var historialRec = ConstruirHistorialCompleto(entrevista);
+
+                string sigPregunta = await _ia.GenerarPreguntaAsync(
+                    entrevista.Temas.nombre_tema,
+                    dificultadBase,
+                    historialRec,
+                    puntajes
+                );
+
+                _context.Preguntas.Add(new Preguntas
+                {
+                    texto_pregunta = sigPregunta,
+                    entrevista_id_entrevista = entrevista.id_entrevista
+                });
+
+                _context.SaveChanges();
+                entrevista = CargarEntrevistaCompleta(id);
+
+                preguntaActiva = entrevista.Preguntas
+                    .OrderByDescending(preg => preg.id_pregunta)
+                    .First();
+            }
+
+            var historialUI = ConstruirHistorialSinPreguntaActiva(
+                entrevista, preguntaActiva.id_pregunta
+            );
 
             int numeroPregunta = entrevista.Respuestas.Count;
+
+            string ultimaEval = TempData["UltimaEvaluacion"] as string;
+            string ultimaMejora = TempData["UltimaMejora"] as string;
+            int ultimoPuntaje = TempData["UltimoPuntaje"] is int puntajeTemp ? puntajeTemp : -1;
+            string ultimaCategoria = TempData["UltimaCategoria"] as string;
 
             var model = new EntrevistaViewModel
             {
                 EntrevistaId = id,
-                PreguntaActual = ultimaPregunta.texto_pregunta,
+                PreguntaActual = preguntaActiva.texto_pregunta,
                 NumeroPregunta = numeroPregunta,
-                Historial = historial
+                Historial = historialUI,
+                DificultadBase = dificultadBase,
+                DificultadActual = dificultadActual,
+                NivelActual = IAService.CalcularNivelActual(puntajes),
+                PuntajesAcumulados = puntajes,
+                UltimaEvaluacion = ultimaEval,
+                UltimaMejora = ultimaMejora,
+                UltimoPuntaje = ultimoPuntaje,
+                UltimaCategoria = ultimaCategoria
             };
 
-            ViewBag.Title = $"Entrevista — Pregunta {numeroPregunta + 1}/{TOTAL_PREGUNTAS}";
+            ViewBag.Title = $"Pregunta {numeroPregunta + 1} de {TOTAL_PREGUNTAS}";
             return View(model);
         }
 
-        // =====================================================
+        // =========================
         // POST: Responder
-        // =====================================================
+        // =========================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Responder(EntrevistaViewModel model)
@@ -91,69 +150,82 @@ namespace Entrevista.Controllers
             if (entrevista.estado_entrevista == ESTADO_FINALIZADA)
                 return RedirectToAction("Index", "Resultado", new { id = model.EntrevistaId });
 
-            var ultimaPregunta = entrevista.Preguntas
-                .OrderByDescending(p => p.id_pregunta)
+            var preguntaActiva = entrevista.Preguntas
+                .OrderByDescending(preg => preg.id_pregunta)
                 .FirstOrDefault();
 
-            if (ultimaPregunta == null)
+            if (preguntaActiva == null)
                 return RedirectToAction("Chat", new { id = model.EntrevistaId });
 
-            // 🧠 GUARDAR RESPUESTA
-            var respuesta = new Respuestas
+            bool yaRespondida = _context.Respuestas
+                .Any(resp => resp.preguntas_id_pregunta == preguntaActiva.id_pregunta);
+
+            if (yaRespondida)
+                return RedirectToAction("Chat", new { id = model.EntrevistaId });
+
+            var puntajes = ObtenerPuntajesDeSesion(model.EntrevistaId);
+            string dificultadBase = entrevista.Dificultad.nombre_dificultad;
+            string dificultadActual = IAService.AdaptarDificultad(dificultadBase, puntajes);
+
+            // Guardar respuesta
+            _context.Respuestas.Add(new Respuestas
             {
                 entrevista_id_entrevista = entrevista.id_entrevista,
-                preguntas_id_pregunta = ultimaPregunta.id_pregunta,
+                preguntas_id_pregunta = preguntaActiva.id_pregunta,
                 respuesta_usuario = model.RespuestaUsuario.Trim(),
                 fecha_respuesta = DateTime.Now
-            };
+            });
 
-            entrevista.Respuestas.Add(respuesta);
             _context.SaveChanges();
 
-            // 🔥 EVALUACIÓN PRO
-            var (puntaje, feedback, nivel, categoria) = await _ia.EvaluarRespuestaAsync(
-                ultimaPregunta.texto_pregunta,
-                model.RespuestaUsuario
+            // Evaluación IA
+            var evaluacion = await _ia.EvaluarRespuestaAsync(
+                preguntaActiva.texto_pregunta,
+                model.RespuestaUsuario.Trim(),
+                dificultadActual
             );
+
+            string observaciones =
+                $"{evaluacion.Feedback}|NIVEL:{evaluacion.Nivel}|CAT:{evaluacion.Categoria}|MEJORA:{evaluacion.Mejora}";
 
             _context.Resultado.Add(new Resultado
             {
                 entrevista_id_entrevista = entrevista.id_entrevista,
-                puntaje_total = puntaje,
-                observaciones = $"Nivel: {nivel}\nCategoría: {categoria}\nFeedback: {feedback}",
+                puntaje_total = evaluacion.Puntaje,
+                observaciones = observaciones,
                 fecha_resultado = DateTime.Now
             });
 
             _context.SaveChanges();
 
-            int totalRespuestas = entrevista.Respuestas.Count;
+            puntajes.Add(evaluacion.Puntaje);
+            GuardarPuntajesEnSesion(model.EntrevistaId, puntajes);
 
-            // 🔥 TERMINAR ENTREVISTA
-            if (totalRespuestas >= TOTAL_PREGUNTAS)
+            TempData["UltimaEvaluacion"] = evaluacion.Feedback;
+            TempData["UltimaMejora"] = evaluacion.Mejora;
+            TempData["UltimoPuntaje"] = evaluacion.Puntaje;
+            TempData["UltimaCategoria"] = evaluacion.Categoria;
+
+            int total = _context.Respuestas
+                .Count(resp => resp.entrevista_id_entrevista == entrevista.id_entrevista);
+
+            if (total >= TOTAL_PREGUNTAS)
             {
-                return await FinalizarEntrevista(entrevista);
+                entrevista = CargarEntrevistaCompleta(model.EntrevistaId);
+                return await FinalizarEntrevista(entrevista, puntajes);
             }
 
-            // 🔥 DIFICULTAD DINÁMICA
-            var puntajes = _context.Resultado
-                .Where(r => r.entrevista_id_entrevista == entrevista.id_entrevista)
-                .OrderBy(r => r.fecha_resultado)
-                .Select(r => r.puntaje_total ?? 5)
-                .ToList();
-
-            string dificultad = CalcularDificultad(puntajes);
-
-            // 🔥 SIGUIENTE PREGUNTA ADAPTATIVA
             entrevista = CargarEntrevistaCompleta(model.EntrevistaId);
-            var historial = ConstruirHistorial(entrevista);
+            var historial = ConstruirHistorialCompleto(entrevista);
 
             string nuevaPregunta = await _ia.GenerarPreguntaAsync(
                 entrevista.Temas.nombre_tema,
+                dificultadBase,
                 historial,
                 puntajes
             );
 
-            entrevista.Preguntas.Add(new Preguntas
+            _context.Preguntas.Add(new Preguntas
             {
                 texto_pregunta = nuevaPregunta,
                 entrevista_id_entrevista = entrevista.id_entrevista
@@ -164,29 +236,33 @@ namespace Entrevista.Controllers
             return RedirectToAction("Chat", new { id = model.EntrevistaId });
         }
 
-        // =====================================================
-        // FINALIZAR ENTREVISTA
-        // =====================================================
-        private async Task<ActionResult> FinalizarEntrevista(Entrevista_DATA.Entrevista entrevista)
+        // =========================
+        // FINALIZAR
+        // =========================
+        private async Task<ActionResult> FinalizarEntrevista(
+            Entrevista_DATA.Entrevista entrevista,
+            List<int> puntajes)
         {
-            var historialFinal = ConstruirHistorial(entrevista);
+            var historial = ConstruirHistorialCompleto(entrevista);
 
-            string resultadoFinal = await _ia.GenerarResultadoFinalAsync(historialFinal);
-            string plan = await _ia.GenerarPlanAsync(resultadoFinal);
+            string analisis = await _ia.GenerarResultadoFinalAsync(historial);
+            string plan = await _ia.GenerarPlanAsync(analisis);
 
             var resultados = _context.Resultado
                 .Where(r => r.entrevista_id_entrevista == entrevista.id_entrevista)
+                .OrderBy(r => r.id_resultado)
+                .Take(TOTAL_PREGUNTAS)
                 .ToList();
 
             double promedio = resultados.Any()
-                ? resultados.Average(r => r.puntaje_total ?? 0)
-                : 0;
+                ? Math.Round(resultados.Average(r => (double)(r.puntaje_total ?? 0)), 1)
+                : 0.0;
 
             _context.Resultado.Add(new Resultado
             {
                 entrevista_id_entrevista = entrevista.id_entrevista,
                 puntaje_total = (int)Math.Round(promedio),
-                observaciones = resultadoFinal + "\n\n---PLAN---\n\n" + plan,
+                observaciones = analisis + SEP_PLAN + plan,
                 fecha_resultado = DateTime.Now
             });
 
@@ -198,27 +274,16 @@ namespace Entrevista.Controllers
             });
 
             entrevista.estado_entrevista = ESTADO_FINALIZADA;
-
             _context.SaveChanges();
+
+            LimpiarPuntajesDeSesion(entrevista.id_entrevista);
 
             return RedirectToAction("Index", "Resultado", new { id = entrevista.id_entrevista });
         }
 
-        // =====================================================
+        // =========================
         // HELPERS
-        // =====================================================
-
-        private string CalcularDificultad(List<int> puntajes)
-        {
-            if (!puntajes.Any()) return "basico";
-
-            double promedio = puntajes.Average();
-
-            if (promedio < 4) return "basico";
-            if (promedio < 7) return "intermedio";
-            return "avanzado";
-        }
-
+        // =========================
         private Entrevista_DATA.Entrevista CargarEntrevistaCompleta(int id)
         {
             return _context.Entrevista
@@ -230,40 +295,69 @@ namespace Entrevista.Controllers
                 .FirstOrDefault(e => e.id_entrevista == id);
         }
 
-        private List<MensajeViewModel> ConstruirHistorial(Entrevista_DATA.Entrevista entrevista)
+        private List<MensajeViewModel> ConstruirHistorialCompleto(Entrevista_DATA.Entrevista entrevista)
         {
-            var historial = new List<MensajeViewModel>();
+            var hist = new List<MensajeViewModel>();
 
-            var preguntasOrdenadas = entrevista.Preguntas
-                .OrderBy(p => p.id_pregunta)
-                .ToList();
-
-            // ❌ QUITAR LA ÚLTIMA PREGUNTA (porque se muestra aparte)
-            if (preguntasOrdenadas.Any())
-                preguntasOrdenadas.RemoveAt(preguntasOrdenadas.Count - 1);
-
-            foreach (var pregunta in preguntasOrdenadas)
+            foreach (var preg in entrevista.Preguntas.OrderBy(x => x.id_pregunta))
             {
-                historial.Add(new MensajeViewModel
-                {
-                    Tipo = MensajeViewModel.TIPO_IA,
-                    Texto = pregunta.texto_pregunta
-                });
+                hist.Add(new MensajeViewModel { Tipo = MensajeViewModel.TIPO_IA, Texto = preg.texto_pregunta });
 
-                var respuesta = entrevista.Respuestas
-                    .FirstOrDefault(r => r.preguntas_id_pregunta == pregunta.id_pregunta);
+                var resp = entrevista.Respuestas
+                    .FirstOrDefault(x => x.preguntas_id_pregunta == preg.id_pregunta);
 
-                if (respuesta != null)
-                {
-                    historial.Add(new MensajeViewModel
-                    {
-                        Tipo = MensajeViewModel.TIPO_USUARIO,
-                        Texto = respuesta.respuesta_usuario
-                    });
-                }
+                if (resp != null)
+                    hist.Add(new MensajeViewModel { Tipo = MensajeViewModel.TIPO_USUARIO, Texto = resp.respuesta_usuario });
             }
 
-            return historial;
+            return hist;
+        }
+
+        private List<MensajeViewModel> ConstruirHistorialSinPreguntaActiva(
+            Entrevista_DATA.Entrevista entrevista,
+            int idPreguntaActiva)
+        {
+            var hist = new List<MensajeViewModel>();
+
+            foreach (var preg in entrevista.Preguntas
+                .Where(x => x.id_pregunta != idPreguntaActiva)
+                .OrderBy(x => x.id_pregunta))
+            {
+                hist.Add(new MensajeViewModel { Tipo = MensajeViewModel.TIPO_IA, Texto = preg.texto_pregunta });
+
+                var resp = entrevista.Respuestas
+                    .FirstOrDefault(x => x.preguntas_id_pregunta == preg.id_pregunta);
+
+                if (resp != null)
+                    hist.Add(new MensajeViewModel { Tipo = MensajeViewModel.TIPO_USUARIO, Texto = resp.respuesta_usuario });
+            }
+
+            return hist;
+        }
+
+        private static string ClavePuntajes(int id) => $"puntajes_{id}";
+
+        private List<int> ObtenerPuntajesDeSesion(int id)
+        {
+            var raw = Session[ClavePuntajes(id)] as string;
+
+            if (string.IsNullOrEmpty(raw))
+                return new List<int>();
+
+            return raw.Split(',')
+                .Where(s => int.TryParse(s, out _))
+                .Select(int.Parse)
+                .ToList();
+        }
+
+        private void GuardarPuntajesEnSesion(int id, List<int> puntajes)
+        {
+            Session[ClavePuntajes(id)] = string.Join(",", puntajes);
+        }
+
+        private void LimpiarPuntajesDeSesion(int id)
+        {
+            Session.Remove(ClavePuntajes(id));
         }
     }
 }

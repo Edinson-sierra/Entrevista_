@@ -6,277 +6,158 @@
 }
 @section Styles {
     <link href="~/Content/plan.css" rel="stylesheet" />
-    <link href="~/Content/plan_premium.css" rel="stylesheet" />
+
 }
 
 <div class="plan-pro-wrap">
 
-    @* ── TOP META ── *@
     <div class="plan-topbar">
         <div class="plan-origin-badge">
             <span class="live-dot"></span>
-            Generado por Groq AI · @fecha.ToString("dd MMM yyyy")
+            Groq AI · @fecha.ToString("dd MMM yyyy")
             @if (!string.IsNullOrWhiteSpace(Model.Tema))
-            {
-                <span class="plan-badge-sep">·</span>
-                <span>@Model.Tema</span>
-            }
+            {<span class="plan-badge-sep">·</span><span>@Model.Tema</span>}
             @if (!string.IsNullOrWhiteSpace(Model.Dificultad))
-            {
-                <span class="plan-badge-sep">·</span>
-                <span>@Model.Dificultad</span>
-            }
+            {<span class="plan-badge-sep">·</span><span>@Model.Dificultad</span>}
         </div>
-
-        <div class="plan-actions-top">
-            <button class="sde-btn sde-btn-ghost btn-sm" onclick="window.print()">
-                <i class="bi bi-printer"></i>
-                Imprimir
+        <div style="display:flex;gap:8px;">
+            <a href="@Url.Action("Historial","Plan")" class="sde-btn sde-btn-ghost" style="padding:6px 14px;font-size:13px;">
+                <i class="bi bi-clock-history"></i> Historial
+            </a>
+            <button class="sde-btn sde-btn-ghost" style="padding:6px 14px;font-size:13px;" onclick="window.print()">
+                <i class="bi bi-printer"></i> Imprimir
             </button>
         </div>
     </div>
 
-    @* ── HERO ── *@
     <div class="plan-hero">
-        <div class="plan-hero-glow"></div>
         <div class="plan-hero-icon">📅</div>
-        <div class="plan-hero-content">
-            <h1 class="plan-hero-title">Tu plan de estudio personalizado</h1>
-            <p class="plan-hero-sub">
-                Basado en tus respuestas, la IA identificó los conceptos que necesitas reforzar
-                y los organizó en un calendario de estudio progresivo.
-            </p>
-        </div>
-
-        @* Stats rápidas *@
-        <div class="plan-stats-row" id="planStats">
-            <div class="plan-stat">
-                <span class="plan-stat-num" id="statDias">—</span>
-                <span class="plan-stat-label">días de estudio</span>
-            </div>
-            <div class="plan-stat">
-                <span class="plan-stat-num" id="statTemas">—</span>
-                <span class="plan-stat-label">temas a reforzar</span>
-            </div>
-            <div class="plan-stat">
-                <span class="plan-stat-num" id="statCompletados">0</span>
-                <span class="plan-stat-label">completados</span>
-            </div>
+        <h1 class="plan-hero-title">Tu calendario de estudio</h1>
+        <p class="plan-hero-sub">La IA organizó en fechas concretas los temas que necesitas reforzar. Marca cada día al completarlo.</p>
+        <div class="plan-stats-row">
+            <div class="plan-stat"><span class="plan-stat-num" id="statDias">—</span><span class="plan-stat-label">días de estudio</span></div>
+            <div class="plan-stat"><span class="plan-stat-num" id="statTemas">—</span><span class="plan-stat-label">temas a reforzar</span></div>
+            <div class="plan-stat"><span class="plan-stat-num" id="statCompletados">0</span><span class="plan-stat-label">completados</span></div>
         </div>
     </div>
 
-    @* ── MENSAJE SI NO HAY NADA QUE MEJORAR ── *@
-    <div class="plan-empty" id="planEmpty" style="display:none;">
+    <div class="plan-empty" id="planEmpty">
         <div class="plan-empty-icon">🏆</div>
         <div class="plan-empty-title">¡Excelente desempeño!</div>
-        <div class="plan-empty-sub">
-            No identificamos áreas críticas que necesites reforzar en esta entrevista.
-            Sigue practicando para mantenerte al día.
-        </div>
+        <div class="plan-empty-sub">No identificamos áreas que necesites reforzar. ¡Sigue practicando!</div>
     </div>
 
-    @* ── CALENDARIO DE ESTUDIO ── *@
     <div class="plan-calendar" id="planCalendar">
-        @* Se llena por JS parseando el JSON del plan *@
-        <div class="plan-loading">
-            <div class="plan-spinner"></div>
-            <span>Construyendo tu calendario...</span>
-        </div>
+        <div class="plan-loading"><div class="plan-spinner"></div><span>Construyendo tu calendario...</span></div>
     </div>
 
-    @* Raw data oculto para el parser JS *@
-    <script type="application/json" id="planData">
-        @Html.Raw(Model.Recomendacion)
-    </script>
+    <script type="application/json" id="planData">@Html.Raw(Model.Recomendacion)</script>
 
-    @* ── ACCIONES ── *@
     <div class="plan-actions-bottom">
-        <a href="@Url.Action("Index","Home")" class="sde-btn sde-btn-ghost">
-            <i class="bi bi-arrow-left"></i>
-            Dashboard
-        </a>
-        <a href="@Url.Action("Index","Simulacion")" class="sde-btn sde-btn-primary">
-            <i class="bi bi-play-circle"></i>
-            Practicar ahora
-        </a>
+        <a href="@Url.Action("Index","Home")" class="sde-btn sde-btn-ghost"><i class="bi bi-arrow-left"></i> Dashboard</a>
+        <a href="@Url.Action("Index","Simulacion")" class="sde-btn sde-btn-primary"><i class="bi bi-play-circle"></i> Practicar ahora</a>
     </div>
 </div>
 
 @section Scripts {
     <script>
-(function () {
-
-    var rawEl = document.getElementById('planData');
-    var calendar = document.getElementById('planCalendar');
-    var emptyEl  = document.getElementById('planEmpty');
-
-    var plan = null;
+(function(){
+    var M=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    var DC=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    var rawEl=document.getElementById('planData');
+    var cal=document.getElementById('planCalendar');
+    var emp=document.getElementById('planEmpty');
+    var plan=null;
 
     try {
-        var raw = rawEl ? rawEl.textContent.trim() : '';
-
-        // 🔥 LIMPIEZA MEJORADA (CLAVE)
-        raw = raw
-            .replace(/```json/gi, '')
-            .replace(/```/g, '')
-            .replace(/\n/g, '')
-            .trim();
-
-        plan = JSON.parse(raw);
-
-    } catch (e) {
-
-        console.error("❌ Error parseando JSON:", e);
-
-        // 🔥 FALLBACK PROFESIONAL
-        calendar.innerHTML = `
-        <div class="plan-card plan-card-fallback">
-            <div class="plan-content">
-                <pre style="white-space: pre-wrap; font-size: 13px;">
-${rawEl ? rawEl.textContent : 'Sin datos'}
-                </pre>
-            </div>
-        </div>`;
-
+        var raw=(rawEl?rawEl.textContent:'').trim()
+            .replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/```\s*$/i,'').trim();
+        plan=JSON.parse(raw);
+    } catch(e) {
+        cal.innerHTML='<div class="plan-card-fallback">'+(rawEl?rawEl.textContent:'')+'</div>';
         return;
     }
 
-    // ── Validación ──
-    if (!plan || !plan.dias || !Array.isArray(plan.dias) || plan.dias.length === 0) {
-        calendar.style.display = 'none';
-        emptyEl.style.display  = 'flex';
-        document.getElementById('statDias').textContent  = '0';
-        document.getElementById('statTemas').textContent = '0';
+    if(!plan||!plan.dias||plan.dias.length===0){
+        cal.style.display='none'; emp.style.display='flex';
+        document.getElementById('statDias').textContent='0';
+        document.getElementById('statTemas').textContent='0';
         return;
     }
 
-    // ── Stats ──
-    var totalTemas = 0;
-    plan.dias.forEach(d => totalTemas += (d.temas || []).length);
+    var tot=0; plan.dias.forEach(function(d){tot+=(d.temas||[]).length;});
+    document.getElementById('statDias').textContent=plan.dias.length;
+    document.getElementById('statTemas').textContent=tot;
 
-    document.getElementById('statDias').textContent  = plan.dias.length;
-    document.getElementById('statTemas').textContent = totalTemas;
+    var html='';
+    if(plan.resumen) html+='<div class="plan-resumen-global"><i class="bi bi-stars"></i>'+e(plan.resumen)+'</div>';
 
-    var html = '';
+    var mesAct='';
+    plan.dias.forEach(function(dia,idx){
+        var fo=pf(dia.fecha);
+        var mk=fo?(M[fo.getMonth()]+' '+fo.getFullYear()):'';
+        var dn=fo?fo.getDate():(idx+1);
+        var ds=dia.dia_semana||(fo?DC[fo.getDay()]:'');
+        var mn=fo?M[fo.getMonth()]:'';
 
-    if (plan.resumen) {
-        html += `
-        <div class="plan-resumen-global">
-            <i class="bi bi-stars"></i>
-            ${escHtml(plan.resumen)}
-        </div>`;
-    }
+        if(mk&&mk!==mesAct){ mesAct=mk; html+='<div class="plan-mes-label"><i class="bi bi-calendar3"></i>'+e(mk)+'</div>'; }
 
-    plan.dias.forEach(function (dia, idx) {
+        var temas=dia.temas||[];
+        var tit=dia.titulo||('Día '+(idx+1));
+        var dur=dia.duracion_estimada||'';
+        var nc=dia.nivel==='alto'?'nivel-alto':dia.nivel==='medio'?'nivel-medio':'nivel-bajo';
+        var nl=dia.nivel==='alto'?'Alta prioridad':dia.nivel==='medio'?'Media prioridad':'Repaso';
 
-        var nivelClass =
-            dia.nivel === 'alto' ? 'nivel-alto' :
-            dia.nivel === 'medio' ? 'nivel-medio' : 'nivel-bajo';
+        html+='<div class="plan-day-card" data-idx="'+idx+'" style="animation-delay:'+(idx*.06)+'s">'
+            +'<div class="plan-date-col">'
+            +'<div class="plan-date-weekday">'+e(ds)+'</div>'
+            +'<div class="plan-date-num">'+dn+'</div>'
+            +'<div class="plan-date-month">'+e(mn)+'</div>'
+            +'</div>'
+            +'<div class="plan-day-right-col">'
+            +'<div class="plan-day-header">'
+            +'<div class="plan-day-titulo">'+e(tit)+'</div>'
+            +'<div class="plan-day-meta">'
+            +'<span class="plan-nivel-badge '+nc+'">'+nl+'</span>'
+            +(dur?'<span class="plan-duracion"><i class="bi bi-clock"></i>'+e(dur)+'</span>':'')
+            +'</div>'
+            +'<button class="plan-check-btn" onclick="marcarDia(this,'+idx+')" title="Marcar completado"><i class="bi bi-check2"></i></button>'
+            +'</div>'
+            +'<div class="plan-day-body"><ul class="plan-temas-list">';
 
-        var nivelLabel =
-            dia.nivel === 'alto' ? 'Prioridad alta' :
-            dia.nivel === 'medio' ? 'Prioridad media' : 'Repaso ligero';
-
-        html += `
-        <div class="plan-day-card" data-idx="${idx}">
-
-            <div class="plan-day-header">
-                <div class="plan-day-left">
-                    <div class="plan-day-num">Día ${idx + 1}</div>
-                    <div class="plan-day-fecha">${escHtml(dia.fecha || '')}</div>
-                </div>
-
-                <div class="plan-day-right">
-                    ${dia.titulo ? `<div class="plan-day-titulo">${escHtml(dia.titulo)}</div>` : ''}
-                    <div class="plan-day-meta">
-                        <span class="plan-nivel-badge ${nivelClass}">${nivelLabel}</span>
-                        ${dia.duracion_estimada ? `<span class="plan-duracion">${escHtml(dia.duracion_estimada)}</span>` : ''}
-                    </div>
-                </div>
-
-                <button class="plan-check-btn" onclick="marcarDia(this,${idx})">
-                    ✔
-                </button>
-            </div>
-
-            <div class="plan-day-body">
-                <ul class="plan-temas-list">
-        `;
-
-        (dia.temas || []).forEach(function (tema) {
-
-            html += `
-            <li class="plan-tema-item">
-                <div class="plan-tema-top">
-                    <span class="plan-tema-nombre">${escHtml(tema.nombre || '')}</span>
-                </div>
-
-                ${tema.descripcion ? `<p>${escHtml(tema.descripcion)}</p>` : ''}
-
-                ${(tema.recursos || []).length > 0 ? `
-                    <ul>
-                        ${tema.recursos.map(r => `<li>${escHtml(r)}</li>`).join('')}
-                    </ul>
-                ` : ''}
-            </li>`;
+        temas.forEach(function(t){
+            var dif=t.dificultad||'';
+            var dc=dif==='alta'?'dif-alta':dif==='media'?'dif-media':'dif-baja';
+            var rec=t.recursos||[];
+            html+='<li class="plan-tema-item">'
+                +'<div class="plan-tema-top"><span class="plan-tema-bullet"></span>'
+                +'<span class="plan-tema-nombre">'+e(t.nombre||'')+'</span>'
+                +(dif?'<span class="plan-dif-badge '+dc+'">'+e(dif)+'</span>':'')
+                +'</div>';
+            if(t.descripcion) html+='<p class="plan-tema-desc">'+e(t.descripcion)+'</p>';
+            if(rec.length){
+                html+='<div class="plan-recursos"><span class="plan-recursos-label"><i class="bi bi-book"></i>Recursos</span><ul class="plan-recursos-list">';
+                rec.forEach(function(r){ html+='<li>'+e(r)+'</li>'; });
+                html+='</ul></div>';
+            }
+            html+='</li>';
         });
 
-        html += `</ul>`;
-
-        if (dia.recomendacion) {
-            html += `
-            <div class="plan-day-rec">
-                💡 ${escHtml(dia.recomendacion)}
-            </div>`;
-        }
-
-        html += `</div></div>`;
+        html+='</ul>';
+        if(dia.recomendacion) html+='<div class="plan-day-rec"><i class="bi bi-lightbulb"></i><span>'+e(dia.recomendacion)+'</span></div>';
+        html+='</div></div></div>';
     });
 
-    calendar.innerHTML = html;
-
+    cal.innerHTML=html;
     cargarEstado();
 
-    function escHtml(str) {
-        return String(str || '')
-            .replace(/&/g,'&amp;')
-            .replace(/</g,'&lt;')
-            .replace(/>/g,'&gt;')
-            .replace(/"/g,'&quot;');
-    }
-
+    function e(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+    function pf(s){if(!s)return null;var p=s.split('/');return p.length===3?new Date(+p[2],+p[1]-1,+p[0]):null;}
 })();
 
-function marcarDia(btn) {
-    var card = btn.closest('.plan-day-card');
-    card.classList.toggle('completado');
-    guardarEstado();
-    actualizarContador();
-}
-
-function guardarEstado() {
-    var estados = [];
-    document.querySelectorAll('.plan-day-card').forEach(c => {
-        estados.push(c.classList.contains('completado'));
-    });
-    localStorage.setItem('plan_estados_@Model.Id', JSON.stringify(estados));
-}
-
-function cargarEstado() {
-    var raw = localStorage.getItem('plan_estados_@Model.Id');
-    if (!raw) return;
-
-    var estados = JSON.parse(raw);
-    document.querySelectorAll('.plan-day-card').forEach((c, i) => {
-        if (estados[i]) c.classList.add('completado');
-    });
-
-    actualizarContador();
-}
-
-function actualizarContador() {
-    var completados = document.querySelectorAll('.plan-day-card.completado').length;
-    document.getElementById('statCompletados').textContent = completados;
-}
+function marcarDia(btn,idx){btn.closest('.plan-day-card').classList.toggle('completado');guardarEstado();actualizarContador();}
+function guardarEstado(){var a=[];document.querySelectorAll('.plan-day-card').forEach(function(c){a.push(c.classList.contains('completado'));});try{localStorage.setItem('plan_@Model.Id',JSON.stringify(a));}catch(x){}}
+function cargarEstado(){try{var r=localStorage.getItem('plan_@Model.Id');if(!r)return;JSON.parse(r).forEach(function(v,i){var c=document.querySelectorAll('.plan-day-card')[i];if(c&&v)c.classList.add('completado');});actualizarContador();}catch(x){}}
+function actualizarContador(){var n=document.querySelectorAll('.plan-day-card.completado').length;var el=document.getElementById('statCompletados');if(el)el.textContent=n;}
     </script>
 }
