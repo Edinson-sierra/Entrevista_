@@ -59,6 +59,12 @@
 
                 
 
+                <a href="@Url.Action("Index","Plan")"
+                   class="sde-nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Plan" ? "active" : "")">
+                    <i class="bi bi-calendar-check"></i>
+                    Plan de Entrenamiento
+                </a>
+
                 <a href="@Url.Action("Index","Chatbot")"
                    class="sde-nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Chatbot" ? "active" : "")">
                     <i class="bi bi-robot"></i>

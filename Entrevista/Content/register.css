@@ -12,45 +12,60 @@
     --mono: 'DM Mono', monospace;
 }
 
+/* RESET */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html, body {
-    height: 100%;
+/* FONDO ANIMADO */
+body {
+    height: 100vh;
     font-family: var(--font);
-    background: var(--bg);
     color: var(--text);
-    -webkit-font-smoothing: antialiased;
+    background: linear-gradient(-45deg, #0f172a, #1e293b, #2563eb, #7c3aed);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
 }
 
-    body::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        background-image: linear-gradient(rgba(79,142,247,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,142,247,.04) 1px, transparent 1px);
-        background-size: 40px 40px;
-        pointer-events: none;
-        z-index: 0;
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
     }
 
-    body::after {
-        content: '';
-        position: fixed;
-        bottom: -200px;
-        left: -200px;
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(52,211,153,.08) 0%, transparent 70%);
-        pointer-events: none;
-        z-index: 0;
+    50% {
+        background-position: 100% 50%;
     }
 
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* GRID OVERLAY */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(rgba(79,142,247,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,142,247,.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -200px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(52,211,153,.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* LAYOUT */
 .auth-shell {
-    position: relative;
-    z-index: 1;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -61,11 +76,11 @@ html, body {
 .auth-card {
     width: 100%;
     max-width: 440px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
     padding: 40px 36px;
-    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255,255,255,0.15);
     box-shadow: 0 24px 80px rgba(0,0,0,.5);
     animation: cardIn 0.4s ease forwards;
 }
@@ -82,6 +97,7 @@ html, body {
     }
 }
 
+/* HEADER */
 .auth-header {
     text-align: center;
     margin-bottom: 32px;
@@ -103,13 +119,12 @@ html, body {
 .auth-title {
     font-size: 22px;
     font-weight: 700;
-    letter-spacing: -0.5px;
     margin-bottom: 6px;
 }
 
 .auth-subtitle {
     font-size: 14px;
-    color: var(--muted);
+    color: #cbd5e1;
 }
 
 .auth-divider {
@@ -118,45 +133,26 @@ html, body {
     margin: 0 -36px 28px;
 }
 
-/* Steps indicator */
-.steps {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 28px;
-    justify-content: center;
-}
-
-.step-dot {
-    width: 28px;
-    height: 4px;
-    border-radius: 2px;
-    background: var(--border);
-    transition: background 0.3s;
-}
-
-    .step-dot.active {
-        background: var(--accent);
-    }
-
-/* Form */
+/* FORM */
 .fg {
     margin-bottom: 18px;
 }
 
     .fg label {
-        display: block;
         font-size: 13px;
         font-weight: 600;
-        color: var(--muted);
         margin-bottom: 6px;
-        letter-spacing: 0.3px;
+        display: block;
+        color: #e5e7eb;
     }
 
+/* INPUT WRAP */
 .input-wrap {
     position: relative;
 }
 
-    .input-wrap i {
+    /* ICONO IZQUIERDO (SOLO DIRECTO 🔥) */
+    .input-wrap > i {
         position: absolute;
         left: 13px;
         top: 50%;
@@ -166,14 +162,14 @@ html, body {
         pointer-events: none;
     }
 
+    /* INPUT */
     .input-wrap input {
         width: 100%;
-        background: rgba(255,255,255,.04);
+        background: rgba(255,255,255,.05);
         border: 1px solid var(--border);
         border-radius: 10px;
-        padding: 11px 14px 11px 38px;
+        padding: 11px 45px 11px 38px; /* espacio para ojo */
         color: var(--text);
-        font-family: var(--font);
         font-size: 14px;
         outline: none;
         transition: all 0.2s;
@@ -181,15 +177,11 @@ html, body {
 
         .input-wrap input:focus {
             border-color: var(--accent);
-            background: rgba(79,142,247,.06);
-            box-shadow: 0 0 0 3px rgba(79,142,247,.12);
+            background: rgba(79,142,247,.08);
+            box-shadow: 0 0 0 3px rgba(79,142,247,.15);
         }
 
-        .input-wrap input::placeholder {
-            color: var(--muted);
-            opacity: .5;
-        }
-
+/* BOTÓN OJO */
 .pwd-toggle {
     position: absolute;
     right: 12px;
@@ -197,12 +189,24 @@ html, body {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: var(--muted);
     cursor: pointer;
-    z-index: 10;
+    z-index: 20;
+    padding: 4px;
 }
 
-/* Password strength meter */
+    /* ICONO DEL OJO (CORREGIDO 🔥) */
+    .pwd-toggle i {
+        position: static; /* 🔥 evita bug */
+        font-size: 16px;
+        color: #9ca3af;
+        transition: 0.2s;
+    }
+
+    .pwd-toggle:hover i {
+        color: #ffffff;
+    }
+
+/* PASSWORD METER */
 .pwd-meter {
     margin-top: 8px;
 }
@@ -217,24 +221,22 @@ html, body {
 .pwd-meter-fill {
     height: 100%;
     width: 0%;
-    border-radius: 2px;
-    transition: width 0.3s, background 0.3s;
+    transition: all 0.3s;
 }
 
 .pwd-meter-label {
     font-size: 11px;
-    color: var(--muted);
     margin-top: 4px;
     font-family: var(--mono);
 }
 
-/* Validation */
+/* VALIDACIÓN */
 .field-validation-error,
 span[data-valmsg-for] {
-    display: block;
     font-size: 12px;
     color: var(--danger);
     margin-top: 5px;
+    display: block;
 }
 
 .val-summary {
@@ -243,34 +245,26 @@ span[data-valmsg-for] {
     border-radius: 10px;
     padding: 12px 14px;
     font-size: 13px;
-    color: var(--danger);
     margin-bottom: 18px;
 }
 
-    .val-summary ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-/* Submit */
+/* BOTÓN */
 .btn-submit {
     width: 100%;
     padding: 12px;
     background: var(--accent);
     color: #fff;
-    font-family: var(--font);
     font-size: 15px;
     font-weight: 700;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.2s;
     margin-top: 6px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 8px;
+    transition: 0.2s;
 }
 
     .btn-submit:hover {
@@ -279,85 +273,39 @@ span[data-valmsg-for] {
         transform: translateY(-1px);
     }
 
-    .btn-submit:active {
-        transform: translateY(0);
-    }
-
-/* ToS */
-.tos-note {
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 14px;
-}
-
-/* Footer link */
+/* FOOTER */
 .auth-footer {
     text-align: center;
     margin-top: 22px;
     font-size: 13px;
-    color: var(--muted);
+    color: #cbd5e1;
 }
 
     .auth-footer a {
         color: var(--accent);
-        text-decoration: none;
         font-weight: 600;
+        text-decoration: none;
     }
 
         .auth-footer a:hover {
             color: var(--accent-h);
         }
 
+/* TOS */
+.tos-note {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 14px;
+    color: #9ca3af;
+}
+
+/* WATERMARK */
 .auth-watermark {
     position: fixed;
     bottom: 20px;
-    left: 0;
-    right: 0;
+    width: 100%;
     text-align: center;
     font-size: 12px;
-    color: rgba(107,114,128,.4);
+    color: rgba(255,255,255,.3);
     font-family: var(--mono);
-    z-index: 1;
 }
-
-/* Fondo animado */
-body {
-    margin: 0;
-    height: 100vh;
-    font-family: 'DM Sans', sans-serif;
-    background: linear-gradient(-45deg, #0f172a, #1e293b, #2563eb, #7c3aed);
-    background-size: 400% 400%;
-    animation: gradientBG 12s ease infinite;
-}
-
-/* Animación */
-@keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.auth-card {
-    backdrop-filter: blur(15px);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-}
-
-.auth-card,
-.auth-card label,
-.auth-title,
-.auth-subtitle,
-.auth-footer,
-.tos-note {
-    color: #ffffff;
-}
-

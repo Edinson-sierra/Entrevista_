@@ -32,6 +32,45 @@ namespace Entrevista.Controllers
         private readonly IIAService _ia = new IAService();
 
         // ====================================================================
+        // GET: /Plan/Index
+        // ====================================================================
+
+        public ActionResult Index()
+        {
+            int usuarioId = SessionHelper.ObtenerUsuarioId(this);
+
+            var ultimoPlan = _context.Planes_entrenamiento
+                .Where(p => p.usuarios_id_usuarios == usuarioId)
+                .OrderByDescending(p => p.fecha_plan)
+                .FirstOrDefault();
+
+            PlanViewModel model;
+
+            // 🔥 Si NO hay plan → mandamos modelo vacío (NO redirigimos)
+            if (ultimoPlan == null)
+            {
+                model = new PlanViewModel
+                {
+                    Id = 0,
+                    Recomendacion = "{\"dias\":[]}", // JSON vacío válido para tu JS
+                    Fecha = DateTime.Now
+                };
+            }
+            else
+            {
+                model = new PlanViewModel
+                {
+                    Id = ultimoPlan.id_plan_entrenamiento,
+                    Recomendacion = ultimoPlan.recomendacion,
+                    Fecha = ultimoPlan.fecha_plan ?? DateTime.Now
+                };
+            }
+
+            ViewBag.Title = "Plan de Entrenamiento";
+            return View("Index", model);
+        }
+
+        // ====================================================================
         // GET: /Plan/Generar/{entrevistaId}
         // ====================================================================
 

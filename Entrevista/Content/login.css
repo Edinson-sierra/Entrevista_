@@ -1,5 +1,5 @@
 ﻿/* ============================================================
-   LOGIN PAGE — Dark Glassmorphism Corporativo
+   LOGIN PAGE — Dark Glassmorphism PRO
    ============================================================ */
 :root {
     --bg: #0a0c12;
@@ -15,20 +15,21 @@
     --mono: 'DM Mono', monospace;
 }
 
+/* RESET */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* 🔥 FONDO ANIMADO (ARREGLADO) */
+/* BASE */
 html, body {
     height: 100%;
     font-family: var(--font);
     color: var(--text);
-    -webkit-font-smoothing: antialiased;
 }
 
+/* 🔥 FONDO ANIMADO */
 body {
     margin: 0;
     background: linear-gradient(-45deg, #0f172a, #1e293b, #2563eb, #7c3aed);
@@ -36,7 +37,7 @@ body {
     animation: gradientBG 12s ease infinite;
 }
 
-    /* 🔥 GRID */
+    /* GRID */
     body::before {
         content: '';
         position: fixed;
@@ -47,7 +48,7 @@ body {
         z-index: 0;
     }
 
-    /* 🔥 GLOW */
+    /* GLOW */
     body::after {
         content: '';
         position: fixed;
@@ -60,7 +61,7 @@ body {
         z-index: 0;
     }
 
-/* 🔥 ANIMACIÓN */
+/* ANIMACIÓN BG */
 @keyframes gradientBG {
     0% {
         background-position: 0% 50%;
@@ -75,7 +76,7 @@ body {
     }
 }
 
-/* — Layout central — */
+/* LAYOUT */
 .auth-shell {
     position: relative;
     z-index: 1;
@@ -86,7 +87,7 @@ body {
     padding: 24px;
 }
 
-/* — Card — */
+/* CARD */
 .auth-card {
     width: 100%;
     max-width: 420px;
@@ -111,7 +112,7 @@ body {
     }
 }
 
-/* — Header — */
+/* HEADER */
 .auth-header {
     text-align: center;
     margin-bottom: 32px;
@@ -140,14 +141,14 @@ body {
     color: var(--muted);
 }
 
-/* — Divider — */
+/* DIVIDER */
 .auth-divider {
     height: 1px;
     background: var(--border);
     margin: 0 -36px 28px;
 }
 
-/* — Form — */
+/* FORM */
 .fg {
     margin-bottom: 18px;
 }
@@ -155,28 +156,42 @@ body {
     .fg label {
         font-size: 13px;
         color: var(--muted);
+        display: block;
+        margin-bottom: 6px;
     }
 
+/* INPUT WRAP */
 .input-wrap {
     position: relative;
 }
 
-    .input-wrap i {
+    /* ICONO IZQUIERDO (FIX 🔥) */
+    .input-wrap > i {
         position: absolute;
         left: 13px;
         top: 50%;
         transform: translateY(-50%);
         color: var(--muted);
+        pointer-events: none;
     }
 
+    /* INPUT */
     .input-wrap input {
         width: 100%;
-        padding: 11px 40px 11px 38px;
+        padding: 11px 45px 11px 38px;
         background: rgba(255,255,255,.04);
         border: 1px solid var(--border);
         border-radius: 10px;
         color: var(--text);
+        outline: none;
+        transition: 0.2s;
     }
+
+        .input-wrap input:focus {
+            border-color: var(--accent);
+            background: rgba(79,142,247,.08);
+            box-shadow: 0 0 0 3px rgba(79,142,247,.15);
+        }
 
 /* 🔥 BOTÓN OJO */
 .pwd-toggle {
@@ -186,16 +201,31 @@ body {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: var(--muted);
     cursor: pointer;
-    z-index: 10;
+    z-index: 20;
+    padding: 4px;
 }
 
-    .pwd-toggle:hover {
-        color: #fff;
+    /* ICONO DEL OJO */
+    .pwd-toggle i {
+        position: static;
+        font-size: 16px;
+        color: var(--muted);
+        transition: all 0.25s ease;
     }
 
-/* — Botón — */
+    /* HOVER */
+    .pwd-toggle:hover i {
+        color: #fff;
+        transform: scale(1.15);
+    }
+
+    /* CLICK ANIMATION 🔥 */
+    .pwd-toggle:active i {
+        transform: scale(0.85);
+    }
+
+/* BOTÓN LOGIN */
 .btn-submit {
     width: 100%;
     padding: 12px;
@@ -204,23 +234,33 @@ body {
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
+    font-weight: 600;
+    margin-top: 6px;
+    transition: 0.2s;
 }
 
     .btn-submit:hover {
         background: var(--accent-h);
+        box-shadow: 0 6px 20px rgba(79,142,247,.35);
     }
 
-/* — Footer — */
+/* FOOTER */
 .auth-footer {
     text-align: center;
     margin-top: 20px;
+    font-size: 13px;
 }
 
     .auth-footer a {
         color: var(--accent);
+        text-decoration: none;
     }
 
-/* — Watermark — */
+        .auth-footer a:hover {
+            color: var(--accent-h);
+        }
+
+/* WATERMARK */
 .auth-watermark {
     position: fixed;
     bottom: 20px;
