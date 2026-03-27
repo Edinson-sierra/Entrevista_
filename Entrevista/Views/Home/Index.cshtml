@@ -207,7 +207,9 @@
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script>
-        const datosEntrevistas = @Html.Raw(Json.Encode(Model.DatosGraficos));
+      const datosEntrevistas = @Html.Raw(
+    Newtonsoft.Json.JsonConvert.SerializeObject(Model.DatosGraficos)
+);
 // ═══════════════════════════════════════════════════
 //  DATOS desde el servidor (Razor → JS)
 // ═══════════════════════════════════════════════════
@@ -387,8 +389,6 @@ const navegaciones = {
     'nueva entrevista':     '/Simulacion',
     'iniciar entrevista':   '/Simulacion',
     'hacer entrevista':     '/Simulacion',
-    'resultados':           '/Resultados',
-    'ver resultados':       '/Resultados',
     'plan de entrenamiento':'/Plan',
     'mi plan':              '/Plan',
     'mi perfil':            '/Perfil',
