@@ -61,103 +61,179 @@
 
 @section Scripts {
     <script>
-(function(){
-    var M=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-    var DC=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
-    var rawEl=document.getElementById('planData');
-    var cal=document.getElementById('planCalendar');
-    var emp=document.getElementById('planEmpty');
-    var plan=null;
+(function () {
+
+    var rawEl = document.getElementById('planData');
+    var calendar = document.getElementById('planCalendar');
+    var emptyEl  = document.getElementById('planEmpty');
+
+    var plan = null;
 
     try {
-        var raw=(rawEl?rawEl.textContent:'').trim()
-            .replace(/^```json\s*/i,'').replace(/^```\s*/i,'').replace(/```\s*$/i,'').trim();
-        plan=JSON.parse(raw);
-    } catch(e) {
-        cal.innerHTML='<div class="plan-card-fallback">'+(rawEl?rawEl.textContent:'')+'</div>';
+        var raw = rawEl ? rawEl.textContent.trim() : '';
+
+        // 🔥 LIMPIEZA MEJORADA (CLAVE)
+        raw = raw
+            .replace(/```json/gi, '')
+            .replace(/```/g, '')
+            .replace(/\n/g, '')
+            .trim();
+
+        plan = JSON.parse(raw);
+
+    } catch (e) {
+
+        console.error("❌ Error parseando JSON:", e);
+
+        // 🔥 FALLBACK PROFESIONAL
+        calendar.innerHTML = `
+        <div class="plan-card plan-card-fallback">
+            <div class="plan-content">
+                <pre style="white-space: pre-wrap; font-size: 13px;">
+${rawEl ? rawEl.textContent : 'Sin datos'}
+                </pre>
+            </div>
+        </div>`;
+
         return;
     }
 
-    if(!plan||!plan.dias||plan.dias.length===0){
-        cal.style.display='none'; emp.style.display='flex';
-        document.getElementById('statDias').textContent='0';
-        document.getElementById('statTemas').textContent='0';
+    // ── Validación ──
+    if (!plan || !plan.dias || !Array.isArray(plan.dias) || plan.dias.length === 0) {
+        calendar.style.display = 'none';
+        emptyEl.style.display  = 'flex';
+        document.getElementById('statDias').textContent  = '0';
+        document.getElementById('statTemas').textContent = '0';
         return;
     }
 
-    var tot=0; plan.dias.forEach(function(d){tot+=(d.temas||[]).length;});
-    document.getElementById('statDias').textContent=plan.dias.length;
-    document.getElementById('statTemas').textContent=tot;
+    // ── Stats ──
+    var totalTemas = 0;
+    plan.dias.forEach(d => totalTemas += (d.temas || []).length);
 
-    var html='';
-    if(plan.resumen) html+='<div class="plan-resumen-global"><i class="bi bi-stars"></i>'+e(plan.resumen)+'</div>';
+    document.getElementById('statDias').textContent  = plan.dias.length;
+    document.getElementById('statTemas').textContent = totalTemas;
 
-    var mesAct='';
-    plan.dias.forEach(function(dia,idx){
-        var fo=pf(dia.fecha);
-        var mk=fo?(M[fo.getMonth()]+' '+fo.getFullYear()):'';
-        var dn=fo?fo.getDate():(idx+1);
-        var ds=dia.dia_semana||(fo?DC[fo.getDay()]:'');
-        var mn=fo?M[fo.getMonth()]:'';
+    var html = '';
 
-        if(mk&&mk!==mesAct){ mesAct=mk; html+='<div class="plan-mes-label"><i class="bi bi-calendar3"></i>'+e(mk)+'</div>'; }
+    if (plan.resumen) {
+        html += `
+        <div class="plan-resumen-global">
+            <i class="bi bi-stars"></i>
+            ${escHtml(plan.resumen)}
+        </div>`;
+    }
 
-        var temas=dia.temas||[];
-        var tit=dia.titulo||('Día '+(idx+1));
-        var dur=dia.duracion_estimada||'';
-        var nc=dia.nivel==='alto'?'nivel-alto':dia.nivel==='medio'?'nivel-medio':'nivel-bajo';
-        var nl=dia.nivel==='alto'?'Alta prioridad':dia.nivel==='medio'?'Media prioridad':'Repaso';
+    plan.dias.forEach(function (dia, idx) {
 
-        html+='<div class="plan-day-card" data-idx="'+idx+'" style="animation-delay:'+(idx*.06)+'s">'
-            +'<div class="plan-date-col">'
-            +'<div class="plan-date-weekday">'+e(ds)+'</div>'
-            +'<div class="plan-date-num">'+dn+'</div>'
-            +'<div class="plan-date-month">'+e(mn)+'</div>'
-            +'</div>'
-            +'<div class="plan-day-right-col">'
-            +'<div class="plan-day-header">'
-            +'<div class="plan-day-titulo">'+e(tit)+'</div>'
-            +'<div class="plan-day-meta">'
-            +'<span class="plan-nivel-badge '+nc+'">'+nl+'</span>'
-            +(dur?'<span class="plan-duracion"><i class="bi bi-clock"></i>'+e(dur)+'</span>':'')
-            +'</div>'
-            +'<button class="plan-check-btn" onclick="marcarDia(this,'+idx+')" title="Marcar completado"><i class="bi bi-check2"></i></button>'
-            +'</div>'
-            +'<div class="plan-day-body"><ul class="plan-temas-list">';
+        var nivelClass =
+            dia.nivel === 'alto' ? 'nivel-alto' :
+            dia.nivel === 'medio' ? 'nivel-medio' : 'nivel-bajo';
 
-        temas.forEach(function(t){
-            var dif=t.dificultad||'';
-            var dc=dif==='alta'?'dif-alta':dif==='media'?'dif-media':'dif-baja';
-            var rec=t.recursos||[];
-            html+='<li class="plan-tema-item">'
-                +'<div class="plan-tema-top"><span class="plan-tema-bullet"></span>'
-                +'<span class="plan-tema-nombre">'+e(t.nombre||'')+'</span>'
-                +(dif?'<span class="plan-dif-badge '+dc+'">'+e(dif)+'</span>':'')
-                +'</div>';
-            if(t.descripcion) html+='<p class="plan-tema-desc">'+e(t.descripcion)+'</p>';
-            if(rec.length){
-                html+='<div class="plan-recursos"><span class="plan-recursos-label"><i class="bi bi-book"></i>Recursos</span><ul class="plan-recursos-list">';
-                rec.forEach(function(r){ html+='<li>'+e(r)+'</li>'; });
-                html+='</ul></div>';
-            }
-            html+='</li>';
+        var nivelLabel =
+            dia.nivel === 'alto' ? 'Prioridad alta' :
+            dia.nivel === 'medio' ? 'Prioridad media' : 'Repaso ligero';
+
+        html += `
+        <div class="plan-day-card" data-idx="${idx}">
+
+            <div class="plan-day-header">
+                <div class="plan-day-left">
+                    <div class="plan-day-num">Día ${idx + 1}</div>
+                    <div class="plan-day-fecha">${escHtml(dia.fecha || '')}</div>
+                </div>
+
+                <div class="plan-day-right">
+                    ${dia.titulo ? `<div class="plan-day-titulo">${escHtml(dia.titulo)}</div>` : ''}
+                    <div class="plan-day-meta">
+                        <span class="plan-nivel-badge ${nivelClass}">${nivelLabel}</span>
+                        ${dia.duracion_estimada ? `<span class="plan-duracion">${escHtml(dia.duracion_estimada)}</span>` : ''}
+                    </div>
+                </div>
+
+                <button class="plan-check-btn" onclick="marcarDia(this,${idx})">
+                    ✔
+                </button>
+            </div>
+
+            <div class="plan-day-body">
+                <ul class="plan-temas-list">
+        `;
+
+        (dia.temas || []).forEach(function (tema) {
+
+            html += `
+            <li class="plan-tema-item">
+                <div class="plan-tema-top">
+                    <span class="plan-tema-nombre">${escHtml(tema.nombre || '')}</span>
+                </div>
+
+                ${tema.descripcion ? `<p>${escHtml(tema.descripcion)}</p>` : ''}
+
+                ${(tema.recursos || []).length > 0 ? `
+                    <ul>
+                        ${tema.recursos.map(r => `<li>${escHtml(r)}</li>`).join('')}
+                    </ul>
+                ` : ''}
+            </li>`;
         });
 
-        html+='</ul>';
-        if(dia.recomendacion) html+='<div class="plan-day-rec"><i class="bi bi-lightbulb"></i><span>'+e(dia.recomendacion)+'</span></div>';
-        html+='</div></div></div>';
+        html += `</ul>`;
+
+        if (dia.recomendacion) {
+            html += `
+            <div class="plan-day-rec">
+                💡 ${escHtml(dia.recomendacion)}
+            </div>`;
+        }
+
+        html += `</div></div>`;
     });
 
-    cal.innerHTML=html;
+    calendar.innerHTML = html;
+
     cargarEstado();
 
-    function e(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-    function pf(s){if(!s)return null;var p=s.split('/');return p.length===3?new Date(+p[2],+p[1]-1,+p[0]):null;}
+    function escHtml(str) {
+        return String(str || '')
+            .replace(/&/g,'&amp;')
+            .replace(/</g,'&lt;')
+            .replace(/>/g,'&gt;')
+            .replace(/"/g,'&quot;');
+    }
+
 })();
 
-function marcarDia(btn,idx){btn.closest('.plan-day-card').classList.toggle('completado');guardarEstado();actualizarContador();}
-function guardarEstado(){var a=[];document.querySelectorAll('.plan-day-card').forEach(function(c){a.push(c.classList.contains('completado'));});try{localStorage.setItem('plan_@Model.Id',JSON.stringify(a));}catch(x){}}
-function cargarEstado(){try{var r=localStorage.getItem('plan_@Model.Id');if(!r)return;JSON.parse(r).forEach(function(v,i){var c=document.querySelectorAll('.plan-day-card')[i];if(c&&v)c.classList.add('completado');});actualizarContador();}catch(x){}}
-function actualizarContador(){var n=document.querySelectorAll('.plan-day-card.completado').length;var el=document.getElementById('statCompletados');if(el)el.textContent=n;}
+function marcarDia(btn) {
+    var card = btn.closest('.plan-day-card');
+    card.classList.toggle('completado');
+    guardarEstado();
+    actualizarContador();
+}
+
+function guardarEstado() {
+    var estados = [];
+    document.querySelectorAll('.plan-day-card').forEach(c => {
+        estados.push(c.classList.contains('completado'));
+    });
+    localStorage.setItem('plan_estados_@Model.Id', JSON.stringify(estados));
+}
+
+function cargarEstado() {
+    var raw = localStorage.getItem('plan_estados_@Model.Id');
+    if (!raw) return;
+
+    var estados = JSON.parse(raw);
+    document.querySelectorAll('.plan-day-card').forEach((c, i) => {
+        if (estados[i]) c.classList.add('completado');
+    });
+
+    actualizarContador();
+}
+
+function actualizarContador() {
+    var completados = document.querySelectorAll('.plan-day-card.completado').length;
+    document.getElementById('statCompletados').textContent = completados;
+}
     </script>
 }
