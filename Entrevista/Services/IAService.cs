@@ -43,7 +43,7 @@ namespace Entrevista.Services
         }
 
         // =====================================================
-        // 🧠 GENERAR PREGUNTA ADAPTATIVA
+        // 🧠 GENERAR PREGUNTA
         // =====================================================
         public async Task<string> GenerarPreguntaAsync(
             string tema,
@@ -66,10 +66,8 @@ Dificultad: {dificultad}
 Reglas:
 - Haz UNA sola pregunta
 - No repetir preguntas
-- Si falla → baja dificultad
-- Si acierta → sube dificultad
+- Ajusta dificultad según desempeño
 - Mezcla teoría y práctica
-- Escenarios reales
 
 Pregunta #{numero} de 5"
                 }
@@ -90,7 +88,7 @@ Pregunta #{numero} de 5"
         }
 
         // =====================================================
-        // 📊 EVALUAR RESPUESTA (PRO)
+        // 📊 EVALUAR RESPUESTA
         // =====================================================
         public async Task<(int puntaje, string feedback, string nivel, string categoria)> EvaluarRespuestaAsync(
             string pregunta, string respuesta)
@@ -100,9 +98,7 @@ Pregunta #{numero} de 5"
                 new {
                     role = "system",
                     content = @"
-Eres un entrevistador técnico senior.
-
-Evalúa la respuesta.
+Evalúa técnicamente la respuesta.
 
 Devuelve SOLO JSON:
 
@@ -124,7 +120,7 @@ Devuelve SOLO JSON:
 
             try
             {
-                var limpio = json.Replace("```json", "").Replace("```", "").Trim();
+                var limpio = LimpiarJSON(json);
                 dynamic data = JsonConvert.DeserializeObject(limpio);
 
                 int puntaje = Math.Max(0, Math.Min(10, (int)data.puntaje));
@@ -149,15 +145,7 @@ Devuelve SOLO JSON:
             {
                 new {
                     role = "system",
-                    content = @"
-Eres un entrevistador senior.
-
-Devuelve HTML con:
-- Nivel
-- Fortalezas
-- Debilidades
-- Decisión (Contratar / No contratar)
-- Justificación"
+                    content = "Devuelve un reporte técnico en HTML claro y profesional."
                 },
                 new { role = "user", content = texto }
             };
@@ -166,7 +154,7 @@ Devuelve HTML con:
         }
 
         // =====================================================
-        // 🎯 PLAN DE ENTRENAMIENTO
+        // 🎯 PLAN DE ENTRENAMIENTO 
         // =====================================================
         public async Task<string> GenerarPlanAsync(string resultadoFinal)
         {
@@ -176,7 +164,38 @@ Devuelve HTML con:
             {
                 new {
                     role = "system",
-                    content = "Genera plan en JSON basado en debilidades."
+                    content = $@"
+Genera un plan de entrenamiento técnico.
+
+⚠️ REGLAS:
+- SOLO JSON válido
+- SIN markdown
+- SIN texto extra
+
+Formato:
+
+{{
+  ""resumen"": ""..."",
+  ""dias"": [
+    {{
+      ""fecha"": ""Día 1"",
+      ""titulo"": ""Tema"",
+      ""nivel"": ""alto"",
+      ""duracion_estimada"": ""2h"",
+      ""temas"": [
+        {{
+          ""nombre"": ""Concepto"",
+          ""descripcion"": ""Explicación"",
+          ""dificultad"": ""media"",
+          ""recursos"": [""Doc oficial"", ""Ejercicios""]
+        }}
+      ],
+      ""recomendacion"": ""Consejo técnico""
+    }}
+  ]
+}}
+
+Genera entre 3 y 7 días."
                 },
                 new {
                     role = "user",
@@ -184,11 +203,26 @@ Devuelve HTML con:
                 }
             };
 
-            return await LlamarIA(mensajes, TEMP_REPORTE);
+            var respuesta = await LlamarIA(mensajes, TEMP_REPORTE);
+
+            return LimpiarJSON(respuesta);
         }
 
         // =====================================================
-        // 🧠 DIFICULTAD DINÁMICA
+        // 🧹 LIMPIAR JSON 
+        // =====================================================
+        private string LimpiarJSON(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return "{}";
+
+            return input
+                .Replace("```json", "")
+                .Replace("```", "")
+                .Replace("\n", "")
+                .Replace("\r", "")
+                .Trim();
+        }
+
         // =====================================================
         private string CalcularDificultad(List<int> puntajes)
         {
@@ -201,16 +235,10 @@ Devuelve HTML con:
             return "avanzado";
         }
 
-        // =====================================================
-        // 🧠 CONTROL ENTREVISTA
-        // =====================================================
         public bool EntrevistaTerminada(List<int> puntajes)
         {
             if (puntajes.Count >= 5) return true;
-
-            if (puntajes.Count >= 3 && puntajes.Average() < 3)
-                return true;
-
+            if (puntajes.Count >= 3 && puntajes.Average() < 3) return true;
             return false;
         }
 
@@ -252,7 +280,7 @@ Devuelve HTML con:
                 catch { }
             }
 
-            return "❌ Error al conectar con la IA.";
+            return "{}";
         }
     }
 }
