@@ -162,45 +162,52 @@ Devuelve SOLO JSON:
 
             var mensajes = new object[]
             {
-                new {
-                    role = "system",
-                    content = $@"
-Genera un plan de entrenamiento técnico.
+        new {
+            role = "system",
+            content = $@"
+Eres un ingeniero senior.
 
-⚠️ REGLAS:
-- SOLO JSON válido
-- SIN markdown
-- SIN texto extra
+Genera un plan de entrenamiento técnico PERSONALIZADO.
 
-Formato:
+⚠️ REGLAS CRÍTICAS:
+- Responde SOLO con JSON válido
+- NO uses ```json
+- NO expliques nada
+- NO agregues texto antes o después
+- El JSON debe ser PARSEABLE con JSON.parse()
+
+FORMATO OBLIGATORIO:
 
 {{
-  ""resumen"": ""..."",
+  ""resumen"": ""string"",
   ""dias"": [
     {{
       ""fecha"": ""Día 1"",
-      ""titulo"": ""Tema"",
-      ""nivel"": ""alto"",
-      ""duracion_estimada"": ""2h"",
+      ""titulo"": ""string"",
+      ""nivel"": ""alto|medio|bajo"",
+      ""duracion_estimada"": ""string"",
       ""temas"": [
         {{
-          ""nombre"": ""Concepto"",
-          ""descripcion"": ""Explicación"",
-          ""dificultad"": ""media"",
-          ""recursos"": [""Doc oficial"", ""Ejercicios""]
+          ""nombre"": ""string"",
+          ""descripcion"": ""string"",
+          ""dificultad"": ""alta|media|baja"",
+          ""recursos"": [""string""]
         }}
       ],
-      ""recomendacion"": ""Consejo técnico""
+      ""recomendacion"": ""string""
     }}
   ]
 }}
 
-Genera entre 3 y 7 días."
-                },
-                new {
-                    role = "user",
-                    content = $"Inicio: {fechaInicio:dd/MM/yyyy}\n{resultadoFinal}"
-                }
+⚠️ IMPORTANTE:
+- Genera entre 3 y 7 días
+- Usa lenguaje técnico
+- Basado en debilidades del candidato"
+        },
+        new {
+            role = "user",
+            content = $"Fecha inicio: {fechaInicio:dd/MM/yyyy}\n\nResultado:\n{resultadoFinal}"
+        }
             };
 
             var respuesta = await LlamarIA(mensajes, TEMP_REPORTE);
