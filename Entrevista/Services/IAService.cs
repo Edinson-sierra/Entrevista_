@@ -12,18 +12,19 @@ namespace Entrevista.Services
 {
     public interface IIAService
     {
-        Task<string> GenerarPreguntaAsync(string tema, List<MensajeViewModel> historial, List<int> puntajes);
-        Task<(int puntaje, string feedback, string nivel, string categoria)> EvaluarRespuestaAsync(string pregunta, string respuesta);
+        Task<string> GenerarPreguntaAsync(string tema, string dificultad, List<MensajeViewModel> historial);
+        Task<(int puntaje, string feedback)> EvaluarRespuestaAsync(string pregunta, string respuesta, string dificultad);
         Task<string> GenerarResultadoFinalAsync(List<MensajeViewModel> historial);
         Task<string> GenerarPlanAsync(string resultadoFinal);
-        bool EntrevistaTerminada(List<int> puntajes);
     }
 
     public class IAService : IIAService
     {
+        // 🔐 CONFIGURACIÓN SEGURA
         private readonly string API_KEY = ConfigurationManager.AppSettings["GroqApiKey"];
         private const string API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
+        // ⚡ MODELOS (fallback automático)
         private readonly string[] MODELOS = {
             "llama-3.3-70b-versatile",
             "llama-3.1-8b-instant",
@@ -32,6 +33,7 @@ namespace Entrevista.Services
 
         private static readonly HttpClient _http = new HttpClient();
 
+        // 🎯 TEMPERATURAS
         private const double TEMP_PREGUNTA = 0.75;
         private const double TEMP_EVAL = 0.2;
         private const double TEMP_REPORTE = 0.4;
@@ -43,14 +45,11 @@ namespace Entrevista.Services
         }
 
         // =====================================================
-        // 🧠 GENERAR PREGUNTA ADAPTATIVA
+        // 🧠 GENERAR PREGUNTA (INTELIGENTE)
         // =====================================================
-        public async Task<string> GenerarPreguntaAsync(
-            string tema,
-            List<MensajeViewModel> historial,
-            List<int> puntajes)
+        public async Task<string> GenerarPreguntaAsync(string tema, string dificultad, List<MensajeViewModel> historial)
         {
-            string dificultad = CalcularDificultad(puntajes);
+            string debilidades = ExtraerDebilidades(historial);
             int numero = historial.Count(m => m.Tipo == "IA") + 1;
 
             var mensajes = new List<object>
@@ -58,24 +57,22 @@ namespace Entrevista.Services
                 new {
                     role = "system",
                     content = $@"
-Eres un entrevistador técnico exigente.
+Eres un entrevistador técnico senior.
 
 Tema: {tema}
 Dificultad: {dificultad}
 
 Reglas:
-- Haz UNA sola pregunta
-- No repetir preguntas
-- Si falla → baja dificultad
-- Si acierta → sube dificultad
-- Mezcla teoría y práctica
-- Escenarios reales
+- Solo UNA pregunta
+- No repetir historial
+- Nivel real de entrevista técnica, diferenciando los niveles correctamente, viendo a junior como basico, medio profesional, senior como un nivel alto 
+- Enfócate en debilidades: {debilidades}
 
 Pregunta #{numero} de 5"
                 }
             };
 
-            foreach (var msg in historial.Skip(Math.Max(0, historial.Count - 10)))
+            foreach (var msg in historial.Skip(Math.Max(0, historial.Count - 8)))
             {
                 mensajes.Add(new
                 {
@@ -84,35 +81,25 @@ Pregunta #{numero} de 5"
                 });
             }
 
-            mensajes.Add(new { role = "user", content = "Continúa la entrevista." });
+            mensajes.Add(new { role = "user", content = "Haz la siguiente pregunta." });
 
             return await LlamarIA(mensajes, TEMP_PREGUNTA);
         }
 
         // =====================================================
-        // 📊 EVALUAR RESPUESTA (PRO)
+        // 📊 EVALUAR RESPUESTA
         // =====================================================
-        public async Task<(int puntaje, string feedback, string nivel, string categoria)> EvaluarRespuestaAsync(
-            string pregunta, string respuesta)
+        public async Task<(int puntaje, string feedback)> EvaluarRespuestaAsync(string pregunta, string respuesta, string dificultad)
         {
             var mensajes = new object[]
             {
                 new {
                     role = "system",
-                    content = @"
-Eres un entrevistador técnico senior.
+                    content = $@"
+Evalúa esta respuesta técnica.
 
-Evalúa la respuesta.
-
-Devuelve SOLO JSON:
-
-{
-  ""puntaje"": 0-10,
-  ""nivel"": ""junior|mid|senior"",
-  ""categoria"": ""teoria|practica|algoritmos|arquitectura"",
-  ""feedback"": ""explicación clara"",
-  ""mejora"": ""cómo mejorar""
-}"
+Devuelve JSON:
+{{""puntaje"":0-10,""feedback"":""texto""}}"
                 },
                 new {
                     role = "user",
@@ -128,11 +115,13 @@ Devuelve SOLO JSON:
                 dynamic data = JsonConvert.DeserializeObject(limpio);
 
                 int puntaje = Math.Max(0, Math.Min(10, (int)data.puntaje));
-                return (puntaje, data.feedback.ToString(), data.nivel.ToString(), data.categoria.ToString());
+                string feedback = data.feedback;
+
+                return (puntaje, feedback);
             }
             catch
             {
-                return (5, json, "junior", "teoria");
+                return (5, json);
             }
         }
 
@@ -149,17 +138,12 @@ Devuelve SOLO JSON:
             {
                 new {
                     role = "system",
-                    content = @"
-Eres un entrevistador senior.
-
-Devuelve HTML con:
-- Nivel
-- Fortalezas
-- Debilidades
-- Decisión (Contratar / No contratar)
-- Justificación"
+                    content = "Analiza la entrevista y da diagnóstico profesional en HTML."
                 },
-                new { role = "user", content = texto }
+                new {
+                    role = "user",
+                    content = texto
+                }
             };
 
             return await LlamarIA(mensajes, TEMP_REPORTE);
@@ -170,17 +154,15 @@ Devuelve HTML con:
         // =====================================================
         public async Task<string> GenerarPlanAsync(string resultadoFinal)
         {
-            var fechaInicio = DateTime.Now.AddDays(1);
-
             var mensajes = new object[]
             {
                 new {
                     role = "system",
-                    content = "Genera plan en JSON basado en debilidades."
+                    content = "Genera plan de estudio en HTML."
                 },
                 new {
                     role = "user",
-                    content = $"Inicio: {fechaInicio:dd/MM/yyyy}\n{resultadoFinal}"
+                    content = resultadoFinal
                 }
             };
 
@@ -188,34 +170,7 @@ Devuelve HTML con:
         }
 
         // =====================================================
-        // 🧠 DIFICULTAD DINÁMICA
-        // =====================================================
-        private string CalcularDificultad(List<int> puntajes)
-        {
-            if (!puntajes.Any()) return "basico";
-
-            double promedio = puntajes.Average();
-
-            if (promedio < 4) return "basico";
-            if (promedio < 7) return "intermedio";
-            return "avanzado";
-        }
-
-        // =====================================================
-        // 🧠 CONTROL ENTREVISTA
-        // =====================================================
-        public bool EntrevistaTerminada(List<int> puntajes)
-        {
-            if (puntajes.Count >= 5) return true;
-
-            if (puntajes.Count >= 3 && puntajes.Average() < 3)
-                return true;
-
-            return false;
-        }
-
-        // =====================================================
-        // 🚀 CORE IA
+        // 🚀 CORE IA (CON FALLBACK)
         // =====================================================
         private async Task<string> LlamarIA(object mensajes, double temp)
         {
@@ -253,6 +208,19 @@ Devuelve HTML con:
             }
 
             return "❌ Error al conectar con la IA.";
+        }
+
+        // =====================================================
+        // 🧠 EXTRA: DETECTAR DEBILIDADES
+        // =====================================================
+        private string ExtraerDebilidades(List<MensajeViewModel> historial)
+        {
+            return string.Join(", ",
+                historial
+                .Where(x => x.Tipo == "IA" && x.Texto.Contains("mejorar"))
+                .Take(2)
+                .Select(x => x.Texto)
+            );
         }
     }
 }

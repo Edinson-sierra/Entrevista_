@@ -343,3 +343,237 @@ C:\Users\USER\OneDrive\Escritorio\repositorios\de git\Entrevista_\Entrevista\obj
 C:\Users\USER\OneDrive\Escritorio\repositorios\de git\Entrevista_\Entrevista\obj\Debug\Entrevista.csproj.Up2Date
 C:\Users\USER\OneDrive\Escritorio\repositorios\de git\Entrevista_\Entrevista\obj\Debug\Entrevista.dll
 C:\Users\USER\OneDrive\Escritorio\repositorios\de git\Entrevista_\Entrevista\obj\Debug\Entrevista.pdb
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Entrevista.dll.config
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Entrevista.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Entrevista.pdb
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\csc.exe
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\csc.exe.config
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\csc.rsp
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\csi.exe
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\csi.exe.config
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\csi.rsp
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.AppContext.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Console.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.IO.Compression.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Net.Http.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Net.Sockets.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.ValueTuple.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\vbc.exe
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\vbc.exe.config
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\vbc.rsp
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\VBCSCompiler.exe
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Antlr3.Runtime.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\BCrypt.Net-Next.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\EntityFramework.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\EntityFramework.SqlServer.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Entrevista_DATA.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Newtonsoft.Json.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\RestSharp.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Buffers.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.IO.Pipelines.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Memory.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Numerics.Vectors.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Text.Encodings.Web.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Text.Json.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.Helpers.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.Mvc.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.Optimization.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.Razor.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.WebPages.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.WebPages.Razor.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\WebGrease.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Entrevista_DATA.pdb
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Entrevista_DATA.dll.config
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\BCrypt.Net-Next.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\EntityFramework.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\EntityFramework.SqlServer.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Newtonsoft.Json.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\RestSharp.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Buffers.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.IO.Pipelines.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Memory.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Numerics.Vectors.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Text.Encodings.Web.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Text.Json.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.Helpers.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.Mvc.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.Optimization.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.Razor.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.WebPages.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\System.Web.WebPages.Razor.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Antlr3.Runtime.pdb
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\es\System.Web.Razor.resources.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\obj\Debug\Entrevista.csproj.AssemblyReference.cache
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\obj\Debug\Entrevista.csproj.CoreCompileInputs.cache
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\obj\Debug\Entrevista.csproj.Up2Date
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\obj\Debug\Entrevista.dll
+C:\Users\Angelly\Desktop\repositorio\Entrevista_\Entrevista\obj\Debug\Entrevista.pdb
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Entrevista.dll.config
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Entrevista.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Entrevista.pdb
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\csc.exe
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\csc.exe.config
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\csc.rsp
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\csi.exe
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\csi.exe.config
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\csi.rsp
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.AppContext.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Console.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.IO.Compression.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Net.Http.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Net.Sockets.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.ValueTuple.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\vbc.exe
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\vbc.exe.config
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\vbc.rsp
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\VBCSCompiler.exe
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Antlr3.Runtime.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\BCrypt.Net-Next.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\BouncyCastle.Cryptography.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\EntityFramework.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\EntityFramework.SqlServer.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Entrevista_DATA.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\itextsharp.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Newtonsoft.Json.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\RestSharp.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Buffers.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.IO.Pipelines.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Memory.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Numerics.Vectors.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Text.Encodings.Web.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Text.Json.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.Helpers.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.Mvc.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.Optimization.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.Razor.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.WebPages.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.WebPages.Razor.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\WebGrease.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Entrevista_DATA.pdb
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Entrevista_DATA.dll.config
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Antlr3.Runtime.pdb
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\BCrypt.Net-Next.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\BouncyCastle.Cryptography.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\EntityFramework.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\EntityFramework.SqlServer.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\itextsharp.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\Newtonsoft.Json.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\RestSharp.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Buffers.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.IO.Pipelines.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Memory.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Numerics.Vectors.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Text.Encodings.Web.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Text.Json.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.Helpers.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.Mvc.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.Optimization.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.Razor.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.WebPages.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\System.Web.WebPages.Razor.xml
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\es\System.Web.Razor.resources.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\obj\Debug\Entrevista.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\obj\Debug\Entrevista.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\obj\Debug\Entrevista.csproj.Up2Date
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\obj\Debug\Entrevista.dll
+C:\Users\Admin\Desktop\Entrevista_ (1)\Entrevista_\Entrevista\obj\Debug\Entrevista.pdb

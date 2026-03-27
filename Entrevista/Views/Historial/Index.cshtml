@@ -1,0 +1,197 @@
+﻿@model Entrevista.ViewModels.HistorialViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Historial de Simulaciones";
+}
+@section Styles {
+    <link href="~/Content/historial.css" rel="stylesheet" />
+}
+
+<div class="historial-container">
+    <div class="historial-header">
+        <div>
+            <h2 class="historial-title">
+                <i class="bi bi-clock-history" style="color: var(--sde-accent); margin-right: 10px;"></i>
+                Historial de Simulaciones
+            </h2>
+            <p class="historial-subtitle">Todas tus entrevistas anteriores</p>
+        </div>
+        
+        @if (Model.Entrevistas.Any())
+        {
+            <button type="button" class="sde-btn sde-btn-primary" data-bs-toggle="modal" data-bs-target="#exportModal">
+                <i class="bi bi-file-earmark-pdf"></i>
+                Exportar a PDF
+            </button>
+        }
+    </div>
+
+    @if (Model.Entrevistas.Any())
+    {
+        <form id="exportForm" method="post" action="@Url.Action("ExportarPDF", "Historial")">
+            <div class="table-responsive">
+                <table class="sde-table historial-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px;">
+                                <input type="checkbox" id="selectAll" class="form-check-input" />
+                            </th>
+                            <th>Tema</th>
+                            <th>Fecha</th>
+                            <th>Puntaje</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Entrevistas)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="entrevistasSeleccionadas" value="@item.EntrevistaId" class="form-check-input interview-checkbox" />
+                                </td>
+                                <td>
+                                    <span class="historial-tema">@item.Tema</span>
+                                </td>
+                                <td>
+                                    <span class="historial-fecha">@item.FechaFormateada</span>
+                                </td>
+                                <td>
+                                    <span class="sde-badge @item.PuntajeClass">@item.PuntajeDisplay</span>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Detalle", "Historial", new { id = item.EntrevistaId })" class="sde-btn sde-btn-ghost">
+                                        <i class="bi bi-eye"></i>
+                                        Ver detalle
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    }
+    else
+    {
+        <div class="empty-state">
+            <div class="empty-icon">📋</div>
+            <div class="empty-title">No has realizado simulaciones anteriormente</div>
+            <div class="empty-sub">
+                Comienza tu primera entrevista para ver tu historial aquí.
+            </div>
+            <a href="@Url.Action("Index", "Simulacion")" class="sde-btn sde-btn-primary">
+                <i class="bi bi-play-circle"></i>
+                Iniciar Primera Entrevista
+            </a>
+        </div>
+    }
+</div>
+
+@if (Model.Entrevistas.Any())
+{
+    <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exportModalLabel">
+                        <i class="bi bi-file-earmark-pdf" style="color: var(--sde-accent); margin-right: 8px;"></i>
+                        Exportar a PDF
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Selecciona las simulaciones que deseas incluir en el PDF:</p>
+                    <div class="export-options">
+                        <div class="form-check">
+                            <input type="radio" id="exportSelected" name="exportOption" value="selected" class="form-check-input" checked />
+                            <label for="exportSelected">Solo las seleccionadas (<span id="selectedCount">0</span>)</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" id="exportAll" name="exportOption" value="all" class="form-check-input" />
+                            <label for="exportAll">Todas las simulaciones (@Model.Entrevistas.Count)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="sde-btn sde-btn-ghost" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="sde-btn sde-btn-primary" id="btnExport">
+                        <i class="bi bi-download"></i>
+                        Descargar PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger" style="margin-top: 20px;">
+        <i class="bi bi-exclamation-triangle"></i>
+        @TempData["Error"]
+    </div>
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var selectAll = document.getElementById('selectAll');
+            var checkboxes = document.querySelectorAll('.interview-checkbox');
+            var selectedCountSpan = document.getElementById('selectedCount');
+            var btnExport = document.getElementById('btnExport');
+            var exportForm = document.getElementById('exportForm');
+
+            function updateSelectedCount() {
+                var count = document.querySelectorAll('.interview-checkbox:checked').length;
+                if (selectedCountSpan) {
+                    selectedCountSpan.textContent = count;
+                }
+            }
+
+            if (selectAll) {
+                selectAll.addEventListener('change', function() {
+                    checkboxes.forEach(function(cb) {
+                        cb.checked = selectAll.checked;
+                    });
+                    updateSelectedCount();
+                });
+            }
+
+            checkboxes.forEach(function(cb) {
+                cb.addEventListener('change', function() {
+                    updateSelectedCount();
+                    var allChecked = Array.from(checkboxes).every(function(c) { return c.checked; });
+                    var someChecked = Array.from(checkboxes).some(function(c) { return c.checked; });
+                    if (selectAll) {
+                        selectAll.checked = allChecked;
+                        selectAll.indeterminate = someChecked && !allChecked;
+                    }
+                });
+            });
+
+            if (btnExport) {
+                btnExport.addEventListener('click', function() {
+                    var exportOption = document.querySelector('input[name="exportOption"]:checked').value;
+                    var form = document.getElementById('exportForm');
+                    var action = form.getAttribute('action');
+
+                    if (exportOption === 'selected') {
+                        var checked = document.querySelectorAll('.interview-checkbox:checked');
+                        if (checked.length === 0) {
+                            alert('Selecciona al menos una simulación para exportar.');
+                            return;
+                        }
+                        form.submit();
+                    } else {
+                        window.location.href = '@Url.Action("ExportarPDFAll", "Historial")';
+                    }
+
+                    var modal = bootstrap.Modal.getInstance(document.getElementById('exportModal'));
+                    if (modal) {
+                        modal.hide();
+                    }
+                });
+            }
+        });
+    </script>
+}

@@ -1,625 +1,92 @@
-﻿/* ═══════════════════════════════════════════════════════════════
-   PLAN PREMIUM — Calendario de Estudio Inteligente
-   Extiende el sistema --sde-* de la app
-   ═══════════════════════════════════════════════════════════════ */
-
-/* ── Wrap principal ── */
-.plan-pro-wrap {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 32px 20px 80px;
-    font-family: var(--sde-font, system-ui);
+﻿/* ============================================================
+       PLAN — Plan de entrenamiento generado por IA
+       ============================================================ */
+.plan-wrap {
+    max-width: 780px;
 }
 
-/* ── Topbar ── */
-.plan-topbar {
+.plan-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 16px;
     margin-bottom: 28px;
-    flex-wrap: wrap;
-    gap: 12px;
 }
 
-.plan-origin-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(79,142,247,.1);
-    border: 1px solid rgba(79,142,247,.25);
-    border-radius: 100px;
-    padding: 6px 14px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .04em;
-    color: var(--sde-accent, #4f8ef7);
-    text-transform: uppercase;
-}
-
-.plan-badge-sep {
-    opacity: .4;
-    font-weight: 400;
-}
-
-.live-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--sde-success, #34d399);
-    border-radius: 50%;
-    box-shadow: 0 0 6px var(--sde-success, #34d399);
-    animation: livePulse 2s infinite;
-    flex-shrink: 0;
-}
-
-@keyframes livePulse {
-    0%,100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    50% {
-        opacity: .4;
-        transform: scale(1.5);
-    }
-}
-
-.btn-sm {
-    padding: 6px 14px !important;
-    font-size: 13px !important;
-}
-
-/* ── Hero ── */
-.plan-hero {
-    position: relative;
-    background: var(--sde-surface, #111520);
-    border: 1px solid var(--sde-border, rgba(255,255,255,.07));
-    border-radius: 20px;
-    padding: 36px 40px;
-    margin-bottom: 36px;
-    overflow: hidden;
-}
-
-.plan-hero-glow {
-    position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 240px;
-    height: 240px;
-    background: radial-gradient(circle, rgba(79,142,247,.12) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.plan-hero-icon {
-    font-size: 36px;
-    margin-bottom: 16px;
-}
-
-.plan-hero-title {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: -.4px;
-    color: var(--sde-text-primary, #e8eaf0);
-    margin: 0 0 10px;
-}
-
-.plan-hero-sub {
-    font-size: 14px;
-    color: var(--sde-text-muted, #6b7280);
-    line-height: 1.7;
-    max-width: 560px;
-    margin: 0;
-}
-
-/* ── Stats rápidas ── */
-.plan-stats-row {
+.plan-header-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--sde-accent), #7c4dff);
     display: flex;
-    gap: 24px;
-    margin-top: 28px;
-    padding-top: 24px;
-    border-top: 1px solid var(--sde-border, rgba(255,255,255,.07));
-    flex-wrap: wrap;
-}
-
-.plan-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 80px;
-}
-
-.plan-stat-num {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--sde-accent, #4f8ef7);
-    line-height: 1;
-}
-
-.plan-stat-label {
-    font-size: 12px;
-    color: var(--sde-text-muted, #6b7280);
-    text-transform: uppercase;
-    letter-spacing: .05em;
-}
-
-/* ── Empty state ── */
-.plan-empty {
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 64px 32px;
-    gap: 16px;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(79,142,247,.3);
 }
 
-.plan-empty-icon {
-    font-size: 56px;
-    filter: drop-shadow(0 0 20px rgba(52,211,153,.3));
-}
-
-.plan-empty-title {
+.plan-header-title {
     font-size: 22px;
     font-weight: 800;
-    color: var(--sde-success, #34d399);
+    letter-spacing: -0.4px;
 }
 
-.plan-empty-sub {
-    font-size: 15px;
-    color: var(--sde-text-muted, #6b7280);
-    max-width: 420px;
-    line-height: 1.7;
-}
-
-/* ── Resumen global ── */
-.plan-resumen-global {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: rgba(79,142,247,.07);
-    border: 1px solid rgba(79,142,247,.2);
-    border-radius: 12px;
-    padding: 16px 20px;
+.plan-header-sub {
     font-size: 14px;
-    color: var(--sde-text-primary, #e8eaf0);
-    line-height: 1.7;
-    margin-bottom: 24px;
+    color: var(--sde-text-muted);
+    margin-top: 2px;
 }
 
-    .plan-resumen-global i {
-        color: var(--sde-accent, #4f8ef7);
-        font-size: 16px;
-        margin-top: 2px;
-        flex-shrink: 0;
-    }
-
-/* ── Loading ── */
-.plan-loading {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 40px;
-    color: var(--sde-text-muted, #6b7280);
-    font-size: 14px;
-}
-
-.plan-spinner {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--sde-border, rgba(255,255,255,.1));
-    border-top-color: var(--sde-accent, #4f8ef7);
-    border-radius: 50%;
-    animation: spin .7s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   CARDS DEL CALENDARIO
-   ═══════════════════════════════════════════════════════════════ */
-
-.plan-calendar {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 36px;
-}
-
-/* ── Card del día ── */
-.plan-day-card {
-    background: var(--sde-surface, #111520);
-    border: 1px solid var(--sde-border, rgba(255,255,255,.07));
-    border-radius: 16px;
-    overflow: hidden;
-    transition: border-color .2s, transform .2s, box-shadow .2s;
-    animation: cardIn .4s ease both;
-    position: relative;
-}
-
-@keyframes cardIn {
-    from {
-        opacity: 0;
-        transform: translateY(14px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.plan-day-card:hover {
-    border-color: rgba(79,142,247,.25);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 32px rgba(0,0,0,.25);
-}
-
-/* Completado */
-.plan-day-card.completado {
-    border-color: rgba(52,211,153,.3);
-    background: rgba(52,211,153,.03);
-}
-
-    .plan-day-card.completado .plan-day-header {
-        background: rgba(52,211,153,.06);
-    }
-
-    .plan-day-card.completado .plan-day-num {
-        color: var(--sde-success, #34d399);
-    }
-
-    .plan-day-card.completado .plan-day-body {
-        opacity: .5;
-        pointer-events: none;
-    }
-
-    .plan-day-card.completado .plan-check-btn {
-        background: var(--sde-success, #34d399);
-        color: #0a0d14;
-        border-color: var(--sde-success, #34d399);
-    }
-
-/* ── Header del día ── */
-.plan-day-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 18px 22px;
-    background: rgba(255,255,255,.02);
-    border-bottom: 1px solid var(--sde-border, rgba(255,255,255,.07));
-    flex-wrap: wrap;
-}
-
-.plan-day-left {
-    flex-shrink: 0;
-    min-width: 90px;
-}
-
-.plan-day-num {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    color: var(--sde-accent, #4f8ef7);
-    margin-bottom: 2px;
-}
-
-.plan-day-fecha {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--sde-text-primary, #e8eaf0);
-}
-
-.plan-day-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.plan-day-titulo {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--sde-text-primary, #e8eaf0);
-}
-
-.plan-day-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-/* ── Badges nivel/prioridad ── */
-.plan-nivel-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-}
-
-.nivel-alto {
-    background: rgba(239,68,68,.12);
-    color: #f87171;
-    border: 1px solid rgba(239,68,68,.25);
-}
-
-.nivel-medio {
-    background: rgba(251,191,36,.12);
-    color: #fbbf24;
-    border: 1px solid rgba(251,191,36,.25);
-}
-
-.nivel-bajo {
-    background: rgba(52,211,153,.12);
-    color: #34d399;
-    border: 1px solid rgba(52,211,153,.25);
-}
-
-.plan-duracion {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    color: var(--sde-text-muted, #6b7280);
-}
-
-    .plan-duracion i {
-        font-size: 11px;
-    }
-
-/* ── Botón check ── */
-.plan-check-btn {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 1.5px solid var(--sde-border, rgba(255,255,255,.15));
-    background: transparent;
-    color: var(--sde-text-muted, #6b7280);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    transition: all .2s;
-    flex-shrink: 0;
-    margin-left: auto;
-}
-
-    .plan-check-btn:hover {
-        background: rgba(52,211,153,.15);
-        border-color: var(--sde-success, #34d399);
-        color: var(--sde-success, #34d399);
-        transform: scale(1.1);
-    }
-
-/* ── Body del día ── */
-.plan-day-body {
-    padding: 20px 22px;
-    transition: opacity .3s;
-}
-
-/* ── Lista de temas ── */
-.plan-temas-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.plan-tema-item {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 14px 16px;
-    background: rgba(255,255,255,.025);
-    border-radius: 10px;
-    border: 1px solid var(--sde-border, rgba(255,255,255,.05));
-    transition: border-color .2s;
-}
-
-    .plan-tema-item:hover {
-        border-color: rgba(79,142,247,.2);
-    }
-
-.plan-tema-top {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.plan-tema-bullet {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--sde-accent, #4f8ef7);
-    flex-shrink: 0;
-    box-shadow: 0 0 6px rgba(79,142,247,.5);
-}
-
-.plan-tema-nombre {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--sde-text-primary, #e8eaf0);
-    flex: 1;
-}
-
-/* ── Badge dificultad del tema ── */
-.plan-dif-badge {
-    padding: 2px 9px;
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-}
-
-.dif-alta {
-    background: rgba(239,68,68,.1);
-    color: #f87171;
-}
-
-.dif-media {
-    background: rgba(251,191,36,.1);
-    color: #fbbf24;
-}
-
-.dif-baja {
-    background: rgba(52,211,153,.1);
-    color: #34d399;
-}
-
-.plan-tema-desc {
-    font-size: 13px;
-    color: var(--sde-text-muted, #6b7280);
-    line-height: 1.6;
-    margin: 0;
-    padding-left: 17px;
-}
-
-/* ── Recursos ── */
-.plan-recursos {
-    padding-left: 17px;
-    margin-top: 4px;
-}
-
-.plan-recursos-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--sde-text-muted, #6b7280);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-}
-
-.plan-recursos-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-    .plan-recursos-list li {
-        font-size: 13px;
-        color: var(--sde-accent, #4f8ef7);
-        line-height: 1.5;
-    }
-
-        .plan-recursos-list li::before {
-            content: '→ ';
-            opacity: .5;
-        }
-
-/* ── Recomendación del día ── */
-.plan-day-rec {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin-top: 14px;
-    background: rgba(167,139,250,.06);
-    border: 1px solid rgba(167,139,250,.15);
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 13px;
-    color: var(--sde-text-muted, #9ca3af);
-    line-height: 1.6;
-}
-
-    .plan-day-rec i {
-        color: #a78bfa;
-        font-size: 15px;
-        margin-top: 1px;
-        flex-shrink: 0;
-    }
-
-/* ── Fallback (cuando el modelo devuelve HTML plano) ── */
-.plan-card-fallback {
+/* — Card de plan — */
+.plan-card {
     background: var(--sde-surface);
     border: 1px solid var(--sde-border);
-    border-radius: var(--sde-radius, 12px);
+    border-radius: var(--sde-radius);
     padding: 28px 32px;
+    margin-bottom: 20px;
 }
 
-    .plan-card-fallback .plan-content h3 {
-        font-size: 15px;
-        font-weight: 700;
-        color: var(--sde-text-primary);
-        margin: 20px 0 10px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--sde-border);
+/* Estilos del HTML generado por la IA */
+.plan-content h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--sde-text-primary);
+    margin: 20px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--sde-border);
+}
+
+    .plan-content h3:first-child {
+        margin-top: 0;
     }
 
-    .plan-card-fallback .plan-content ul,
-    .plan-card-fallback .plan-content ol {
-        padding-left: 20px;
-        margin-bottom: 14px;
-    }
+.plan-content ul,
+.plan-content ol {
+    padding-left: 20px;
+    margin-bottom: 14px;
+}
 
-    .plan-card-fallback .plan-content li {
-        font-size: 14px;
-        line-height: 1.7;
-        margin-bottom: 5px;
-    }
+.plan-content li {
+    font-size: 14px;
+    color: var(--sde-text-primary);
+    line-height: 1.7;
+    margin-bottom: 5px;
+    padding-left: 4px;
+}
 
-    .plan-card-fallback .plan-content p {
-        font-size: 14px;
-        line-height: 1.7;
-        margin-bottom: 12px;
-    }
+.plan-content p {
+    font-size: 14px;
+    color: var(--sde-text-primary);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
 
-/* ── Acciones bottom ── */
-.plan-actions-bottom {
+/* — Acciones — */
+.plan-actions {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-}
-
-/* ── Print styles ── */
-@media print {
-    .plan-topbar .plan-actions-top,
-    .plan-actions-bottom,
-    .plan-check-btn {
-        display: none !important;
-    }
-
-    .plan-day-card {
-        break-inside: avoid;
-    }
-
-    .plan-hero-glow {
-        display: none;
-    }
-}
-
-/* ── Responsive ── */
-@media (max-width: 600px) {
-    .plan-hero {
-        padding: 24px 20px;
-    }
-
-    .plan-day-header {
-        padding: 14px 16px;
-    }
-
-    .plan-day-body {
-        padding: 16px;
-    }
-
-    .plan-hero-title {
-        font-size: 19px;
-    }
 }

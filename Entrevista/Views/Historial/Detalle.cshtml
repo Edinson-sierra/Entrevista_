@@ -1,0 +1,114 @@
+﻿@model Entrevista.ViewModels.HistorialDetalleViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Detalle de Simulación";
+}
+@section Styles {
+    <link href="~/Content/historial.css" rel="stylesheet" />
+}
+
+<div class="historial-container">
+    <div class="historial-header">
+        <div>
+            <a href="@Url.Action("Index", "Historial")" class="back-link">
+                <i class="bi bi-arrow-left"></i>
+                Volver al Historial
+            </a>
+            <h2 class="historial-title">
+                <i class="bi bi-file-earmark-text" style="color: var(--sde-accent); margin-right: 10px;"></i>
+                Detalle de Simulación
+            </h2>
+        </div>
+    </div>
+
+    <div class="detail-header">
+        <div class="detail-info">
+            <div class="detail-item">
+                <span class="detail-label">Tema</span>
+                <span class="detail-value">@Model.Tema</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Fecha</span>
+                <span class="detail-value">@Model.FechaFormateada</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Puntaje</span>
+                @{
+                    var scoreClass = Model.Puntaje >= 8 ? "sde-badge-green" :
+                                     Model.Puntaje >= 5 ? "sde-badge-yellow" :
+                                                          "sde-badge-red";
+                }
+                <span class="sde-badge @scoreClass">@Model.PuntajeDisplay</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-questions">
+        <h3 class="section-title">
+            <i class="bi bi-chat-square-text" style="color: var(--sde-accent); margin-right: 8px;"></i>
+            Preguntas y Respuestas
+        </h3>
+
+        @for (int i = 0; i < Model.Preguntas.Count; i++)
+        {
+            var pregunta = Model.Preguntas[i];
+            var stateClass = pregunta.EsCorrecta ? "correct" : "incorrect";
+            var stateIcon = pregunta.EsCorrecta ? "bi-check-circle-fill" : "bi-x-circle-fill";
+            var stateColor = pregunta.EsCorrecta ? "var(--sde-success)" : "var(--sde-danger)";
+
+            <div class="question-card @stateClass">
+                <div class="question-header">
+                    <div class="question-number">@pregunta.Numero</div>
+                    <div class="question-state">
+                        <i class="bi @stateIcon" style="color: @stateColor;"></i>
+                        <span style="color: @stateColor;">@pregunta.EstadoTexto</span>
+                    </div>
+                </div>
+
+                <div class="question-content">
+                    <div class="question-section">
+                        <div class="section-label">Pregunta</div>
+                        <div class="section-text">@pregunta.Pregunta</div>
+                    </div>
+
+                    <div class="question-section">
+                        <div class="section-label">Tu Respuesta</div>
+                        <div class="section-text answer">
+                            @(string.IsNullOrWhiteSpace(pregunta.RespuestaUsuario) ? "Sin respuesta" : pregunta.RespuestaUsuario)
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(pregunta.RespuestaCorrecta))
+                    {
+                        <div class="question-section">
+                            <div class="section-label">Feedback</div>
+                            <div class="section-text feedback">@pregunta.RespuestaCorrecta</div>
+                        </div>
+                    }
+
+                    @if (pregunta.Puntaje.HasValue)
+                    {
+                        <div class="question-score">
+                            <span class="score-label">Puntaje:</span>
+                            <div class="score-bar">
+                                <div class="score-bar-fill" style="width: @((pregunta.Puntaje.Value * 10).ToString())%; background: @stateColor;"></div>
+                            </div>
+                            <span class="score-value" style="color: @stateColor;">@pregunta.Puntaje.Value/10</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="detail-actions">
+        <a href="@Url.Action("Index", "Historial")" class="sde-btn sde-btn-ghost">
+            <i class="bi bi-arrow-left"></i>
+            Volver al Historial
+        </a>
+        <a href="@Url.Action("Index", "Resultado", new { id = Model.EntrevistaId })" class="sde-btn sde-btn-primary">
+            <i class="bi bi-graph-up"></i>
+            Ver Análisis Completo
+        </a>
+    </div>
+</div>

@@ -92,8 +92,6 @@ namespace Entrevista.ViewModels
             UltimaFecha.HasValue
                 ? UltimaFecha.Value.ToString("dd MMM yyyy")
                 : "Sin actividad";
-
-        public List<DashboardGraficoItem> DatosGraficos { get; internal set; }
     }
 
     // ====================================================================
@@ -120,9 +118,6 @@ namespace Entrevista.ViewModels
         /// <summary>Fecha en que se realizó la entrevista.</summary>
         public DateTime? Fecha { get; set; }
 
-        // 🔥 NUEVO: datos para gráficos
-        public List<DashboardGraficoItem> DatosGraficos { get; set; } = new List<DashboardGraficoItem>();
-
         // ────────────────────────────────────────────────────────────
         // Propiedades calculadas
         // ────────────────────────────────────────────────────────────
@@ -145,12 +140,5 @@ namespace Entrevista.ViewModels
         /// <summary>Fecha formateada para mostrar en tabla.</summary>
         public string FechaTexto =>
             Fecha.HasValue ? Fecha.Value.ToString("dd/MM/yy") : "—";
-    }
-    public class DashboardGraficoItem
-    {
-        public string tema { get; set; }
-        public string dificultad { get; set; }
-        public double puntaje { get; set; }
-        public string fecha { get; set; }
     }
 }
