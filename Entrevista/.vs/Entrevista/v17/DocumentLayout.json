@@ -3,8 +3,76 @@
   "WorkspaceRootPath": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|c:\\users\\dicaprio\\desktop\\edinson sena\\instr. mara\\tdd\\entrevista_\\entrevista\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|c:\\users\\dicaprio\\desktop\\edinson sena\\instr. mara\\tdd\\entrevista_\\entrevista\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|c:\\users\\dicaprio\\desktop\\edinson sena\\instr. mara\\tdd\\entrevista_\\entrevista\\views\\auth\\restablecer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\auth\\restablecer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\resultado\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\resultado\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\plan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\plan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\perfil\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\perfil\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\entrevista\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\entrevista\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\chatbot\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\chatbot\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|c:\\users\\dicaprio\\desktop\\edinson sena\\instr. mara\\tdd\\entrevista_\\entrevista\\views\\auth\\olvidecontrasena.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\auth\\olvidecontrasena.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\simulacion\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\simulacion\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|c:\\users\\dicaprio\\desktop\\edinson sena\\instr. mara\\tdd\\entrevista_\\entrevista\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,22 +83,6 @@
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:controllers\\perfilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\entrevista\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\entrevista\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\resultado\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\resultado\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\services\\chatbotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:services\\chatbotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,20 +91,8 @@
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:services\\iaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\simulacion\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\simulacion\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\content\\plan.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:content\\plan.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\chatbot\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\chatbot\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\plan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\plan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\controllers\\resultadocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -119,28 +159,12 @@
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:content\\register.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\content\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:content\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\viewmodels\\evaluacionitemviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:viewmodels\\evaluacionitemviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\content\\chatbot.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -195,14 +219,6 @@
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\perfil\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\perfil\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\content\\perfil.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:content\\perfil.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
@@ -213,10 +229,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|solutionrelative:views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2EB0D507-4A93-472E-9BC1-F56C682D9891}|Entrevista.csproj|C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -316,11 +328,11 @@
         },
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 18,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
@@ -333,16 +345,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\Login.cshtml",
               "RelativeDocumentMoniker": "Views\\Auth\\Login.cshtml",
               "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\Login.cshtml",
               "RelativeToolTip": "Views\\Auth\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHEAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAAoAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-03-20T12:25:30.218Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -389,133 +402,142 @@
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAOIAAAAAAAAAAADwv9MAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-20T13:53:55.307Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJAAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-25T02:21:53.319Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Chat.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Entrevista\\Chat.cshtml",
-              "RelativeDocumentMoniker": "Views\\Entrevista\\Chat.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Entrevista\\Chat.cshtml",
-              "RelativeToolTip": "Views\\Entrevista\\Chat.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAANMBAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-20T12:45:53.43Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PerfilController.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\PerfilController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PerfilController.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\PerfilController.cs",
-              "RelativeToolTip": "Controllers\\PerfilController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAANUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:56:02.643Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Resultado\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Resultado\\Index.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Resultado\\Index.cshtml",
-              "RelativeToolTip": "Views\\Resultado\\Index.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAA8AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-20T13:31:01.896Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "plan.css",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\plan.css",
-              "RelativeDocumentMoniker": "Content\\plan.css",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\plan.css",
-              "RelativeToolTip": "Content\\plan.css",
-              "ViewState": "AgIAAKcEAAAAAAAAAAAAAMQEAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-25T12:01:45.173Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Chatbotservice.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\Chatbotservice.cs",
-              "RelativeDocumentMoniker": "Services\\Chatbotservice.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\Chatbotservice.cs",
-              "RelativeToolTip": "Services\\Chatbotservice.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAAwDoAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T23:51:01.504Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IAService.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\IAService.cs",
-              "RelativeDocumentMoniker": "Services\\IAService.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\IAService.cs",
-              "RelativeToolTip": "Services\\IAService.cs",
-              "ViewState": "AgIAAOgAAAAAAAAAAAAqwEsBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:44:38.566Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\EmailService.cs",
+              "RelativeToolTip": "Services\\EmailService.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAYwFEAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T20:01:05.67Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Simulacion\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Simulacion\\Index.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Simulacion\\Index.cshtml",
-              "RelativeToolTip": "Views\\Simulacion\\Index.cshtml",
-              "ViewState": "AgIAAJgAAAAAAAAAAAAAAKMAAAABAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\Error.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "Views\\Shared\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-20T12:46:10.672Z"
+              "WhenOpened": "2026-03-25T02:22:00.498Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 2,
+              "Title": "Restablecer.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\Restablecer.cshtml",
+              "RelativeDocumentMoniker": "Views\\Auth\\Restablecer.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\Restablecer.cshtml",
+              "RelativeToolTip": "Views\\Auth\\Restablecer.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T19:14:37.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\Register.cshtml",
+              "RelativeDocumentMoniker": "Views\\Auth\\Register.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\Register.cshtml",
+              "RelativeToolTip": "Views\\Auth\\Register.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAIgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-25T02:20:54.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Resultado\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Resultado\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Resultado\\Index.cshtml",
+              "RelativeToolTip": "Views\\Resultado\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-20T13:31:01.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAAAB0AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-25T02:21:53.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Plan\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Plan\\Index.cshtml",
               "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Plan\\Index.cshtml",
               "RelativeToolTip": "Views\\Plan\\Index.cshtml",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-20T15:37:23.847Z"
+              "WhenOpened": "2026-03-20T15:37:23.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Perfil\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Perfil\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Perfil\\Index.cshtml",
+              "RelativeToolTip": "Views\\Perfil\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-25T02:21:26.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-20T13:53:55.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Chat.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Entrevista\\Chat.cshtml",
+              "RelativeDocumentMoniker": "Views\\Entrevista\\Chat.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Entrevista\\Chat.cshtml",
+              "RelativeToolTip": "Views\\Entrevista\\Chat.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-20T12:45:53.43Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -525,254 +547,53 @@
               "RelativeDocumentMoniker": "Views\\Chatbot\\Index.cshtml",
               "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Chatbot\\Index.cshtml",
               "RelativeToolTip": "Views\\Chatbot\\Index.cshtml",
-              "ViewState": "AgIAADIBAAAAAAAAAAAAABQAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-26T02:19:01.242Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ResultadoController.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\ResultadoController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ResultadoController.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\ResultadoController.cs",
-              "RelativeToolTip": "Controllers\\ResultadoController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:24:08.465Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "EntrevistaController.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\EntrevistaController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EntrevistaController.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\EntrevistaController.cs",
-              "RelativeToolTip": "Controllers\\EntrevistaController.cs",
-              "ViewState": "AgIAAFsBAAAAAAAAAAAkwGoBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:45:27.197Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "resultado.css",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\resultado.css",
-              "RelativeDocumentMoniker": "Content\\resultado.css",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\resultado.css",
-              "RelativeToolTip": "Content\\resultado.css",
-              "ViewState": "AgIAAC0BAAAAAAAAAAAAAGUBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-25T03:31:53.78Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "chat.css",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\chat.css",
-              "RelativeDocumentMoniker": "Content\\chat.css",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\chat.css",
-              "RelativeToolTip": "Content\\chat.css",
-              "ViewState": "AgIAAGECAAAAAAAAAAAAAIECAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-25T03:26:35.833Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ResultadoViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ResultadoViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\ResultadoViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ResultadoViewModel.cs",
-              "RelativeToolTip": "ViewModels\\ResultadoViewModel.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAYwLUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:26:07.633Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "EntrevistaViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\EntrevistaViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\EntrevistaViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\EntrevistaViewModel.cs",
-              "RelativeToolTip": "ViewModels\\EntrevistaViewModel.cs",
-              "ViewState": "AgIAAMAAAAAAAAAAAAAYwN8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:43:09.583Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "DashboardViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\DashboardViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\DashboardViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\DashboardViewModel.cs",
-              "RelativeToolTip": "ViewModels\\DashboardViewModel.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAgwF0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:43:08.995Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "ChatIAViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ChatIAViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\ChatIAViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ChatIAViewModel.cs",
-              "RelativeToolTip": "ViewModels\\ChatIAViewModel.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAAD8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:44:22.045Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "PlanViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\PlanViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\PlanViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\PlanViewModel.cs",
-              "RelativeToolTip": "ViewModels\\PlanViewModel.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAuwEsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:46:14.05Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "SimulacionController.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\SimulacionController.cs",
-              "RelativeDocumentMoniker": "Controllers\\SimulacionController.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\SimulacionController.cs",
-              "RelativeToolTip": "Controllers\\SimulacionController.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAYwG8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:45:14.381Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "ChatbotController.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\ChatbotController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ChatbotController.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\ChatbotController.cs",
-              "RelativeToolTip": "Controllers\\ChatbotController.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAQwJ8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T02:13:56.895Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "PlanController.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\PlanController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PlanController.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\PlanController.cs",
-              "RelativeToolTip": "Controllers\\PlanController.cs",
-              "ViewState": "AgIAAK0AAAAAAAAAAAAQwMsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:56:13.824Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "_ViewStart.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\_ViewStart.cshtml",
-              "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\_ViewStart.cshtml",
-              "RelativeToolTip": "Views\\_ViewStart.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-25T02:22:06.11Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "home.css",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\home.css",
-              "RelativeDocumentMoniker": "Content\\home.css",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\home.css",
-              "RelativeToolTip": "Content\\home.css",
-              "ViewState": "AgIAAEECAAAAAAAAAAAAAGECAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-25T02:53:33.904Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "login.css",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\login.css",
-              "RelativeDocumentMoniker": "Content\\login.css",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\login.css",
-              "RelativeToolTip": "Content\\login.css",
-              "ViewState": "AgIAAPkAAAAAAAAAAAAAAAYBAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-25T02:44:46.307Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\Register.cshtml",
-              "RelativeDocumentMoniker": "Views\\Auth\\Register.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\Register.cshtml",
-              "RelativeToolTip": "Views\\Auth\\Register.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFIAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-25T02:20:54.625Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "Web.config",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Web.config",
-              "RelativeDocumentMoniker": "Web.config",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Web.config",
-              "RelativeToolTip": "Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAADOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2026-03-20T02:56:20.073Z",
+              "WhenOpened": "2026-03-26T02:19:01.242Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "register.css",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\register.css",
-              "RelativeDocumentMoniker": "Content\\register.css",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\register.css",
-              "RelativeToolTip": "Content\\register.css",
-              "ViewState": "AgIAACIBAAAAAAAAAAAiwDcBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-25T02:50:18.759Z"
+              "DocumentIndex": 12,
+              "Title": "OlvideContrasena.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\OlvideContrasena.cshtml",
+              "RelativeDocumentMoniker": "Views\\Auth\\OlvideContrasena.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Auth\\OlvideContrasena.cshtml",
+              "RelativeToolTip": "Views\\Auth\\OlvideContrasena.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-31T18:51:45.636Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "layout.css",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\layout.css",
-              "RelativeDocumentMoniker": "Content\\layout.css",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\layout.css",
-              "RelativeToolTip": "Content\\layout.css",
-              "ViewState": "AgIAAAkCAAAAAAAAAAAAwDwCAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-25T02:41:46.116Z"
+              "DocumentIndex": 13,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Simulacion\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Simulacion\\Index.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Simulacion\\Index.cshtml",
+              "RelativeToolTip": "Views\\Simulacion\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-20T12:46:10.672Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "EvaluacionItemViewModels.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\EvaluacionItemViewModels.cs",
-              "RelativeDocumentMoniker": "ViewModels\\EvaluacionItemViewModels.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\EvaluacionItemViewModels.cs",
-              "RelativeToolTip": "ViewModels\\EvaluacionItemViewModels.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T04:02:30.955Z"
+              "DocumentIndex": 14,
+              "Title": "Contact.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Home\\Contact.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Contact.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Home\\Contact.cshtml",
+              "RelativeToolTip": "Views\\Home\\Contact.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-25T02:21:16.202Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 15,
               "Title": "About.cshtml",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Home\\About.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\About.cshtml",
@@ -780,179 +601,25 @@
               "RelativeToolTip": "Views\\Home\\About.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-25T02:21:14.307Z"
+              "WhenOpened": "2026-03-25T02:21:14.307Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "Error.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Shared\\Error.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\Error.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Shared\\Error.cshtml",
-              "RelativeToolTip": "Views\\Shared\\Error.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-25T02:22:00.498Z"
+              "DocumentIndex": 16,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Web.config",
+              "RelativeDocumentMoniker": "Web.config",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Web.config",
+              "RelativeToolTip": "Web.config",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2026-03-20T02:56:20.073Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "chatbot.css",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\chatbot.css",
-              "RelativeDocumentMoniker": "Content\\chatbot.css",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\chatbot.css",
-              "RelativeToolTip": "Content\\chatbot.css",
-              "ViewState": "AgIAADACAAAAAAAAAAAAAE4CAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-26T02:17:23.689Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "MensajeViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\MensajeViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\MensajeViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\MensajeViewModel.cs",
-              "RelativeToolTip": "ViewModels\\MensajeViewModel.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAADwvzQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:43:26.32Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "Services\\AuthService.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\AuthService.cs",
-              "RelativeToolTip": "Services\\AuthService.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAgwDIBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T02:18:37.034Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "NivelCalculator.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Helpers\\NivelCalculator.cs",
-              "RelativeDocumentMoniker": "Helpers\\NivelCalculator.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Helpers\\NivelCalculator.cs",
-              "RelativeToolTip": "Helpers\\NivelCalculator.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAAwDwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T12:06:25.198Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "AuthFilter.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Filter\\AuthFilter.cs",
-              "RelativeDocumentMoniker": "Filter\\AuthFilter.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Filter\\AuthFilter.cs",
-              "RelativeToolTip": "Filter\\AuthFilter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T02:15:04.786Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAADwv+QAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T23:25:02.828Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "SessionHelper.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Helpers\\SessionHelper.cs",
-              "RelativeDocumentMoniker": "Helpers\\SessionHelper.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Helpers\\SessionHelper.cs",
-              "RelativeToolTip": "Helpers\\SessionHelper.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAqwGQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T03:54:17.457Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "ConfiguracionIAViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ConfiguracionIAViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\ConfiguracionIAViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ConfiguracionIAViewModel.cs",
-              "RelativeToolTip": "ViewModels\\ConfiguracionIAViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:53:49.306Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "PerfilViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\PerfilViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\PerfilViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\PerfilViewModel.cs",
-              "RelativeToolTip": "ViewModels\\PerfilViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIwAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:46:15.456Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "AuthResult.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Models\\AuthResult.cs",
-              "RelativeDocumentMoniker": "Models\\AuthResult.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Models\\AuthResult.cs",
-              "RelativeToolTip": "Models\\AuthResult.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAmwDsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T02:17:55.462Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "SimulacionViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\SimulacionViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\SimulacionViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\SimulacionViewModel.cs",
-              "RelativeToolTip": "ViewModels\\SimulacionViewModel.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAiwC8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:24:41.582Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "RegisterViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\RegisterViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\RegisterViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\RegisterViewModel.cs",
-              "RelativeToolTip": "ViewModels\\RegisterViewModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAADkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T13:46:13.448Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "LoginViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\LoginViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\LoginViewModel.cs",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\LoginViewModel.cs",
-              "RelativeToolTip": "ViewModels\\LoginViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-20T12:25:14.248Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 17,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Web.config",
               "RelativeDocumentMoniker": "Views\\Web.config",
@@ -964,7 +631,427 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "PerfilController.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\PerfilController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PerfilController.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\PerfilController.cs",
+              "RelativeToolTip": "Controllers\\PerfilController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:56:02.643Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "plan.css",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\plan.css",
+              "RelativeDocumentMoniker": "Content\\plan.css",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\plan.css",
+              "RelativeToolTip": "Content\\plan.css",
+              "ViewState": "AgIAAKcEAAAAAAAAAAAAAMQEAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-25T12:01:45.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Chatbotservice.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\Chatbotservice.cs",
+              "RelativeDocumentMoniker": "Services\\Chatbotservice.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\Chatbotservice.cs",
+              "RelativeToolTip": "Services\\Chatbotservice.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAwDoAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T23:51:01.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IAService.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\IAService.cs",
+              "RelativeDocumentMoniker": "Services\\IAService.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\IAService.cs",
+              "RelativeToolTip": "Services\\IAService.cs",
+              "ViewState": "AgIAAOgAAAAAAAAAAAAqwEsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:44:38.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ResultadoController.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\ResultadoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ResultadoController.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\ResultadoController.cs",
+              "RelativeToolTip": "Controllers\\ResultadoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:24:08.465Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "EntrevistaController.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\EntrevistaController.cs",
+              "RelativeDocumentMoniker": "Controllers\\EntrevistaController.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\EntrevistaController.cs",
+              "RelativeToolTip": "Controllers\\EntrevistaController.cs",
+              "ViewState": "AgIAAFsBAAAAAAAAAAAkwGoBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:45:27.197Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "resultado.css",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\resultado.css",
+              "RelativeDocumentMoniker": "Content\\resultado.css",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\resultado.css",
+              "RelativeToolTip": "Content\\resultado.css",
+              "ViewState": "AgIAAC0BAAAAAAAAAAAAAGUBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-25T03:31:53.78Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "chat.css",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\chat.css",
+              "RelativeDocumentMoniker": "Content\\chat.css",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\chat.css",
+              "RelativeToolTip": "Content\\chat.css",
+              "ViewState": "AgIAAGECAAAAAAAAAAAAAIECAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-25T03:26:35.833Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ResultadoViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ResultadoViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\ResultadoViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ResultadoViewModel.cs",
+              "RelativeToolTip": "ViewModels\\ResultadoViewModel.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAYwLUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:26:07.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "EntrevistaViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\EntrevistaViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\EntrevistaViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\EntrevistaViewModel.cs",
+              "RelativeToolTip": "ViewModels\\EntrevistaViewModel.cs",
+              "ViewState": "AgIAAMAAAAAAAAAAAAAYwN8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:43:09.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "DashboardViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\DashboardViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\DashboardViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\DashboardViewModel.cs",
+              "RelativeToolTip": "ViewModels\\DashboardViewModel.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAgwF0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:43:08.995Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ChatIAViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ChatIAViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\ChatIAViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ChatIAViewModel.cs",
+              "RelativeToolTip": "ViewModels\\ChatIAViewModel.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAAD8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:44:22.045Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "PlanViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\PlanViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\PlanViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\PlanViewModel.cs",
+              "RelativeToolTip": "ViewModels\\PlanViewModel.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAuwEsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:46:14.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "SimulacionController.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\SimulacionController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SimulacionController.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\SimulacionController.cs",
+              "RelativeToolTip": "Controllers\\SimulacionController.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAYwG8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:45:14.381Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ChatbotController.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\ChatbotController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ChatbotController.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\ChatbotController.cs",
+              "RelativeToolTip": "Controllers\\ChatbotController.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAQwJ8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T02:13:56.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "PlanController.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\PlanController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PlanController.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\PlanController.cs",
+              "RelativeToolTip": "Controllers\\PlanController.cs",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAQwMsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:56:13.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-25T02:22:06.11Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "home.css",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\home.css",
+              "RelativeDocumentMoniker": "Content\\home.css",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\home.css",
+              "RelativeToolTip": "Content\\home.css",
+              "ViewState": "AgIAAEECAAAAAAAAAAAAAGECAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-25T02:53:33.904Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "login.css",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\login.css",
+              "RelativeDocumentMoniker": "Content\\login.css",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\login.css",
+              "RelativeToolTip": "Content\\login.css",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAAAAYBAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-25T02:44:46.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "register.css",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\register.css",
+              "RelativeDocumentMoniker": "Content\\register.css",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\register.css",
+              "RelativeToolTip": "Content\\register.css",
+              "ViewState": "AgIAACIBAAAAAAAAAAAiwDcBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-25T02:50:18.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "layout.css",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\layout.css",
+              "RelativeDocumentMoniker": "Content\\layout.css",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\layout.css",
+              "RelativeToolTip": "Content\\layout.css",
+              "ViewState": "AgIAAAkCAAAAAAAAAAAAwDwCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-25T02:41:46.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "EvaluacionItemViewModels.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\EvaluacionItemViewModels.cs",
+              "RelativeDocumentMoniker": "ViewModels\\EvaluacionItemViewModels.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\EvaluacionItemViewModels.cs",
+              "RelativeToolTip": "ViewModels\\EvaluacionItemViewModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-26T04:02:30.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "chatbot.css",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\chatbot.css",
+              "RelativeDocumentMoniker": "Content\\chatbot.css",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\chatbot.css",
+              "RelativeToolTip": "Content\\chatbot.css",
+              "ViewState": "AgIAADACAAAAAAAAAAAAAE4CAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-03-26T02:17:23.689Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "MensajeViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\MensajeViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\MensajeViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\MensajeViewModel.cs",
+              "RelativeToolTip": "ViewModels\\MensajeViewModel.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAADwvzQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:43:26.32Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Services\\AuthService.cs",
+              "RelativeToolTip": "Services\\AuthService.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAgwDIBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T02:18:37.034Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "NivelCalculator.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Helpers\\NivelCalculator.cs",
+              "RelativeDocumentMoniker": "Helpers\\NivelCalculator.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Helpers\\NivelCalculator.cs",
+              "RelativeToolTip": "Helpers\\NivelCalculator.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAwDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T12:06:25.198Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "AuthFilter.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Filter\\AuthFilter.cs",
+              "RelativeDocumentMoniker": "Filter\\AuthFilter.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Filter\\AuthFilter.cs",
+              "RelativeToolTip": "Filter\\AuthFilter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T02:15:04.786Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAADwv+QAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T23:25:02.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "SessionHelper.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Helpers\\SessionHelper.cs",
+              "RelativeDocumentMoniker": "Helpers\\SessionHelper.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Helpers\\SessionHelper.cs",
+              "RelativeToolTip": "Helpers\\SessionHelper.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAqwGQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T03:54:17.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "ConfiguracionIAViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ConfiguracionIAViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\ConfiguracionIAViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\ConfiguracionIAViewModel.cs",
+              "RelativeToolTip": "ViewModels\\ConfiguracionIAViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:53:49.306Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 50,
+              "Title": "PerfilViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\PerfilViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\PerfilViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\PerfilViewModel.cs",
+              "RelativeToolTip": "ViewModels\\PerfilViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:46:15.456Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "AuthResult.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Models\\AuthResult.cs",
+              "RelativeDocumentMoniker": "Models\\AuthResult.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Models\\AuthResult.cs",
+              "RelativeToolTip": "Models\\AuthResult.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAmwDsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-25T02:17:55.462Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "SimulacionViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\SimulacionViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\SimulacionViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\SimulacionViewModel.cs",
+              "RelativeToolTip": "ViewModels\\SimulacionViewModel.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAiwC8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:24:41.582Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\RegisterViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\RegisterViewModel.cs",
+              "RelativeToolTip": "ViewModels\\RegisterViewModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T13:46:13.448Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\LoginViewModel.cs",
+              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\ViewModels\\LoginViewModel.cs",
+              "RelativeToolTip": "ViewModels\\LoginViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-20T12:25:14.248Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
               "Title": "perfil.css",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\perfil.css",
               "RelativeDocumentMoniker": "Content\\perfil.css",
@@ -976,19 +1063,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Perfil\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Perfil\\Index.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Perfil\\Index.cshtml",
-              "RelativeToolTip": "Views\\Perfil\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-25T02:21:26.718Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 55,
               "Title": "simulacion.css",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Content\\simulacion.css",
               "RelativeDocumentMoniker": "Content\\simulacion.css",
@@ -1000,7 +1075,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 58,
               "Title": "Model1.edmx",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Model1.edmx",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Model1.edmx",
@@ -1011,7 +1086,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 59,
               "Title": "App.Config",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\App.Config",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\App.Config",
@@ -1023,7 +1098,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 60,
               "Title": "Temas.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Temas.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Temas.cs",
@@ -1035,7 +1110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 61,
               "Title": "Tokens_login.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Tokens_login.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Tokens_login.cs",
@@ -1047,7 +1122,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 62,
               "Title": "Usuarios.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Usuarios.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Usuarios.cs",
@@ -1059,7 +1134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 63,
               "Title": "Sesiones.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Sesiones.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Sesiones.cs",
@@ -1071,7 +1146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 64,
               "Title": "Respuestas.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Respuestas.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Respuestas.cs",
@@ -1083,7 +1158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 65,
               "Title": "Recuperacion_password.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Recuperacion_password.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Recuperacion_password.cs",
@@ -1095,7 +1170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 66,
               "Title": "Preguntas.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Preguntas.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Preguntas.cs",
@@ -1107,7 +1182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 67,
               "Title": "Perfil.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Perfil.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Perfil.cs",
@@ -1119,7 +1194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 68,
               "Title": "Resultado.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Resultado.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Resultado.cs",
@@ -1131,7 +1206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 69,
               "Title": "Mensajes_conversacion.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Mensajes_conversacion.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Mensajes_conversacion.cs",
@@ -1143,7 +1218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 70,
               "Title": "Model1.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Model1.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Model1.cs",
@@ -1155,7 +1230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 71,
               "Title": "Planes_entrenamiento.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Planes_entrenamiento.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Planes_entrenamiento.cs",
@@ -1167,7 +1242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 72,
               "Title": "Intentos_login.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Intentos_login.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Intentos_login.cs",
@@ -1179,7 +1254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 73,
               "Title": "Entrevista.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Entrevista.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Entrevista.cs",
@@ -1191,7 +1266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 74,
               "Title": "Dificultad.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Dificultad.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Dificultad.cs",
@@ -1203,7 +1278,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 75,
               "Title": "Chat_conversacion.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Chat_conversacion.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Chat_conversacion.cs",
@@ -1215,7 +1290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 56,
               "Title": "packages.config",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\packages.config",
               "RelativeDocumentMoniker": "packages.config",
@@ -1227,19 +1302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
-              "Title": "Contact.cshtml",
-              "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Home\\Contact.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Contact.cshtml",
-              "ToolTip": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Views\\Home\\Contact.cshtml",
-              "RelativeToolTip": "Views\\Home\\Contact.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-25T02:21:16.202Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 57,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista\\Dockerfile",
               "RelativeDocumentMoniker": "Dockerfile",
@@ -1251,7 +1314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 76,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\Class1.cs",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\Class1.cs",
@@ -1263,7 +1326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 77,
               "Title": "packages.config",
               "DocumentMoniker": "C:\\Users\\DICAPRIO\\Desktop\\Edinson SENA\\Instr. Mara\\TDD\\Entrevista_\\Entrevista_DATA\\packages.config",
               "RelativeDocumentMoniker": "..\\Entrevista_DATA\\packages.config",

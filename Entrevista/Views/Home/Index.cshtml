@@ -57,7 +57,7 @@
                     </div>
                     <span class="chart-badge">RADAR</span>
                 </div>
-                <div class="canvas-wrap" style="height:220px;">
+                <div class="canvas-wrap">
                     <canvas id="radarChart"></canvas>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     </div>
                     <span class="chart-badge">DONUT</span>
                 </div>
-                <div class="canvas-wrap" style="height:220px;">
+                <div class="canvas-wrap">
                     <canvas id="donutChart"></canvas>
                 </div>
             </div>
@@ -87,7 +87,7 @@
                 </div>
                 <span class="chart-badge">LÍNEA</span>
             </div>
-            <div class="canvas-wrap" style="height:180px;">
+            <div class="canvas-wrap-sm">
                 <canvas id="lineChart"></canvas>
             </div>
         </div>
@@ -237,8 +237,8 @@ Chart.defaults.font.family = 'DM Sans';
 (function buildRadar() {
     const temaMap = {};
     datosEntrevistas.forEach(e => {
-        if (!temaMap[e.tema]) temaMap[e.tema] = [];
-        temaMap[e.tema].push(e.puntaje);
+        if (!temaMap[e.Tema]) temaMap[e.Tema] = [];
+        temaMap[e.Tema].push(e.Puntaje);
     });
 
     const labels = Object.keys(temaMap).length > 0
@@ -285,7 +285,7 @@ Chart.defaults.font.family = 'DM Sans';
 // ═══════════════════════════════════════════════════
 (function buildDonut() {
     const counts = { Baja: 0, Media: 0, Alta: 0 };
-    datosEntrevistas.forEach(e => { if (counts[e.dificultad] !== undefined) counts[e.dificultad]++; });
+    datosEntrevistas.forEach(e => { if (counts[e.Dificultad] !== undefined) counts[e.Dificultad]++; });
 
     const total = Object.values(counts).reduce((a,b)=>a+b,0);
     if (total === 0) { counts.Baja = 1; } // evitar chart vacío
@@ -321,8 +321,8 @@ Chart.defaults.font.family = 'DM Sans';
 // ═══════════════════════════════════════════════════
 (function buildLine() {
     const reversed = [...datosEntrevistas].reverse();
-    const labels   = reversed.map((e, i) => e.fecha || `#${i+1}`);
-    const datos    = reversed.map(e => e.puntaje);
+    const labels   = reversed.map((e, i) => e.Fecha || `#${i+1}`);
+    const datos    = reversed.map(e => e.Puntaje);
 
     // Gradiente
     const ctx = document.getElementById('lineChart').getContext('2d');

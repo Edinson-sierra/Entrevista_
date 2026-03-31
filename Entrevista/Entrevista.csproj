@@ -194,6 +194,7 @@
     <Compile Include="ViewModels\EntrevistaViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\RecuperacionViewModel.cs" />
     <Compile Include="ViewModels\MensajeViewModel.cs" />
     <Compile Include="ViewModels\PerfilViewModel.cs" />
     <Compile Include="ViewModels\PlanViewModel.cs" />
@@ -267,9 +268,12 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\Interfaces\IAuthService.cs" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Auth\Register.cshtml" />
+    <Content Include="Views\Auth\OlvideContrasena.cshtml" />
+    <Content Include="Views\Auth\Restablecer.cshtml" />
     <Content Include="Views\Simulacion\Index.cshtml" />
     <Content Include="Views\Entrevista\Chat.cshtml" />
     <Content Include="Views\Resultado\Index.cshtml" />

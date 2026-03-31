@@ -225,5 +225,83 @@ namespace Entrevista.Controllers
                 _context.SaveChanges();
             }
         }
+
+        // ====================================================================
+        // RECUPERACIÓN DE CONTRASEÑA
+        // ====================================================================
+
+        /// <summary>GET /Auth/OlvideContrasena — Formulario de email</summary>
+        [AllowAnonymous]
+        public ActionResult OlvideContrasena()
+        {
+            if (SessionHelper.EstaAutenticado(this))
+                return RedirectToAction("Index", "Home");
+
+            return View(new OlvideContrasenaViewModel());
+        }
+
+        /// <summary>POST /Auth/OlvideContrasena — Solicitar enlace</summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult OlvideContrasena(OlvideContrasenaViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            try
+            {
+                _authService.SolicitarRecuperacion(model.Email);
+            }
+            catch
+            {
+                // No propagar errores SMTP al usuario
+            }
+
+            // Mensaje genérico siempre (no revelar si el email existe)
+            TempData["SuccessMessage"] =
+                "Si el correo está registrado, recibirás un enlace de recuperación en breve.";
+
+            return RedirectToAction("OlvideContrasena");
+        }
+
+        /// <summary>GET /Auth/Restablecer?token=... — Formulario nueva contraseña</summary>
+        [AllowAnonymous]
+        public ActionResult Restablecer(string token)
+        {
+            if (string.IsNullOrWhiteSpace(token))
+                return RedirectToLogin("Enlace inválido.");
+
+            var usuario = _authService.ValidarTokenRecuperacion(token);
+            if (usuario == null)
+                return RedirectToLogin("El enlace ha expirado o ya fue utilizado.");
+
+            return View(new RestablecerContrasenaViewModel { Token = token });
+        }
+
+        /// <summary>POST /Auth/Restablecer — Aplicar nueva contraseña</summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Restablecer(RestablecerContrasenaViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            bool ok = _authService.RestablecerPassword(model.Token, model.NuevaPassword);
+
+            if (!ok)
+                return RedirectToLogin("El enlace ha expirado o ya fue utilizado.");
+
+            TempData["SuccessMessage"] = "Contraseña restablecida correctamente. Ya puedes iniciar sesión.";
+            return RedirectToAction("Login");
+        }
+
+        // ── Helper privado ──────────────────────────────────────────────────
+        private ActionResult RedirectToLogin(string error)
+        {
+            TempData["ErrorMessage"] = error;
+            return RedirectToAction("Login");
+        }
     }
 }

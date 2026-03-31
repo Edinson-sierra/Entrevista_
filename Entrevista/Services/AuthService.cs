@@ -2,6 +2,7 @@
 using Entrevista.ViewModels;
 using Entrevista_DATA;
 using System;
+using System.Configuration;
 using System.Linq;
 
 namespace Entrevista.Services
@@ -302,6 +303,101 @@ namespace Entrevista.Services
                     i.fecha_intento.HasValue &&
                     i.fecha_intento > fechaLimite
                 );
+        }
+
+        // ====================================================================
+        // RECUPERACIÓN DE CONTRASEÑA
+        // ====================================================================
+
+        /// <summary>
+        /// Crea un token de recuperación y envía el email.
+        /// Siempre retorna true (mensaje genérico) para no revelar si el email existe.
+        /// </summary>
+        public bool SolicitarRecuperacion(string email)
+        {
+            var usuario = _context.Usuarios
+                .FirstOrDefault(u => u.email_usuario == email && u.activo == true);
+
+            if (usuario == null)
+                return true; // mensaje genérico, no revelar
+
+            // Invalidar tokens anteriores pendientes del mismo usuario
+            var tokensViejos = _context.Recuperacion_password
+                .Where(r => r.usuarios_id_usuarios == usuario.id_usuarios
+                         && r.usado_token_recuperacion == false
+                         && r.expiracion_token_recuperacion > DateTime.Now);
+
+            foreach (var t in tokensViejos)
+                t.usado_token_recuperacion = true;
+
+            // Crear nuevo token
+            string token = Guid.NewGuid().ToString();
+
+            _context.Recuperacion_password.Add(new Recuperacion_password
+            {
+                usuarios_id_usuarios        = usuario.id_usuarios,
+                token_recuperacion          = token,
+                expiracion_token_recuperacion = DateTime.Now.AddHours(2),
+                usado_token_recuperacion    = false
+            });
+
+            _context.SaveChanges();
+
+            // Construir enlace
+            string baseUrl = ConfigurationManager.AppSettings["AppBaseUrl"]?.TrimEnd('/');
+            string enlace  = $"{baseUrl}/Auth/Restablecer?token={token}";
+
+            // Enviar email
+            EmailService.EnviarRecuperacion(usuario.email_usuario, usuario.nombre_usuario, enlace);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Valida el token de recuperación.
+        /// Retorna el usuario si el token es válido, no está usado y no expiró.
+        /// </summary>
+        public Usuarios ValidarTokenRecuperacion(string token)
+        {
+            if (string.IsNullOrWhiteSpace(token)) return null;
+
+            var registro = _context.Recuperacion_password
+                .FirstOrDefault(r =>
+                    r.token_recuperacion == token &&
+                    r.usado_token_recuperacion == false &&
+                    r.expiracion_token_recuperacion > DateTime.Now);
+
+            if (registro == null) return null;
+
+            return _context.Usuarios
+                .FirstOrDefault(u => u.id_usuarios == registro.usuarios_id_usuarios
+                                  && u.activo == true);
+        }
+
+        /// <summary>
+        /// Aplica la nueva contraseña y marca el token como usado.
+        /// </summary>
+        public bool RestablecerPassword(string token, string nuevaPassword)
+        {
+            var registro = _context.Recuperacion_password
+                .FirstOrDefault(r =>
+                    r.token_recuperacion == token &&
+                    r.usado_token_recuperacion == false &&
+                    r.expiracion_token_recuperacion > DateTime.Now);
+
+            if (registro == null) return false;
+
+            var usuario = _context.Usuarios
+                .FirstOrDefault(u => u.id_usuarios == registro.usuarios_id_usuarios
+                                  && u.activo == true);
+
+            if (usuario == null) return false;
+
+            usuario.password_hash              = BCrypt.Net.BCrypt.HashPassword(nuevaPassword, workFactor: 12);
+            registro.usado_token_recuperacion  = true;
+
+            _context.SaveChanges();
+            return true;
         }
     }
 }
